@@ -1,15 +1,12 @@
 package com.ibm.socialcrm.notesintegration.connector.util;
 
 /****************************************************************
- * IBM Confidential
- *
- * SFA050-Collaboration Source Materials
+ * IBM OpenSource
  *
  * (C) Copyright IBM Corp. 2012
  *
- * The source code for this program is not published or otherwise
- * divested of its trade secrets, irrespective of what has been
- * deposited with the U.S. Copyright Office
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  ***************************************************************/
 
@@ -18,7 +15,7 @@ import com.ibm.socialcrm.notesintegration.utils.ConstantStrings;
 import com.ibm.socialcrm.notesintegration.utils.GenericUtils.SugarType;
 
 /*
- * This object contains inf. for each item user wants to copy to SalesConnect
+ * This object contains inf. for each item user wants to copy to SugarCRM
  */
 public class CopytoObject {
 	private AssociateData _associatedData = null;

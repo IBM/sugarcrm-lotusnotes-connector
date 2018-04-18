@@ -1,14 +1,11 @@
 package com.ibm.socialcrm.notesintegration.regexp;
 /****************************************************************
- * IBM Confidential
+ * IBM OpenSource
  *
- * SFA050-Collaboration Source Materials
+ * (C) Copyright IBM Corp. 2012
  *
- * (C) Copyright IBM Corp. 2014
- *
- * The source code for this program is not published or otherwise
- * divested of its trade secrets, irrespective of what has been
- * deposited with the U.S. Copyright Office
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  ***************************************************************/
 /**

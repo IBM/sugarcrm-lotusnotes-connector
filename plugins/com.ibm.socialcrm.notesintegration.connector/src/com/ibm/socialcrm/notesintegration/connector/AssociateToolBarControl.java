@@ -1,15 +1,12 @@
 package com.ibm.socialcrm.notesintegration.connector;
 
 /****************************************************************
- * IBM Confidential
- *
- * SFA050-Collaboration Source Materials
+ * IBM OpenSource
  *
  * (C) Copyright IBM Corp. 2012
  *
- * The source code for this program is not published or otherwise
- * divested of its trade secrets, irrespective of what has been
- * deposited with the U.S. Copyright Office
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  ***************************************************************/
 
@@ -201,7 +198,7 @@ public class AssociateToolBarControl extends SControlContribution {
 
 					// "CONNECTOR_UPDATE" could be triggered by one of the following scenarios:
 					// From card's "More" action - associate this document... or create meeting with prefill information.
-					// - create email/meeting triggered from SalesConnect
+					// - create email/meeting triggered from SugarCRM
 					// - d&d mail/calendar to a card
 					if (evt.getPropertyName() != null && evt.getPropertyName().equals(UpdateSelectionsBroadcaster.CONNECTOR_UPDATE)) {
 						updateAssociateForPrefill(evt.getNewValue());
@@ -372,7 +369,7 @@ public class AssociateToolBarControl extends SControlContribution {
 			prefillSugarEntry = new BaseSugarEntry[1];
 			prefillSugarEntry[0] = (BaseSugarEntry) obj;
 		} else if (obj != null && obj instanceof ArrayList && !((ArrayList) obj).isEmpty() && ((ArrayList) obj).get(0) instanceof BaseSugarEntry) {
-			// if schedule a meeting from SalesConnect's oppty/contact/client/Lead
+			// if schedule a meeting from SugarCRM's oppty/contact/client/Lead
 			prefillSugarEntry = new BaseSugarEntry[((ArrayList) obj).size()];
 			prefillSugarEntry = (BaseSugarEntry[]) ((ArrayList) obj).toArray(new BaseSugarEntry[((ArrayList) obj).size()]);
 		}
@@ -516,8 +513,8 @@ public class AssociateToolBarControl extends SControlContribution {
 
 		// reset _isInUpdateProcess flag, just in case the reset logic at the end of associateDialogOKPressed() got skipped.
 		// Need to check if there is existing runnable (i.e. there is existing copyto information that has not been applied to
-		// SalesConnect, yet). If yes, do not set _isInUpdateProcess to false. For example, user scheduled a meeting from
-		// an item in SalesConnect, we will create an association with this item, but this association will not be applied until
+		// SugarCRM, yet). If yes, do not set _isInUpdateProcess to false. For example, user scheduled a meeting from
+		// an item in SugarCRM, we will create an association with this item, but this association will not be applied until
 		// the meeting is submitted. If user presses the copyto button before the meeting it submitted, either to check the
 		// association information or to add another item to the association, we do not want to reset _isInUpdateProcess to false.
 		if (!hasNewAssociation(_documentActionMapKey)) {
@@ -696,7 +693,7 @@ public class AssociateToolBarControl extends SControlContribution {
 
 				// 55883 - don't turn off the _isInUpdateProcess flag here, the update processing in the other thread might still be going...
 				// wait for property change event instead
-				// // Done applying association to SalesConnect, turn off the flag
+				// // Done applying association to SugarCRM, turn off the flag
 				// _isInUpdateProcess = false;
 			}
 
@@ -749,7 +746,7 @@ public class AssociateToolBarControl extends SControlContribution {
 				if (!_isInUpdateProcess) {
 
 					// If this is calendar update but user did not update any copyto/association information, we need to add a runnable here so
-					// we can inject our SalesConnect update logic.
+					// we can inject our SugarCRM update logic.
 					if (isDirtyCalendar(part)) {
 
 						NotesUIDocument uidoc = getWorkbenchDoc(part);

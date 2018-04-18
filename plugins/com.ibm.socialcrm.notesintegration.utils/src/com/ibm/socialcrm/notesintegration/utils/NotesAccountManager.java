@@ -1,15 +1,12 @@
 package com.ibm.socialcrm.notesintegration.utils;
 
 /****************************************************************
- * IBM Confidential
- *
- * SFA050-Collaboration Source Materials
+ * IBM OpenSource
  *
  * (C) Copyright IBM Corp. 2012
  *
- * The source code for this program is not published or otherwise
- * divested of its trade secrets, irrespective of what has been
- * deposited with the U.S. Copyright Office
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  ***************************************************************/
 
@@ -27,7 +24,7 @@ public class NotesAccountManager {
 	// private Account socialServerAccount;
 
 	private static final String CRM_ACCOUNT_NAME = "salesConnect.crmServerAccount"; //$NON-NLS-1$
-	//  private static final String SOCIAL_SERVER_ACCOUNT_NAME = "salesConnect.socialServerAccount"; //$NON-NLS-1$
+	//  private static final String SOCIAL_SERVER_ACCOUNT_NAME = "SugarCRM.socialServerAccount"; //$NON-NLS-1$
 
 	private static final String CONFIG_FILE = "/config/config.properties"; //$NON-NLS-1$
 	private static final String DEFAULT_SALES_CONNECT_URL = "defaultSalesConnectURL"; //$NON-NLS-1$

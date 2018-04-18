@@ -1,15 +1,12 @@
 package com.ibm.socialcrm.notesintegration.connector;
 
 /****************************************************************
- * IBM Confidential
- *
- * SFA050-Collaboration Source Materials
+ * IBM OpenSource
  *
  * (C) Copyright IBM Corp. 2012
  *
- * The source code for this program is not published or otherwise
- * divested of its trade secrets, irrespective of what has been
- * deposited with the U.S. Copyright Office
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  ***************************************************************/
 
@@ -1686,7 +1683,7 @@ public class AssociateComposite {
 					public void linkActivated(HyperlinkEvent evt) {
 						if (type.equalsIgnoreCase(SugarType.LEADS.getParentType())) {
 							/*
-							 * this is sample url: https://svt5lb01a.rtp.raleigh.ibm.com/sales/salesconnect/#Leads/7117887912b362a
+							 * this is sample url: https://sugarCRMURL/#Leads/7117887912b362a
 							 */
 							String module_name = SugarType.LEADS.getParentType();
 							if (module_name != null) {

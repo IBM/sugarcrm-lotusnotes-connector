@@ -1,15 +1,12 @@
 package com.ibm.socialcrm.notesintegration.connector;
 
 /****************************************************************
- * IBM Confidential
- *
- * SFA050-Collaboration Source Materials
+ * IBM OpenSource
  *
  * (C) Copyright IBM Corp. 2012
  *
- * The source code for this program is not published or otherwise
- * divested of its trade secrets, irrespective of what has been
- * deposited with the U.S. Copyright Office
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  ***************************************************************/
 
@@ -1109,7 +1106,7 @@ public class AssociateUpdateManager {
 		StringBuffer sb = new StringBuffer(ConstantStrings.EMPTY_STRING);
 
 		// Querying every invitees in _notesInviteeList via Users module to determine if the invitee is a
-		// valid SalesConnect user. If it is, save email and lotus notes id in _sugarInviteeMap.
+		// valid SugarCRM user. If it is, save email and lotus notes id in _sugarInviteeMap.
 		buildSugarInviteeMap();
 
 		if (getSugarInviteeMap() != null) {

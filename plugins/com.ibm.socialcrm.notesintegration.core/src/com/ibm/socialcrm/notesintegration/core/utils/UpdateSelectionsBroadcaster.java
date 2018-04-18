@@ -1,15 +1,12 @@
 package com.ibm.socialcrm.notesintegration.core.utils;
 
 /****************************************************************
- * IBM Confidential
- *
- * SFA050-Collaboration Source Materials
+ * IBM OpenSource
  *
  * (C) Copyright IBM Corp. 2012
  *
- * The source code for this program is not published or otherwise
- * divested of its trade secrets, irrespective of what has been
- * deposited with the U.S. Copyright Office
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  ***************************************************************/
 
@@ -90,7 +87,7 @@ public class UpdateSelectionsBroadcaster {
 	 * Object could be instance of one of the following classes: - 
 	 * - BaseSugarEntry: when associating email/meeting with a card via the Associate button, the "Associate ... with this document" More
 	 * action in card, or the "Associate ... with this meeting" More action in card. 
-	 * - BaseSugarEntry[]: When create email/meeting is triggered from SalesConnect 
+	 * - BaseSugarEntry[]: When create email/meeting is triggered from SugarCRM 
 	 * - SugarDashboardDndEntry: when associating email/meeting with a card via Dnd
 	 */
 

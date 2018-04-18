@@ -1,15 +1,12 @@
 package com.ibm.socialcrm.notesintegration.core.utils;
 
 /****************************************************************
- * IBM Confidential
- *
- * SFA050-Collaboration Source Materials
+ * IBM OpenSource
  *
  * (C) Copyright IBM Corp. 2012
  *
- * The source code for this program is not published or otherwise
- * divested of its trade secrets, irrespective of what has been
- * deposited with the U.S. Copyright Office
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  ***************************************************************/
 
@@ -92,7 +89,7 @@ public class SugarWebservicesOperations {
 
 	public static final String GETINFO13_RESULTTAG = "key"; //$NON-NLS-1$
 
-	// SalesConnect preference page match content type
+	// SugarCRM preference page match content type
 	public static final String SALESCONNECT_LIVETEXT_MATCH_ACCOUNT_PREF_KEY = "com.ibm.socialcrm.salesconnect.livetext.match.account"; //$NON-NLS-1$
 	public static final String SALESCONNECT_LIVETEXT_MATCH_OPPTY_PREF_KEY = "com.ibm.socialcrm.salesconnect.livetext.match.oppty"; //$NON-NLS-1$
 	public static final String SALESCONNECT_LIVETEXT_MATCH_CONTACT_PREF_KEY = "com.ibm.socialcrm.salesconnect.livetext.match.contact"; //$NON-NLS-1$

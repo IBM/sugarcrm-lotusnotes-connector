@@ -32,15 +32,12 @@ import com.ibm.socialcrm.notesintegration.utils.UtilsPlugin;
 import com.ibm.socialcrm.notesintegration.utils.GenericUtils.SugarType;
 
 /****************************************************************
- * IBM Confidential
+ * IBM OpenSource
  *
- * SFA050-Collaboration Source Materials
+ * (C) Copyright IBM Corp. 2012
  *
- * (C) Copyright IBM Corp. 2014
- *
- * The source code for this program is not published or otherwise
- * divested of its trade secrets, irrespective of what has been
- * deposited with the U.S. Copyright Office
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  ***************************************************************/
 /**
@@ -1018,7 +1015,7 @@ public class SugarV10APIManager {
 
 	/**
 	 * Prepare a getinfo request using the v10 filter api. example:
-	 * https://svt5lb01a.rtp.raleigh.ibm.com/sales/salesconnect/rest/v10/Leads/filter?filter[0][$or][0][id]=36c222fe3c5df84&filter[0][$or][1
+	 * https://sugarCRMURL/rest/v10/Leads/filter?filter[0][$or][0][id]=36c222fe3c5df84&filter[0][$or][1
 	 * ][id]=7117887912b362a&fields=name,id,first_name,last_name,email1
 	 * 
 	 * @param module

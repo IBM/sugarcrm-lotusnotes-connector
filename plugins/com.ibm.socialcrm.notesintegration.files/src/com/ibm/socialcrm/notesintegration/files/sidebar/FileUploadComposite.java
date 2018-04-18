@@ -1,15 +1,12 @@
 package com.ibm.socialcrm.notesintegration.files.sidebar;
 
 /****************************************************************
- * IBM Confidential
- *
- * SFA050-Collaboration Source Materials
+ * IBM OpenSource
  *
  * (C) Copyright IBM Corp. 2012
  *
- * The source code for this program is not published or otherwise
- * divested of its trade secrets, irrespective of what has been
- * deposited with the U.S. Copyright Office
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  ***************************************************************/
 
@@ -701,8 +698,8 @@ public class FileUploadComposite extends Composite {
 	/**
 	 * Updates the enabled state of various widgets on the UI based on the the following rules.
 	 * 
-	 * 1) If no files are in the drop area, "Copy to salesconnect" should be disabled and we should show the instructions panel. 2) If there are files in the drop area, show the instructions panel and
-	 * disable the "copy to salesconnect" button.
+	 * 1) If no files are in the drop area, "Copy to SugarCRM" should be disabled and we should show the instructions panel. 2) If there are files in the drop area, show the instructions panel and
+	 * disable the "copy to SugarCRM" button.
 	 */
 	private void updateUIState() {
 		Collection input = (Collection) uploadViewer.getInput();
