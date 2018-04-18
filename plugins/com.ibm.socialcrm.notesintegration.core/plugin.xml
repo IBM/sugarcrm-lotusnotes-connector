@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="sugarDashboardContribution" name="sugarDashboardContribution" schema="schema/sugarDashboardContribution.exsd"/>
+   <extension-point id="dashboardToolbarIconContribution" name="dashboardToolbarIconContribution" schema="schema/dashboardToolbarIconContribution.exsd"/>
+   <extension-point id="dashboardToolbarMenuItemContribution" name="dashboardToolbarMenuItemContribution" schema="schema/dashboardToolbarMenuItemContribution.exsd"/>
+   <extension-point id="menuItemCategories" name="menuItemCategories" schema="schema/menuItemCategories.exsd"/>   
+   <extension-point id="sametimeWidgetContribution" name="sametimeWidgetContribution" schema="schema/sametimeWidgetContribution.exsd" />
+  <extension
+        point="org.eclipse.ui.startup">
+     <startup
+           class="com.ibm.socialcrm.notesintegration.core.MailDatabaseInfoLoader">
+     </startup>
+  </extension>
+
+
+</plugin>

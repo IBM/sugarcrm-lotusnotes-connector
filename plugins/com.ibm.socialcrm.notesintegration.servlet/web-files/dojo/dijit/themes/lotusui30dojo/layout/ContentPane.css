@@ -1,0 +1,42 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+/* ContentPane
+ *	
+ * .dijitContentPane
+ * 	set padding for basic content pane
+ * 	
+ * Nested layouts:
+ * 
+ * .dijitTabContainerTop-dijitContentPane,
+ * .dijitTabContainerLeft-dijitContentPane,
+ * .dijitTabContainerBottom-dijitContentPane,
+ * .dijitTabContainerRight-dijitContentPane
+ * 	set background-color and padding of ContentPanes nested within TabContainer (can do top, left, bottom, or right) or Accordion Container
+ *
+ * .dijitAccordionContainer-dijitContentPane
+ * 	set background-color and padding of ContentPane nested within Accordion
+ *
+ * .dijitSplitContainer-dijitContentPane,
+ *	set background-color and padding of ContentPane nested within a SplitContainer
+ *
+ * .dijitBorderContainer-dijitContentPane
+ *	set background-color and padding of ContentPane nested within a BorderContainer
+ */
+.lotusui30dojo .dijitContentPane {
+  padding: 8px;
+}
+/* nested layouts */
+.lotusui30dojo .dijitTabContainerTop-dijitContentPane,
+.lotusui30dojo .dijitTabContainerLeft-dijitContentPane,
+.lotusui30dojo .dijitTabContainerBottom-dijitContentPane,
+.lotusui30dojo .dijitTabContainerRight-dijitContentPane,
+.lotusui30dojo .dijitAccordionContainer-dijitContentPane {
+  background-color: #ffffff;
+  padding: 8px;
+}
+.lotusui30dojo .dijitSplitContainer-dijitContentPane, .lotusui30dojo .dijitBorderContainer-dijitContentPane {
+  background-color: #ffffff;
+  padding: 8px;
+}

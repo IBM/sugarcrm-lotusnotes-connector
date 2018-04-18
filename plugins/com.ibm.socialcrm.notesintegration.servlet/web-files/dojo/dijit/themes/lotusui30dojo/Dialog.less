@@ -1,0 +1,185 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+
+/* Dialog
+ * 
+ * Styling Dialog includes two sections:Dialog and Tooltip & TooltipDialog
+ * 
+ * Dialog:
+ * 1. Dialog (default styling):
+ * 		.dijitDialog - for border, shadow
+ *
+ * 2. Dialog title
+ * 		.dijitDialogTitleBar - for background-color, border
+ * 		.dijitDialogTitle - for font
+ * 
+ * 3. Dialog content
+ * 		.dijitDialogPaneContent - for background-color, border
+ * 		.dijitDialogPaneContentArea - for padding, margin
+ * 
+ * 4. Dialog action bar
+ * 		.dijitDialogPaneActionBar - for background-color, border, padding
+ * 
+ * 5. Dialog underlay
+ * 		.dijitDialogUnderlay - for background-color
+ * 
+ * 
+ * Tooltip & TooltipDialog:
+ * 1. tooltip content container:
+ * 		.dijitTooltipContainer - for background-color, border, padding
+ *
+ * 2. tooltip connector:
+ * 		.dijitTooltipConnector - for position, size, background
+ */
+
+@import "variables";
+
+.lotusui30dojo .dijitDialog {
+	overflow: visible;
+	outline: none;
+	border:3px solid #555; /*this is needed for IE*/
+	border:3px solid rgba(2, 2, 2, 0.4);
+	.border-radius(3px);
+	.box-shadow(0 0 15px rgba(0, 0, 0, 0.4));
+}
+
+.lotusui30dojo .dijitDialogPaneContent {
+	background: @pane-background-color;
+	padding: 15px 20px;
+	position: relative;
+}
+
+.lotusui30dojo .dijitDialogPaneActionBar {
+	/* gray bar at bottom of dialog with OK/Cancel buttons */
+	padding-top: 15px;
+	text-align: right;
+	border-top: 1px solid @border-color;
+	margin-top: 15px;
+}
+.lotusui30dojo .dijitDialogPaneActionBar .dijitButton {
+	margin: 0 0 0 10px;
+}
+
+.lotusui30dojo .dijitDialogTitleBar {
+	/* outer container for the titlebar of the dialog */
+	background: @dialog-titlebar-background-gradient-start;
+	.vert-gradient(@dialog-titlebar-background-gradient-start,@dialog-titlebar-background-gradient-end);
+	padding: 15px 20px;
+}
+
+.lotusui30dojo .dijitDialogTitle {
+	/* typography and styling of the dialog title */
+	font-size: 1.2em;
+	line-height: 1.2;
+	display: block;
+	color: #fff;
+	font-weight:bold;
+}
+
+.lotusui30dojo .dijitDialogCloseIcon {
+	/* the default close icon for the dialog */
+	background-image: url("images/ClosePopup32.png");
+	position: absolute;
+	right: -14px;
+	height: 32px;
+	width: 32px;
+	top: -14px;
+	zoom: 1;
+}
+
+.dijit_a11y .dijitDialog .dijitDialogCloseIcon {
+	height: auto;
+	width: auto;
+	right: 15px;
+	top: 5px;	
+}
+/*.lotusui30dojo .dijitDialogCloseIconHover {
+	background-position:-21px;
+}*/ /* Not used by One UI */
+/*.lotusui30dojo .dijitDialogCloseIconActive {
+	background-position:-42px;
+}*/ /* Not used by One UI */
+
+/* Tooltip and TooltipDialog */
+.lotusui30dojo .dijitTooltip,
+.lotusui30dojo .dijitTooltipDialog {
+	/* the outermost dom node, holding the connector and container */
+	background: transparent; /* make the area on the sides of the arrow transparent */
+	overflow: hidden;
+}
+
+.lotusui30dojo .dijitTooltipAbove, .lotusui30dojo .dijitTooltipBelow {
+	/* leave room for arrow below and above content */
+	padding: 5px;
+	margin-left: -5px;
+}
+
+.lotusui30dojo .dijitTooltipContainer {
+	/* the part with the text */
+	background-color:@popup-background-color;
+	border:1px solid @popup-border-color;
+	padding: 10px;
+	.box-shadow(0 2px 5px @shadow-color);
+}
+
+.dj_ie6 .lotusui30dojo .dijitTooltipContainer {
+    background-image: none;
+}
+/* One UI doesn't include the following styles from Dojo 1.6.1:
+	.lotusui30dojo .dijitTooltipConnector,
+	.dj_ie6 .lotusui30dojo .dijitTooltipConnector,
+	.lotusui30dojo .dijitTooltipABRight .dijitTooltipConnector,
+	.lotusui30dojo .dijitTooltipBelow .dijitTooltipConnector,
+	.lotusui30dojo .dijitTooltipAbove .dijitTooltipConnector,
+	.dj_ie7 .lotusui30dojo .dijitTooltipAbove .dijitTooltipConnector,
+	.dj_ie6 .lotusui30dojo .dijitTooltipAbove .dijitTooltipConnector
+*/
+
+.lotusui30dojo .dijitTooltipLeft {
+	padding-right: 5px;
+}
+.lotusui30dojo .dijitTooltipLeft .dijitTooltipConnector {
+	/* the arrow piece for tooltips to the left of an element, bottom borders aligned */
+	right: 0;
+	bottom: 3px;
+	background-position:0 0;
+	width:16px;
+	height:14px;
+}
+
+.lotusui30dojo .dijitTooltipRight {
+	padding-left: 5px;
+}
+.lotusui30dojo .dijitTooltipRight .dijitTooltipConnector {
+	/* the arrow piece for tooltips to the right of an element, bottom borders aligned */
+	left: 0;
+	bottom: 3px;
+	background-position:-48px 0;
+	width:16px;
+	height:14px;
+}
+
+.lotusui30dojo .dijitDialogUnderlay {
+	background: @dialog-underlay-color;
+	.opacity(0.4);
+	zoom: 1;
+}
+
+/* Lotus One UI tab dialog overrides */
+.lotusui30dojo .lotusTabDialog .dijitDialogTitleBar {padding-bottom:5px;}
+.lotusui30dojo .lotusTabDialog .dijitDialogPaneContent {padding:0;}
+
+/* Lotus One UI dialog that controls the entire content area */
+.lotusui30dojo .lotusSimpleDialog .dijitDialogTitleBar {padding:0;}
+.lotusui30dojo .lotusSimpleDialog .dijitDialogTitle {display:none;}
+.lotusui30dojo .lotusSimpleDialog .dijitDialogCloseIcon {z-index:10000;}
+.lotusui30dojo .lotusSimpleDialog .dijitDialogPaneContent {padding:0; height:auto !important; width:auto !important;} /* !importants needed for Safari */
+.lotusui30dojo .lotusSimpleDialog .dijitDialogPaneContentArea {margin:0; padding:0;}
+
+/* Lotus One UI slim header and cleared content */
+.lotusui30dojo .lotusAltDialogHeader .dijitDialogTitleBar {padding-top:10px; padding-bottom:10px; border-bottom:1px solid #111; background:#424448;
+	background:-moz-linear-gradient(top, #424448 0%, #393B3F 100%);
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#424448), color-stop(100%,#393B3F));}
+.lotusui30dojo .lotusAltDialogHeader .dijitDialogPaneContent {padding:0;}

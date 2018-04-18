@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<extension
+        id="ActivityStream"
+        point="org.eclipse.ui.views">
+     <view
+           allowMultiple="false"
+           category=""
+           class="com.ibm.socialcrm.notesintegration.activitystream.ActivityStreamView"
+           id="com.ibm.socialcrm.notesintegration.activitystream.ActivityStreamView"
+           name="Recent Discussion"
+           restorable="true">
+     </view>
+</extension>
+
+<extension
+        id="MicroblogView"
+        point="org.eclipse.ui.views">
+     <view
+           allowMultiple="false"
+           category=""
+           class="com.ibm.socialcrm.notesintegration.activitystream.MicroblogView"
+           id="com.ibm.socialcrm.notesintegration.activitystream.MicroblogView"
+           name="Events"
+           restorable="true">
+     </view>
+</extension>
+
+
+<extension
+      id="com.ibm.socialcrm.notesintegration.activityStreamPersepctiveFactoryAdvisor"
+      point="com.ibm.socialcrm.notesintegration.SFAPerspectiveFactoryAdvisor">
+   <advisorInfo
+         advisor="com.ibm.socialcrm.notesintegration.activitystream.ActivityStreamPerspectiveFactoryAdvisor"
+         viewPartId="com.ibm.socialcrm.notesintegration.activitystream.ActivityStreamView">
+   </advisorInfo>
+</extension>
+
+<extension
+      id="com.ibm.socialcrm.notesintegration.microblogPersepctiveFactoryAdvisor"
+      point="com.ibm.socialcrm.notesintegration.SFAPerspectiveFactoryAdvisor">
+   <advisorInfo
+         advisor="com.ibm.socialcrm.notesintegration.activitystream.MicroblogPerspectiveFactoryAdvisor"
+         viewPartId="com.ibm.socialcrm.notesintegration.activitystream.MicroblogView">
+   </advisorInfo>
+</extension>
+
+
+</plugin>

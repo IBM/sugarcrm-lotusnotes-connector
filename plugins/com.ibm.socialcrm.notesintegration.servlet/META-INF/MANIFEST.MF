@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Servlet Plug-in
+Bundle-SymbolicName: com.ibm.socialcrm.notesintegration.servlet;singleton:=true
+Bundle-Version: 2.0.0.qualifier
+Bundle-Vendor: IBM
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: com.ibm.socialcrm.notesintegration.utils,
+ com.ibm.pvc.webcontainer,
+ com.ibm.pvc.servlet,
+ com.ibm.socialcrm.notesintegration.core;bundle-version="1.0.0",
+ com.ibm.socialcrm.notesintegration.libraries;bundle-version="1.0.0",
+ com.ibm.socialcrm.notesintegration.sugarwidgetupdate;bundle-version="2.0.0"

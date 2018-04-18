@@ -1,0 +1,25 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+/* InlineEditBox
+ * 
+ * Styling InlineEditBox mainly includes:
+ * 
+ * 1. Normal state
+ * 		.dijitInlineEditBoxDisplayMode  - for border
+ * 
+ * 2. Hover state
+ * 		.dijitInlineEditBoxDisplayModeHover - for border and background color
+ */
+.lotusui30dojo .dijitInlineEditBoxDisplayMode {
+  border: 1px solid transparent;
+}
+.lotusui30dojo .dijitInlineEditBoxDisplayModeHover {
+  background-color: #fafafa;
+  border: solid 1px #cccccc;
+  cursor: hover;
+}
+.dj_ie6 .lotusui30dojo .dijitInlineEditBoxDisplayMode {
+  border: none;
+}

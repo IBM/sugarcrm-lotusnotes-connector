@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="com.ibm.socialcrm.notesintegration.accountContactsDashboard"
+         name="Contact Dashboard"
+         point="com.ibm.socialcrm.notesintegration.core.sugarDashboardContribution">
+      <dashboardContribution
+            displayName="%contacts"
+            dockedDisplayName="%contacts"
+            viewClass="com.ibm.socialcrm.notesintegration.accountPanels.dashboardComposites.AccountContactsDashboardComposite"
+            weight="70">
+         <types>
+            <type
+                  sugarType="ACCOUNTS">
+            </type>
+         </types>
+      </dashboardContribution>
+   </extension>    
+    
+   <extension
+         id="com.ibm.socialcrm.notesintegration.accountActivitiesDashboard"
+         name="Activities Dashboard"
+         point="com.ibm.socialcrm.notesintegration.core.sugarDashboardContribution">
+      <dashboardContribution
+            displayName="%activities"
+            dockedDisplayName="%activities"
+            viewClass="com.ibm.socialcrm.notesintegration.accountPanels.dashboardComposites.AccountActivitiesDashboardComposite"
+            weight="71">
+         <types>
+            <type
+                  sugarType="ACCOUNTS">
+            </type>
+            <type
+                  sugarType="CONTACTS">
+            </type>
+            <type
+                  sugarType="OPPORTUNITIES">
+            </type>
+         </types>
+      </dashboardContribution>
+   </extension>
+    
+</plugin>

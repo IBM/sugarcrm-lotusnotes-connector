@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+        id="com.ibm.sfa.sametimeViewDashboardContribution_account"
+        name="Sametime View Dashboard Contribution"
+        point="com.ibm.socialcrm.notesintegration.core.sugarDashboardContribution">
+     <dashboardContribution
+           displayName="%accountDashboardTitle"
+           viewClass="com.ibm.socialcrm.notesintegration.sametime.dashboardComposites.SametimeComposite"
+           weight="50">
+        <types>
+           <type
+                 sugarType="ACCOUNTS">
+           </type>
+        </types>
+     </dashboardContribution>
+  </extension>
+  
+  <extension
+        id="com.ibm.sfa.sametimeViewDashboardContribution_oppty"
+        name="Sametime View Dashboard Contribution"
+        point="com.ibm.socialcrm.notesintegration.core.sugarDashboardContribution">
+     <dashboardContribution
+           displayName="%opptyDashboardTitle"
+           viewClass="com.ibm.socialcrm.notesintegration.sametime.dashboardComposites.SametimeComposite"
+           weight="50">
+        <types>
+            <type
+                 sugarType="OPPORTUNITIES">
+           </type>
+        </types>
+     </dashboardContribution>
+  </extension>
+  
+    <extension
+        id="com.ibm.socialcrm.notesintegration.dashboardmenuitem.logintosametime"
+        name="Log into Sametime"
+        point="com.ibm.socialcrm.notesintegration.core.dashboardToolbarMenuItemContribution">
+     <toolbarMenuItemContribution
+           actionClass="com.ibm.socialcrm.notesintegration.sametime.actions.SametimeLogin"
+           categoryId="com.ibm.socialcrm.notesintegration.core.menuItemCategories.sametime"
+           weight="10">
+        <types>
+           <type
+                 sugarType="ACCOUNTS">
+           </type>
+           <type
+                 sugarType="OPPORTUNITIES">
+           </type>
+           <type
+                 sugarType="CONTACTS">
+           </type>
+        </types>
+        <dashboards>
+           <dashboard
+                 id="com.ibm.sfa.sametimeViewDashboardContribution">
+           </dashboard>
+        </dashboards>
+     </toolbarMenuItemContribution>
+  </extension>
+  <extension
+        id="com.ibm.socialcrm.notesintegration.core.menuItemCategories.sametime"
+        name="Sametime Items"
+        point="com.ibm.socialcrm.notesintegration.core.menuItemCategories">
+     <objectContribution
+           weight="10">
+     </objectContribution>
+  </extension>
+<!--  <extension
+        id="com.ibm.socialcrm.notesintegration.clickToCallToolbarIcon"
+        name="Click to Call"
+        point="com.ibm.socialcrm.notesintegration.core.dashboardToolbarIconContribution">
+     <toolbarIconContribution
+           actionClass="com.ibm.socialcrm.notesintegration.sametime.actions.ClickToCallDashboardToolbarAction"
+           disabledIcon="icons/STI_Icons_TelephonyUnavailable.png"
+           enabledIcon="icons/STI_Icons_TelephonyAvailable.png"
+           weight="20">
+        <types>
+           <type
+                 sugarType="CONTACTS">
+           </type>
+        </types>
+        <dashboards>
+           <dashboard
+                 id="com.ibm.sfa.contactInfoDashboardContribution">
+           </dashboard>
+           <dashboard
+                 id="com.ibm.sfa.sametimeViewDashboardContribution">
+           </dashboard>
+        </dashboards>
+     </toolbarIconContribution>
+  </extension>
+  -->
+  <extension
+        id="com.ibm.socialcrm.notesintegration.sametime.sametimeWidgetsBuilder"
+        name="Sametime widgets builder"
+        point="com.ibm.socialcrm.notesintegration.core.sametimeWidgetContribution">
+     <widgetContribution
+           builderClass="com.ibm.socialcrm.notesintegration.sametime.widgets.SametimeWidgetsBuilder">
+     </widgetContribution>
+  </extension>
+
+</plugin>

@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Feeds Plug-in
+Bundle-SymbolicName: com.ibm.socialcrm.notesintegration.feeds;singleton:=true
+Bundle-Version: 2.0.0.qualifier
+Bundle-Vendor: IBM
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Localization: plugin
+Require-Bundle: com.ibm.socialcrm.notesintegration.core,
+ com.ibm.socialcrm.notesintegration.ui,
+ com.ibm.socialcrm.notesintegration.utils,
+ org.eclipse.core.runtime,
+ org.eclipse.ui,
+ com.ibm.rcp.browser.service
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: com.ibm.socialcrm.notesintegration.feeds.FeedsPluginActivator

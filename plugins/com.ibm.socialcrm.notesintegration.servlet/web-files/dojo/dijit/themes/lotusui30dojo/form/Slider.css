@@ -1,0 +1,298 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+/* Slider
+ * Styling Slider mainly includes styling the Slider progress bar (dijitSliderProgressBar)
+ * 
+ * Slider progress bar:
+ * 1. Slider progress bar (default styling):
+ * 		.dijitSliderProgressBarH(horizontal) - for background, border
+ * 		.dijitSliderLeftBumper - for background, border
+ * 		.dijitSliderRightBumper - for background, border
+ * 		.dijitSliderProgressBarV(vertical) - for background, border
+ * 		.dijitSliderTopBumper - for background, border
+ * 		.dijitSliderBottomtBumper - for background, border
+ * 
+ * 2. hovered Slider progress bar (ie, mouse hover on progress bar)
+ * 		.dijitSliderHover .dijitSliderProgressBarH(horizontal) - for background, border
+ * 
+ * 3. focused Slider progress bar (ie, mouse focused on progress bar)
+ * 		.dijitSliderFocused .dijitSliderProgressBarH(horizontal) - for background, border
+ * 
+ * 4. disabled/read-only Slider progress bar
+ * 		.dijitSliderDisabled .dijitSliderProgressBarH(horizontal) - for background, border
+ * 
+ * 
+ * Slider Thumbs:
+ * 1. Slider Thumbs (default styling):
+ * 		.dijitSliderImageHandleH(horizontal) - for background, border
+ * 		.dijitSliderImageHandleV(vertical) - for background, border
+ * 2. hovered Slider Thumbs (ie, mouse hover on slider thumbs)
+ * 		.dijitSliderHover .dijitSliderImageHandleH(horizontal) - for background, border
+ * 
+ * 3. focused Slider progress bar (ie, mouse focused on slider thumbs)
+ * 		.dijitSliderFocused .dijitSliderImageHandleV(vertical) - for background, border
+ * 
+ * 
+ * Slider Increment/Decrement Buttons:
+ * 1. Slider Increment/Decrement Buttons (default styling):
+ * 		.dijitSliderDecrementIconH(horizontal) - for background, border
+ * 		.dijitSliderIncrementIconH(horizontal) - for background, border
+ * 		.dijitSliderDecrementIconV(vertical) - for background, border
+ * 		.dijitSliderIncrementIconV(vertical) - for background, border
+ * 
+ * 2. hovered Slider Increment/Decrement Buttons (ie, mouse hover on Buttons)
+ * 		.dijitSliderHover .dijitSliderDecrementIconH(horizontal) - for background, border
+ * 
+ * 3. active Slider Increment/Decrement Buttons (ie, mouse down on Buttons)
+ * 		.dijitSliderActive .dijitSliderIncrementIconV(vertical) - for background, border
+ * 
+ * 4. disabled/read-only Slider Increment/Decrement Buttons
+ * 		.dijitSliderDisabled .dijitSliderDecrementIconH(horizontal) - for background
+ * 		.dijitSliderReadOnly .dijitSliderIncrementIconV(vertical) - for background
+ */
+.lotusui30dojo .dijitRuleMark {
+  border: 1px solid #aaa;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitSliderBar {
+  border-style: solid;
+  outline: 1px;
+}
+.lotusui30dojo .dijitSliderFocused .dijitSliderBar, .lotusui30dojo .dijitSliderHover .dijitSliderBar, .lotusui30dojo .dijitSliderDisabled .dijitSliderBar {
+  border-color: #eeeeee;
+}
+/* Horizontal Slider */
+.lotusui30dojo .dijitRuleLabelsContainerH {
+  padding: 2px 0;
+}
+.lotusui30dojo .dijitSlider .dijitSliderProgressBarH, .lotusui30dojo .dijitSlider .dijitSliderLeftBumper {
+  border-color: #aaaaaa;
+  background-color: #aaaaaa;
+}
+.lotusui30dojo .dijitSlider .dijitSliderRemainingBarH, .lotusui30dojo .dijitSlider .dijitSliderRightBumper {
+  border-color: #eeeeee;
+  background-color: #eeeeee;
+}
+.lotusui30dojo .dijitSliderRightBumper {
+  border-right: solid 1px #eeeeee;
+}
+.lotusui30dojo .dijitSliderLeftBumper {
+  border-left: solid 1px #eeeeee;
+}
+.lotusui30dojo .dijitSliderHover .dijitSliderProgressBarH,
+.lotusui30dojo .dijitSliderHover .dijitSliderLeftBumper,
+.lotusui30dojo .dijitSliderFocused .dijitSliderProgressBarH,
+.lotusui30dojo .dijitSliderFocused .dijitSliderLeftBumper {
+  background-color: #aaaaaa;
+  border-color: #aaaaaa;
+}
+.lotusui30dojo .dijitSliderHover .dijitSliderRemainingBarH, .lotusui30dojo .dijitSliderHover .dijitSliderRightBumper {
+  background-color: #eeeeee;
+  border-color: #eeeeee;
+}
+/*.lotusui30dojo .dijitSliderFocused .dijitSliderProgressBarH,
+.lotusui30dojo .dijitSliderFocused .dijitSliderLeftBumper{
+	background-position:0 -30px;
+	background-color: @slider-focused-fullbar-background-color;
+	border-color: @focused-border-color;
+}*//* Not used in One UI */
+.lotusui30dojo .dijitSliderFocused .dijitSliderRemainingBarH,
+.lotusui30dojo .dijitSliderFocused .dijitSliderRightBumper,
+.lotusui30dojo .dijitSliderDisabled .dijitSliderRemainingBarH,
+.lotusui30dojo .dijitSliderDisabled .dijitSliderRightBumper {
+  background-color: #eeeeee;
+}
+.lotusui30dojo .dijitSliderDisabled .dijitSliderProgressBarH, .lotusui30dojo .dijitSliderDisabled .dijitSliderLeftBumper {
+  background-color: #cccccc;
+}
+/* Vertical Slider */
+.lotusui30dojo .dijitRuleLabelsContainerV {
+  padding: 0px 2px;
+}
+.lotusui30dojo .dijitSlider .dijitSliderProgressBarV, .lotusui30dojo .dijitSlider .dijitSliderBottomBumper {
+  border-color: #aaaaaa;
+  background-color: #aaaaaa;
+}
+.lotusui30dojo .dijitSlider .dijitSliderRemainingBarV, .lotusui30dojo .dijitSlider .dijitSliderTopBumper {
+  border-color: #eeeeee;
+  background-color: #eeeeee;
+}
+.lotusui30dojo .dijitSliderBottomBumper {
+  border-bottom: solid 1px #eeeeee;
+}
+.lotusui30dojo .dijitSliderTopBumper {
+  border-top: solid 1px #eeeeee;
+}
+.lotusui30dojo .dijitSliderHover .dijitSliderProgressBarV,
+.lotusui30dojo .dijitSliderHover .dijitSliderBottomBumper,
+.lotusui30dojo .dijitSliderFocused .dijitSliderProgressBarV,
+.lotusui30dojo .dijitSliderFocused .dijitSliderBottomBumper {
+  background-color: #aaaaaa;
+}
+/*.lotusui30dojo .dijitSliderHover .dijitSliderRemainingBarV,
+.lotusui30dojo .dijitSliderHover .dijitSliderTopBumper{
+	background-position:0 0;
+	background-color: @slider-hovered-remainingbar-background-color;
+}*//* Not used by One UI */
+.lotusui30dojo .dijitSliderHover .dijitSliderRemainingBarV,
+.lotusui30dojo .dijitSliderHover .dijitSliderTopBumper,
+.lotusui30dojo .dijitSliderFocused .dijitSliderRemainingBarV,
+.lotusui30dojo .dijitSliderFocused .dijitSliderTopBumper,
+.lotusui30dojo .dijitSliderDisabled .dijitSliderRemainingBarV,
+.lotusui30dojo .dijitSliderDisabled .dijitSliderTopBumper {
+  background-color: #eeeeee;
+}
+.lotusui30dojo .dijitSliderDisabled .dijitSliderProgressBarV, .lotusui30dojo .dijitSliderDisabled .dijitSliderBottomBumper {
+  background-color: #cccccc;
+}
+/*.lotusui30dojo .dijitSliderDisabled .dijitSliderRemainingBarV,
+.lotusui30dojo .dijitSliderDisabled .dijitSliderTopBumper{
+	background-color: @disabled-background-color;
+}*//* Not used by One UI */
+/* ------- Thumbs ------- */
+.lotusui30dojo .dijitSliderImageHandleH {
+  border: 0;
+  width: 18px;
+  height: 16px;
+  background-image: url("images/sliderThumbs.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+/*.lotusui30dojo .dijitSliderHover .dijitSliderImageHandleH {
+	background-position:-18px 0;
+}*//* Not used by One UI */
+/*.lotusui30dojo .dijitSliderFocused .dijitSliderImageHandleH {
+	background-position:-36px 0;
+}*//* Not used by One UI */
+.lotusui30dojo .dijitSliderProgressBarH .dijitSliderThumbHover, .lotusui30dojo .dijitSliderProgressBarH .dijitSliderThumbActive {
+  background-position: -36px 0;
+}
+/*.lotusui30dojo .dijitSliderProgressBarH .dijitSliderThumbActive{
+	background-position:-36px 0;
+}*//* Not used by One UI */
+.lotusui30dojo .dijitSliderReadOnly .dijitSliderImageHandleH, .lotusui30dojo .dijitSliderDisabled .dijitSliderImageHandleH {
+  background-position: 0 0;
+}
+.lotusui30dojo .dijitSliderImageHandleV {
+  border: 0;
+  width: 18px;
+  height: 16px;
+  background-image: url("images/sliderThumbs.png");
+  background-repeat: no-repeat;
+  background-position: -289px 0;
+}
+/*.lotusui30dojo .dijitSliderHover .dijitSliderImageHandleV {
+	background-position:-307px 0;
+}*//* Not used by One UI */
+.lotusui30dojo .dijitSliderFocused .dijitSliderImageHandleV, .lotusui30dojo .dijitSliderProgressBarV .dijitSliderThumbHover, .lotusui30dojo .dijitSliderProgressBarV .dijitSliderThumbActive {
+  background-position: -325px 0;
+}
+/*.lotusui30dojo .dijitSliderProgressBarV .dijitSliderThumbActive{
+	background-position:-325px 0;
+}*//* Not used by One UI */
+.lotusui30dojo .dijitSliderReadOnly .dijitSliderImageHandleV, .lotusui30dojo .dijitSliderDisabled .dijitSliderImageHandleV {
+  background-position: -289px 0;
+}
+/* ---- Increment/Decrement Buttons ---- */
+.lotusui30dojo .dijitSliderButtonContainerH {
+  padding: 1px 3px 1px 2px;
+}
+.lotusui30dojo .dijitSliderButtonContainerV {
+  padding: 3px 1px 2px;
+}
+.lotusui30dojo .dijitSliderDecrementIconH,
+.lotusui30dojo .dijitSliderIncrementIconH,
+.lotusui30dojo .dijitSliderDecrementIconV,
+.lotusui30dojo .dijitSliderIncrementIconV {
+  background-image: url('images/commonFormArrows.png');
+  background-repeat: no-repeat;
+  font-size: 1px;
+}
+.lotusui30dojo .dijitSliderDecrementIconH, .lotusui30dojo .dijitSliderIncrementIconH {
+  height: 12px;
+  width: 9px;
+}
+.lotusui30dojo .dijitSliderDecrementIconV, .lotusui30dojo .dijitSliderIncrementIconV {
+  height: 9px;
+  width: 12px;
+}
+/*.lotusui30dojo .dijitSliderActive .dijitSliderDecrementIconH,
+.lotusui30dojo .dijitSliderActive .dijitSliderIncrementIconH,
+.lotusui30dojo .dijitSliderActive .dijitSliderDecrementIconV,
+.lotusui30dojo .dijitSliderActive .dijitSliderIncrementIconV,
+.lotusui30dojo .dijitSliderHover .dijitSliderDecrementIconH,
+.lotusui30dojo .dijitSliderHover .dijitSliderIncrementIconH,
+.lotusui30dojo .dijitSliderHover .dijitSliderDecrementIconV,
+.lotusui30dojo .dijitSliderHover .dijitSliderIncrementIconV {
+	// dijitSliderActive should be treated as dijitSliderHover since "clicking the slider" has no meaning
+	border: solid 1px @hovered-border-color;
+	background-color: @slider-hoveredButton-background-color;
+}*//* Not used by One UI */
+.lotusui30dojo .dijitSliderDecrementIconH {
+  background-position: -357px 50%;
+}
+.lotusui30dojo .dijitSliderActive .dijitSliderDecrementIconH, .lotusui30dojo .dijitSliderButtonContainerH .dijitSliderDecrementButtonHover {
+  background-position: -393px 50%;
+}
+.lotusui30dojo .dijitSliderIncrementIconH {
+  background-position: -251px 50%;
+}
+.lotusui30dojo .dijitSliderActive .dijitSliderIncrementIconH, .lotusui30dojo .dijitSliderButtonContainerH .dijitSliderIncrementButtonHover {
+  background-position: -283px 50%;
+}
+.lotusui30dojo .dijitSliderDecrementIconV {
+  background-position: -38px 50%;
+}
+.lotusui30dojo .dijitSliderActive .dijitSliderDecrementIconV, .lotusui30dojo .dijitSliderButtonContainerV .dijitSliderIncrementButtonHover {
+  background-position: -73px 50%;
+}
+.lotusui30dojo .dijitSliderIncrementIconV {
+  background-position: -143px 49%;
+}
+/*.lotusui30dojo .dijitSliderActive .dijitSliderIncrementIconV
+.lotusui30dojo .dijitSliderHover .dijitSliderIncrementIconV {
+	background-position:-178px 49%;
+}*//* Not used by One UI */
+.lotusui30dojo .dijitSliderButtonContainerV .dijitSliderDecrementButtonHover, .lotusui30dojo .dijitSliderActive .dijitSliderIncrementIconV {
+  background-position: -178px 49%;
+}
+/*.lotusui30dojo .dijitSliderButtonContainerV .dijitSliderDecrementButtonActive,
+.lotusui30dojo .dijitSliderButtonContainerH .dijitSliderDecrementButtonActive,
+.lotusui30dojo .dijitSliderButtonContainerV .dijitSliderIncrementButtonActive,
+.lotusui30dojo .dijitSliderButtonContainerH .dijitSliderIncrementButtonActive {
+	background-color: @slider-button-pressed-background-color;
+	border-color:@pressed-border-color;
+}*//* Not used by One UI */
+.lotusui30dojo .dijitSliderButtonInner {
+  visibility: hidden;
+}
+/*.lotusui30dojo .dijitSliderDisabled .dijitSliderBar{
+	border-color: @disabled-border-color;
+}*//* Not used by One UI */
+.lotusui30dojo .dijitSliderReadOnly *, .lotusui30dojo .dijitSliderDisabled * {
+  color: #999999;
+}
+.lotusui30dojo .dijitSliderReadOnly .dijitSliderDecrementIconH, .lotusui30dojo .dijitSliderDisabled .dijitSliderDecrementIconH {
+  background-position: -321px 50%;
+}
+.lotusui30dojo .dijitSliderReadOnly .dijitSliderIncrementIconH, .lotusui30dojo .dijitSliderDisabled .dijitSliderIncrementIconH {
+  background-position: -215px 50%;
+}
+.lotusui30dojo .dijitSliderReadOnly .dijitSliderDecrementIconV, .lotusui30dojo .dijitSliderDisabled .dijitSliderDecrementIconV {
+  background-position: -3px 49%;
+}
+.lotusui30dojo .dijitSliderReadOnly .dijitSliderIncrementIconV, .lotusui30dojo .dijitSliderDisabled .dijitSliderIncrementIconV {
+  background-position: -107px 49%;
+}
+/*.dj_ie6 .lotusui30dojo .dijitSlider .dijitSliderProgressBarH,
+.dj_ie6 .lotusui30dojo .dijitSlider .dijitSliderLeftBumper,
+.dj_ie6 .lotusui30dojo .dijitSlider .dijitSliderRemainingBarH,
+.dj_ie6 .lotusui30dojo .dijitSlider .dijitSliderRightBumper,
+.dj_ie6 .lotusui30dojo .dijitSlider .dijitSliderProgressBarV,
+.dj_ie6 .lotusui30dojo .dijitSlider .dijitSliderTopBumper,
+.dj_ie6 .lotusui30dojo .dijitSlider .dijitSliderRemainingBarV,
+.dj_ie6 .lotusui30dojo .dijitSlider .dijitSliderBottomBumper {
+	background-image:none;
+}*//* Not used by One UI */

@@ -1,0 +1,146 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+
+/* Tree
+ * Styling Tree mostly means styling the TreeRow (dijitTreeRow)
+ * There are 4 basic states to style:
+ * 
+ * Tree Row:
+ * 1. tree row (default styling):
+ * 		.dijitTreeRow - for background-color, border
+ *
+ * 2. hovered tree row (ie, mouse hover on a tree row)
+ * 		.dijitTreeRowHover - for background-color, border
+ * 
+ * 3. active tree row (ie, mouse down on a tree row)
+ * 		.dijitTreeRowActive - for background-color, border
+ * 
+ * 4. selected tree row
+ * 		dijitTreeRowSelected - for background-color, border
+ * 
+ * Tree Expando:
+ * 	    dijitTreeExpando - for background-image, border, size
+ * 
+ * Drag and Drop on TreeNodes:(insert line on dijitTreeContent node so it's aligned w/ target element
+ * 		.dijitTreeNode .dojoDndItemBefore - for border
+ * 		.dijitTreeNode .dojoDndItemAfter  - for border
+ */
+
+@import "variables";
+
+.lotusui30dojo .dijitTreeNode {
+	zoom: 1; /* force layout on IE (TODO:may not be needed anymore) */
+}
+
+.lotusui30dojo .dijitTreeNode, .lotusui30dojo .dijitTreeNode * {
+	cursor: pointer;
+} /* Unique to One UI */
+
+.lotusui30dojo .dijitTreeIsRoot {
+	background-image: none;
+}
+
+/* Styling for basic tree node (unhovered, unselected)
+ * Also use this styling when dropping between items on the tree (in other words, don't
+ * use hover effect)
+ */
+.lotusui30dojo .dijitTreeRow,
+.lotusui30dojo .dijitTreeNode .dojoDndItemBefore,
+.lotusui30dojo .dijitTreeNode .dojoDndItemAfter {
+	/* so insert line shows up on IE when dropping after a target element */
+	padding: 2px 0 4px;
+	margin: 0 1px;	/* replaced by border for selected/hovered row */
+}
+
+.dj_ie .lotusui30dojo .dijitTreeRow {
+	padding-top: 4px;
+} /* Unique to One UI */
+
+.dj_ie6 .lotusui30dojo .dijitTreeRow {
+	background-image: none;
+}
+
+/*.lotusui30dojo .dijitTreeRowSelected {
+	background-repeat:repeat-x;
+	background-color:@selected-background-color;
+	padding: 3px 0 1px;
+	margin: 0;
+	border:solid 1px @selected-border-color;
+	color:@selected-text-color;
+}*/ /* Not used in One UI */
+.lotusui30dojo .dijitTreeRowHover {
+	background-color: @hovered-background-color;
+	padding: 1px 0 3px;
+	margin: 0;
+	border: solid 1px @hovered-tree-row-border-color;
+	color: @text-color;
+	cursor: pointer;
+}
+
+/* also include when the selected has hover to keep the border */
+.lotusui30dojo .dijitTreeRowActive,
+.lotusui30dojo .dijitTreeRowSelected,
+.lotusui30dojo .dijitTreeRowSelected .dijitTreeRowHover {
+	background-color: @hovered-background-color;
+	padding: 1px 0 3px;
+	margin: 0;
+	border:solid 1px @hovered-border-color;
+	color:@selected-text-color;
+}
+
+.dj_ie .lotusui30dojo .dijitTreeRowSelected,
+.dj_ie .lotusui30dojo .dijitTreeRowHover,
+.dj_ie .lotusui30dojo .dijitTreeRowActive {
+	padding-top: 3px;
+} /* Unique to One UI */
+/*.lotusui30dojo .dijitTreeRowFocused {
+	background-repeat: repeat;
+}*/ /* Not used by One UI */
+
+/* expando (open/closed) icon */
+
+.lotusui30dojo .dijitTreeExpando {
+	background-image: url('images/treeExpandImages.png');
+	width: 16px;
+	height: 16px;
+	background-position: -35px 0; /* for dijitTreeExpandoOpened */
+}
+/*.dj_ie6 .lotusui30dojo .dijitTreeExpando {
+	background-image: url('images/treeExpandImages8bit.png');
+}*/ /* Not used by One UI */
+.lotusui30dojo .dijitTreeRowHover .dijitTreeExpandoOpened {
+	background-position: -53px 0;
+}
+
+.lotusui30dojo .dijitTreeExpandoClosed {
+	background-position: 1px 0;
+}
+.lotusui30dojo .dijitTreeRowHover .dijitTreeExpandoClosed {
+	background-position: -17px 0;
+}
+.lotusui30dojo .dijitTreeExpandoLeaf {
+	background-image: none;
+}
+.lotusui30dojo .dijitTreeExpandoLoading {
+	background-image: url('images/loadingAnimation.gif');
+}
+
+/* Drag and Drop on TreeNodes
+ * Put insert line on dijitTreeContent node so it's aligned w/
+ * (ie, indented equally with) target element, even
+ * though dijitTreeRowNode is the actual "drag object"
+ */
+.lotusui30dojo .dijitTreeNode .dojoDndItemBefore, .lotusui30dojo .dijitTreeNode .dojoDndItemAfter {
+    border-bottom: none;
+    border-top: none;
+} /* Unique to One UI */
+
+.lotusui30dojo .dijitTreeNode .dojoDndItemBefore .dijitTreeContent {
+	border-top: 1px solid @dnd-dropseparator-color;		// TODO: normal separator is just 1px, why is this 2px?
+}
+
+.lotusui30dojo .dijitTreeNode .dojoDndItemAfter .dijitTreeContent {
+	border-bottom: 1px solid @dnd-dropseparator-color;	// TODO: normal separator is just 1px, why is this 2px?
+}

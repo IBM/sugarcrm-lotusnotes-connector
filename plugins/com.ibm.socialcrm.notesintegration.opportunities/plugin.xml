@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="com.ibm.sfa.opportunitiesDashboardContribution"
+         name="Opportunities Dashboard"
+         point="com.ibm.socialcrm.notesintegration.core.sugarDashboardContribution">
+      <dashboardContribution
+            displayName="%displayName"
+            dockedDisplayName="%displayName"
+            viewClass="com.ibm.socialcrm.notesintegration.opportunities.dashboardComposites.OpportunitiesComposite"
+            weight="60">
+         <types>
+            <type
+                  sugarType="ACCOUNTS">
+            </type>
+            <type
+                  sugarType="CONTACTS">
+            </type>
+         </types>
+      </dashboardContribution>
+   </extension>
+
+</plugin>

@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Connector Plug-in
+Bundle-SymbolicName: com.ibm.socialcrm.notesintegration.connector;singleton:=true
+Bundle-Version: 2.0.0.qualifier
+Bundle-Activator: com.ibm.socialcrm.notesintegration.connector.Activator
+Bundle-Vendor: IBM
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.ui.forms,
+ org.eclipse.core.runtime,
+ com.ibm.notes.osgi.services.ui,
+ com.ibm.socialcrm.notesintegration.core,
+ com.ibm.notes.client,
+ com.ibm.rcp.jfaceex,
+ com.ibm.csi,
+ com.ibm.rcp.ui,
+ com.ibm.rcp.swtex,
+ com.ibm.socialcrm.notesintegration.libraries,
+ com.ibm.socialcrm.notesintegration.files,
+ com.ibm.socialcrm.notesintegration.ui,
+ com.ibm.socialcrm.notesintegration.sugarwidgetupdate,
+ com.ibm.socialcrm.notesintegration.utils
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

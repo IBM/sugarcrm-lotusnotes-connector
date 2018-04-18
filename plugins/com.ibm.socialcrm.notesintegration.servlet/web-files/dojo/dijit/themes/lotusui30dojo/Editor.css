@@ -1,0 +1,89 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+/* Editor
+ * 
+ * Styling Editor means styling the Editor inside iframe container (dijitEditorIFrameContainer)
+ * 
+ * 1. Editor iframe container (default styling):
+ * 		.dijitEditorIFrameContainer - for background-color, border, padding
+ *
+ * 2. hovered Editor iframe container (ie, mouse hover on editor)
+ * 		.dijitEditorHover .dijitEditorIFrameContainer/dijitEditorIFrame - for background-color, border
+ * 
+ * 3. focused Editor iframe container (ie, mouse focus on the editor pane)
+ * 		.dijitEditorFocused .dijitEditorIFrameContainer/dijitEditorIFrame - for background-color, border
+ * 
+ * 3. disabled Editor iframe container
+ * 		.dijitEditorDisabled - for background-color, border
+ */
+.lotusui30dojo .dijitEditorIFrameContainer {
+  padding: 5px 10px;
+}
+.lotusui30dojo .dijitEditorIFrame {
+  background-color: #ffffff;
+}
+.lotusui30dojo .dijitEditor {
+  border: 1px solid #aaaaaa;
+}
+.lotusui30dojo .dijitEditor .dijitEditorIFrameContainer {
+  background-color: #ffffff;
+}
+.dj_ie6 .lotusui30dojo .dijitEditor .dijitEditorIFrameContainer {
+  background-image: none;
+}
+/*.lotusui30dojo .dijitEditorHover .dijitEditorIFrameContainer,
+.lotusui30dojo .dijitEditorHover .dijitEditorIFrameContainer .dijitEditorIFrame{
+	background-color: @textbox-hovered-background-color;
+}*//* These Dojo 1.6.1 styles are not used by One UI */
+/* These styles are unique to One UI */
+.lotusui30dojo .dijitEditor .dijitButton,
+.lotusui30dojo .dijitEditor .dijitButton .dijitButtonNode,
+.lotusui30dojo .dijitEditor .dijitButtonDisabled .dijitButtonNode,
+.lotusui30dojo .dijitEditor .dijitDropDownButtonDisabled .dijitButtonNode,
+.lotusui30dojo .dijitEditor .dijitToggleButton .dijitButtonNode,
+.lotusui30dojo .dijitEditor .dijitDropDownButton .dijitButtonNode,
+.lotusui30dojo .dijitEditor .dijitComboButtonDisabled .dijitButtonNode,
+.lotusui30dojo .dijitEditor .dijitToggleButtonDisabled .dijitButtonNode {
+  background-color: transparent !important;
+  background-image: none !important;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  /* LESS doesn't like .box-shadow(0) */
+
+}
+.lotusui30dojo .dijitEditorFocused .dijitEditorIFrameContainer, .lotusui30dojo .dijitEditorFocused .dijitEditorIFrameContainer .dijitEditorIFrame {
+  /* TODO: contradicts rule above, which background-color do you want? */
+
+  background-color: #ffffff;
+}
+/* Disabled */
+.lotusui30dojo .dijitEditorDisabled {
+  border: 1px solid #cccccc;
+  color: #666666;
+  background-color: #eeeeee !important;
+}
+/*.lotusui30dojo .dijitDisabled .dijitEditorIFrame,
+.lotusui30dojo .dijitDisabled .dijitEditorIFrameContainer,
+.lotusui30dojo .dijitDisabled .dijitEditorIFrameContainer .dijitEditorIFrame {
+	background-color: @textbox-disabled-background-color;
+	background-image: none;
+}*//* These Dojo 1.6.1 styles are not used by One UI */
+/* The remainder of this file is unique to One UI */
+.lotusui30dojo .dijitEditorDisabled .dijitEditorIFrameContainer, .lotusui30dojo .dijitEditorDisabled .dijitEditorIFrameContainer .dijitEditorIFrame {
+  background-color: #eee !important;
+}
+.lotusui30dojo .dijitDisabled .dijitEditorIFrame, .lotusui30dojo .dijitDisabled .dijitEditorIFrameContainer {
+  background-color: #eee;
+  background-image: none;
+}
+.lotusui30dojo .dijitEditorIcon, .lotusui30dojo .dijitDisabled .dijitEditorIcon {
+  background-image: url('images/editorIcons.png');
+}
+.lotusui30dojo .dijitDisabled .dijitEditorIcon {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  zoom: 1;
+}

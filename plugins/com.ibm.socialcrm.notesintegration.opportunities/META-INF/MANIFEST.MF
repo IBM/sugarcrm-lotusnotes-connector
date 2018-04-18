@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Opportunities Plug-in
+Bundle-SymbolicName: com.ibm.socialcrm.notesintegration.opportunities;singleton:=true
+Bundle-Version: 2.0.0.qualifier
+Bundle-Activator: com.ibm.socialcrm.notesintegration.opportunities.OpportunitiesActivator
+Bundle-Vendor: IBM
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.ibm.socialcrm.notesintegration.core,
+ com.ibm.socialcrm.notesintegration.utils,
+ com.ibm.socialcrm.notesintegration.ui,
+ org.eclipse.ui.forms,
+ com.ibm.rcp.ui,
+ com.ibm.rcp.ui.widgets,
+ com.ibm.socialcrm.notesintegration.libraries,
+ com.ibm.rcp.ui.css
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

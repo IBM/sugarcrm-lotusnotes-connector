@@ -1,0 +1,189 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+
+/* Button | DropDownButton | ComboButton | ToggleButton
+ * 
+ * Styling Buttons mainly includes:
+ * 
+ * 1. Containers
+ * 		.dijitButton
+ * 		.dijitDropDownButton
+ * 		.dijitComboButton
+ * 		.dijitButtonNode - common button/arrow wrapper shared across all three button types
+ *
+ * 2. Button text
+ * 		.dijitButtonText
+ * 
+ * 3. Arrows - only for DropDownButton and ComboButton
+ * 	     There are total four directions arrows - down, left, right, up:
+ * 		.dijitArrowButtonInner - down arrow by default
+ *      .dijitLeftArrowButton .dijitArrowButtonInner - left arrow
+ *      .dijitRightArrowButton .dijitArrowButtonInner - right arrow
+ *      .dijitUpArrowButton .dijitArrowButtonInner - up arrow
+ * 
+ * 4. States - Hover, Active, Disabled, e.g.
+ * 		.dijitButtonHover .dijitButtonNode
+ * 		.dijitButtonActive .dijitButtonNode
+ * 		.dijitButtonDisabled .dijitButtonNode
+ *      
+ *      .dijitDisabled .dijitArrowButtonInner  - disabled arrow states
+ */
+
+@import "../variables";
+
+/*.lotusui30dojo .dijitButtonNode {
+	// rules for dijit.form.*Button widgets and arrow nodes on ComboBox, Spinner etc.
+	.transition-property(background-color);
+ 	.transition-duration(.3s);
+}*/ /* Not used by One UI */
+
+/* follows Style Guide's 5px rule. overriding top and bottom messes up InlineEditBox buttons. */
+.lotusui30dojo .dijitButton,
+.lotusui30dojo .dijitDropDownButton,
+.lotusui30dojo .dijitComboButton,
+.lotusui30dojo .dijitToggleButton {
+	margin-right: 4px;
+	margin-left: 1px;
+} /* Unique to One UI */
+
+.lotusui30dojo .dijitButton .dijitButtonNode,
+.lotusui30dojo .dijitDropDownButton .dijitButtonNode,
+.lotusui30dojo .dijitComboButton .dijitButtonNode,
+.lotusui30dojo .dijitToggleButton .dijitButtonNode {
+	/* rules for the dijit.form.*Button widgets (see also ComboButton section below) */
+	font-size: 0.9em;
+	font-weight: bold;
+	color: @button-text-color;
+	border: none;
+	padding: 3px 15px;
+	background-color: @toolbar-background-color;
+	.vert-gradient(@toolbar-background-gradient-start, @toolbar-background-gradient-end);
+	.border-radius(@button-border-radius);
+	.box-shadow(0 1px 1px rgba(0,0,0,0.5));
+}
+
+.lotusui30dojo .dijitDropDownButton .dijitButtonNode {
+	padding-right: 4px;
+} /* Unique to One UI */
+
+.lotusui30dojo .dijitComboButton .dijitArrowButton {
+	border-left-width: 0;
+	padding: 4px 2px;
+}
+
+.lotusui30dojo .dijitDisabled .dijitButtonText {
+	color: @button-disabled-text-color;
+ } /* Unique to One UI */
+
+/*arrow styles for down/up/left/right directions*/
+.lotusui30dojo .dijitArrowButtonInner {
+	width: 12px;
+	height: 15px;
+	margin: 0 auto;
+	background-image: url("images/smallbuttonArrows.png");
+	background-repeat: no-repeat;
+	background-position: -52px 53%;
+}
+
+.lotusui30dojo .dijitLeftArrowButton .dijitArrowButtonInner {
+	background-position: -77px 53%;
+}
+
+.lotusui30dojo .dijitRightArrowButton .dijitArrowButtonInner {
+	background-position: -26px 53%;
+}
+
+.lotusui30dojo .dijitUpArrowButton .dijitArrowButtonInner {
+	background-position: 0 53%;
+}
+
+.lotusui30dojo .dijitDisabled .dijitArrowButtonInner {
+	background-position: -152px 53%;
+}
+
+.lotusui30dojo .dijitDisabled .dijitLeftArrowButton .dijitArrowButtonInner {
+	background-position: -177px 53%;
+}
+
+.lotusui30dojo .dijitDisabled .dijitRightArrowButton .dijitArrowButtonInner {
+	background-position: -126px 53%;
+}
+
+.lotusui30dojo .dijitDisabled .dijitUpArrowButton .dijitArrowButtonInner {
+	background-position: -100px 53%;
+}
+
+.lotusui30dojo .dijitButtonText {
+	padding: 2px;
+	text-align: center;
+}
+
+/* hover status */
+.lotusui30dojo .dijitButtonHover .dijitButtonNode,
+.lotusui30dojo .dijitDropDownButtonHover .dijitButtonNode,
+.lotusui30dojo .dijitComboButtonHover .dijitButtonNode,
+.lotusui30dojo .dijitToggleButtonHover .dijitButtonNode {
+	.box-shadow(0 2px 1px rgba(0,0,0,0.5));
+	color: @text-color;
+}
+
+/* checked status */
+.lotusui30dojo .dijitButtonActive .dijitButtonNode, 
+.lotusui30dojo .dijitDropDownButtonActive .dijitButtonNode,
+.lotusui30dojo .dijitComboButtonActive .dijitButtonNode,
+.lotusui30dojo .dijitToggleButtonActive .dijitButtonNode {
+	.box-shadow(0 2px 1px rgba(0,0,0,0.5));
+	color: @text-color;
+} /* Not used in One UI */
+
+/* disabled status */
+/*.lotusui30dojo .dijitDropDownButtonDisabled,
+.lotusui30dojo .dijitComboButtonDisabled,
+.lotusui30dojo .dijitToggleButtonDisabled {
+	background-image: none;
+	outline: none;
+}*/ /* Not used in One UI */
+.lotusui30dojo .dijitButtonDisabled .dijitButtonNode,
+.lotusui30dojo .dijitDropDownButtonDisabled .dijitButtonNode,
+.lotusui30dojo .dijitComboButtonDisabled .dijitButtonNode,
+.lotusui30dojo .dijitToggleButtonDisabled .dijitButtonNode {
+	background-color: @disabled-background-color;
+	border: none;
+	color: @button-disabled-text-color;
+}
+
+.lotusui30dojo .dijitComboButtonDisabled .dijitArrowButton {
+	border-left-width: 0;
+}
+
+/* for ComboButton */
+.lotusui30dojo table.dijitComboButton {
+	border-collapse: separate; /* override dijit.css so that ComboBox rounded corners work */
+	margin-bottom: 0;
+}
+
+.dj_ie6 .lotusui30dojo table.dijitComboButton,
+.dj_ie7 .lotusui30dojo table.dijitComboButton,
+.dj_ie8 .lotusui30dojo table.dijitComboButton {
+	border-collapse: collapse;
+}
+
+/*.dj_ie6 .lotusui30dojo .dijitButtonNode {
+	background-image: none;
+}*/ /* Not used in One UI */
+
+.dj_ie6 .lotusui30dojo .dijitButtonNode,
+.dj_ie7 .lotusui30dojo .dijitButtonNode,
+.dj_ie8 .lotusui30dojo .dijitButtonNode {
+	border: solid 1px @button-border-color;
+}
+
+.lotusui30dojo .dijitComboButton .dijitStretch {
+	.border-radius(@button-border-radius 0 0 @button-border-radius);
+}
+
+.lotusui30dojo .dijitComboButton .dijitArrowButton {
+	.border-radius(0 @button-border-radius @button-border-radius 0);
+}

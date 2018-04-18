@@ -1,0 +1,134 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+
+/* BorderContainer
+ Splitters and gutters separate panes within a BorderContainer. Splitters can be moved up and down (horizonal splitters) or left and right (vertical splitters), while Gutters are static. A "thumb" is the slit on a Splitter that indicates it is movable.
+ Styling the BorderContainer widget consists of the following:
+ .dijitBorderContainer - for border and padding of the entire border container
+ .dijitSplitContainer-child, .dijitBorderContainer-child - for border or child panes of the border container. By default borders are put on all children of BorderContainer.
+ .dijitBorderContainer-dijitTabContainerTop,
+ .dijitBorderContainer-dijitTabContainerBottom,
+ .dijitBorderContainer-dijitTabContainerLeft,
+ .dijitBorderContainer-dijitTabContainerRight,
+ .dijitBorderContainer-dijitAccordionContainer   -for border of the border containers within TabContainer or AccordionContainer widget
+ .dijitBorderContainer-dijitBorderContainer - for border and padding of nested BorderContainers
+ Splitters and gutters:
+ .dijitSplitterH, .dijitGutterH - for height, background, and border of a horizontal splitter and gutter
+ .dijitSplitterH .dijitSplitterThumb - for color, height/width of the thumb on a horizontal splitter
+ .dijitSplitterV, .dijitGutterV - - for height, background, and border of a vertical splitter and gutter
+ .dijitSplitterV .dijitSplitterThumb - for color, height/width of the thumb on a vertical splitter
+ .dijitSplitterHHover - for background-color of a hovered horizontal splitter
+ .dijitSplitterHHover .dijitSplitterThumb - for background-color of a hovered thumb on a horizontal splitter
+ .dijitSplitterVHover  - for background-color of a hovered vertical splitter
+ .dijitSplitterVHover .dijitSplitterThumb - for background-color of a hovered thumb on a vertical splitter
+ .dijitSplitterHActive - for background-color of an active horizontal splitter
+ .dijitSplitterVActive - for background-color of an active horizontal splitter
+ */
+
+@import "../variables";
+
+.lotusui30dojo .dijitBorderContainer {
+	/* matches the width of the splitters between panes */
+	border: 1px @border-color solid;
+	padding: 5px;
+}
+
+.lotusui30dojo .dijitSplitContainer-child,
+.lotusui30dojo .dijitBorderContainer-child {
+	/* By default put borders on all children of BorderContainer,
+	 *  to give illusion of borders on the splitters themselves.
+	 */
+	border: 1px @border-color solid;
+}
+
+.lotusui30dojo .dijitBorderContainer-dijitTabContainerTop,
+.lotusui30dojo .dijitBorderContainer-dijitTabContainerBottom,
+.lotusui30dojo .dijitBorderContainer-dijitTabContainerLeft,
+.lotusui30dojo .dijitBorderContainer-dijitTabContainerRight,
+.lotusui30dojo .dijitBorderContainer-dijitAccordionContainer {
+	/* except that TabContainer defines borders on it's sub-nodes (tablist and dijitTabPaneWrapper),
+	 * so override rule setting border on domNode
+	 */
+	border: 0;
+}
+
+.lotusui30dojo .dijitBorderContainer-dijitBorderContainer {
+	/* make nested BorderContainers look like a single big widget with lots of splitters */
+	border: 1px @border-color solid;
+	padding: 5px;
+}
+
+/* Splitters and gutters */
+.lotusui30dojo .dijitSplitterH,
+.lotusui30dojo .dijitGutterH {
+	background: none;
+	border: 0;
+	height: 5px;
+}
+
+.lotusui30dojo .dijitSplitterH .dijitSplitterThumb {
+	background:@border-color none;
+	height:1px;
+	top:2px;
+	width:19px;
+}
+
+.lotusui30dojo .dijitSplitterV,
+.lotusui30dojo .dijitGutterV {
+	background:none;
+	border:0;
+	width:5px;
+}
+
+.lotusui30dojo .dijitSplitterV .dijitSplitterThumb {
+	background:@border-color none;
+	height:19px;
+	left:2px;
+	width:1px;
+}
+
+/* hovered splitter */
+.lotusui30dojo .dijitSplitterHHover {
+	font-size: 1px;
+	.opacity(1);
+	margin: 0;
+	background: @hovered-background-color;
+}
+
+.lotusui30dojo .dijitSplitterHHover .dijitSplitterThumb {
+	background: @border-color none;
+}
+
+.lotusui30dojo .dijitSplitterVHover {
+	font-size: 1px;
+	.opacity(1);
+	margin: 0;
+	background: @hovered-background-color;
+}
+
+.lotusui30dojo .dijitSplitterVHover .dijitSplitterThumb {
+	background: @border-color none;
+}
+
+/*.dj_ie6 .dijitSplitterHHover,
+.dj_ie6 .lotusui30dojo .dijitSplitterVHover {
+	background-color: @splitter-hovered-background-color;
+	background-image:none;
+}*/ /* Not used by One UI */
+/* active splitter */
+.lotusui30dojo .dijitSplitterHActive {
+	font-size: 1px;
+	background-color: @hovered-border-color;
+	.opacity(.6);
+	margin: 0;
+	border-top: @border-color;
+}
+
+.lotusui30dojo .dijitSplitterVActive {
+	font-size: 1px;
+	background-color: @hovered-border-color;
+	.opacity(.6);
+	margin: 0;
+}

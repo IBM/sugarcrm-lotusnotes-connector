@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.ibm.socialcrm.notesintegration.feature_1.0.0.201110121440.jar" id="com.ibm.socialcrm.notesintegration.feature" version="1.0.0.201110121440">
+      <category name="SFA Files Plugin"/>
+   </feature>
+   <category-def name="SFA Files Plugin" label="SFA Files Plugin"/>
+</site>

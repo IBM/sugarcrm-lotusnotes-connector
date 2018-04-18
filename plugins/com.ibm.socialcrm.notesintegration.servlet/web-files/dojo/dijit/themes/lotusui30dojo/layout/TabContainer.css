@@ -1,0 +1,668 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+/* TabContainer 
+ * 
+ * Styling TabContainer means styling the TabList and Its content container  (dijitTitlePane)
+
+ * 
+ * Tab List: (including 4 kinds of tab location)
+ * 		.dijitTabContainerTop-tabs     - tablist container at top
+ * 		.dijitTabContainerBottom-tabs  - tablist container at bottom
+ * 		.dijitTabContainerLeft-tabs    - tablist container at left
+ * 		.dijitTabContainerRight-tabs   - tablist container at right
+ * 
+ * Tab Strip Button:
+ * 		.dijitTabStripIcon - tab strip button icon
+ * 		.dijitTabStripMenuIcon - down arrow icon position
+ * 		.dijitTabStripSlideLeftIcon - left arrow icon position
+ * 		.dijitTabStripSlideRightIcon - right arrow icon position
+ * 
+ * 		.tabStripButtonDisabled - styles for disabled tab strip buttons
+ * 
+ * Tab Button:
+ * 		.dijitTabContainerTop-tabs .dijitTabInnerDiv/.dijitTabContent     - styles for top tab button container
+ * 		.dijitTabContainerBottom-tabs .dijitTabInnerDiv/.dijitTabContent  - styles for bottom tab button container
+ * 		.dijitTabContainerLeft-tabs .dijitTabInnerDiv/.dijitTabContent    - styles for left tab button container
+ * 		.dijitTabContainerRight-tabs .dijitTabInnerDiv/.dijitTabContent   - styles for right tab button container
+ * 
+ * 		.dijitTabContainerTop-tabs .dijitTabChecked .dijitTabInnerDiv/.dijitTabContent    
+ * 				- styles for selected status of top tab button
+ * 		same to Bottom, Left, Right Tabs
+ * 
+ * 		.dijitTabHover .dijitTabInnerDiv   - styles when mouse hover on tab buttons
+ * 		.dijitTabActive .dijitTabInnerDiv  - styles when mouse down on tab buttons
+ * 		.dijitTabChecked .dijitTabInnerDiv  - styles when on buttons of selected tab		
+ * 
+ * 		.dijitTabCloseButton - the close action buttons lie at the right top of each tab button on closable tabs
+ * 		.dijitTabCloseButtonHover - styles when mouse hover on close action button
+ * 		.dijitTabCloseButtonActive - styles when mouse down on close action button
+ * 
+ * Tab Button: (checked status)
+ * 
+ * Tab Content Container:
+ * 		.dijitTabContainerTop-dijitContentPane
+ * 		.dijitTabContainerBottom-dijitContentPane
+ * 		.dijitTabContainerLeft-dijitContentPane
+ * 		.dijitTabContainerRight-dijitContentPane - for background and padding
+ * 
+ * Nested Tabs:
+ * 		.dijitTabContainerNested - Container for nested tabs
+ * 		.dijitTabContainerTabListNested - tab list container for nested tabs
+ */
+/*** some common features ***/
+.lotusui30dojo .dijitTabPaneWrapper {
+  background: #ffffff;
+}
+.lotusui30dojo .dijitTabPaneWrapper,
+.lotusui30dojo .dijitTabContainerTop-tabs,
+.lotusui30dojo .dijitTabContainerBottom-tabs,
+.lotusui30dojo .dijitTabContainerLeft-tabs,
+.lotusui30dojo .dijitTabContainerRight-tabs {
+  /* todo: add common class name for this div */
+
+  border-color: #cccccc;
+}
+.lotusui30dojo .dijitTabListContainer-top {
+  /*lotusTabContainer*/
+
+  border-bottom: 1px solid #ccc;
+  height: 2.917em !important;
+  top: 0 !important;
+  /*for sliding tabContainer in themeTester.html*/
+
+  left: 0 !important;
+  /*for sliding tabContainer in themeTester.html*/
+
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+}
+.lotusui30dojo .dijitTabListContainer-bottom {
+  /*lotusTabContainer*/
+
+  border-top: 1px solid #ccc;
+  height: 2.917em !important;
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+}
+.lotusui30dojo .dijitTabListWrapper {
+  height: 2.917em !important;
+  top: auto !important;
+  bottom: -1px !important;
+}
+.dj_ie6 .lotusui30dojo .dijitTabListWrapper {
+  bottom: -3px !important;
+}
+.lotusui30dojo .dijitTabContainerBottomStrip, .lotusui30dojo .dijitTabContainerBottomNone {
+  /*extends .dijitTabListWrapper*/
+
+  bottom: auto !important;
+  top: -1px !important;
+}
+.lotusui30dojo .tabStripButton-top {
+  height: 1.333em !important;
+  top: auto !important;
+  bottom: -1px !important;
+}
+.dj_ie6 .lotusui30dojo .tabStripButton-top {
+  bottom: -2px !important;
+}
+.lotusui30dojo .tabStripButton-bottom {
+  height: 1.333em !important;
+  top: -1px !important;
+  bottom: auto !important;
+}
+.lotusui30dojo .dijitTabContainerTop-tabs {
+  /*lotusTabs*/
+
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  border: 0;
+}
+.lotusui30dojo .dijitTab * {
+  vertical-align: baseline;
+}
+/* End One UI Additions */
+.lotusui30dojo .dijitTabCloseButton {
+  background: url("images/tabClose.png") no-repeat;
+  width: 16px;
+  height: 1.25em;
+  margin: -2px -3px -3px 1px;
+  opacity: 0.25;
+  filter: alpha(opacity=25);
+  zoom: 1;
+}
+.dj_ie8 .lotusui30dojo .dijitTabCloseButton {
+  margin-bottom: -5px;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitTabCloseButtonHover, .lotusui30dojo .dijitTabCloseButtonActive {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+.lotusui30dojo .dijitTabSpacer {
+  /* set the spacer invisible.  note that height:0 doesn't work on IE/quirks, it's still 10px. */
+
+  display: none;
+}
+.lotusui30dojo .dijitTabInnerDiv {
+  background-color: #ffffff;
+  color: #222222;
+}
+.lotusui30dojo .dijitTabHover .dijitTabInnerDiv, .lotusui30dojo .dijitTabActive .dijitTabInnerDiv, .lotusui30dojo .dijitTabChecked .dijitTabInnerDiv {
+  background-color: #ffffff;
+  color: #000000;
+}
+.lotusui30dojo .dijitTabContent {
+  color: #00649d;
+}
+.lotusui30dojo .dijitTabHover .dijitTabContent, .lotusui30dojo .dijitTabActive .dijitTabContent {
+  border-color: #cccccc;
+  color: #05386b;
+}
+.lotusui30dojo .dijitTabChecked .dijitTabContent {
+  color: #000000;
+  border-color: #aaaaaa;
+  font-weight: bold;
+}
+.lotusui30dojo .tabStripButton .dijitTabInnerDiv {
+  background-color: transparent;
+}
+.lotusui30dojo .tabStripButton .dijitTabContent {
+  border: 0;
+}
+/*** end common ***/
+/*************** top tab ***************/
+.lotusui30dojo .dijitTabContainerTop-tabs .dijitTab {
+  /*li*/
+
+  padding: 0;
+  margin-right: 2px;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  top: auto;
+  bottom: 0;
+}
+.dj_ie7 .lotusui30dojo .dijitTabContainerTop-tabs .dijitTab {
+  top: 3px;
+}
+/* for top tab padding. change height when status changes */
+.lotusui30dojo .dijitTabContainerTop-tabs .dijitTabChecked {
+  /*li lotusSelected*/
+
+  border-color: #aaaaaa #aaaaaa #ffffff;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitTabContainerTop-tabs .dijitTabContent {
+  /*a*/
+
+  padding: 6px 8px 4px;
+  display: block;
+  line-height: 1em;
+}
+.dj_ie6 .lotusui30dojo .dijitTabContainerTop-tabs .dijitTabContent, .dj_ie7 .lotusui30dojo .dijitTabContainerTop-tabs .dijitTabContent {
+  /*a*/
+
+  padding-top: 4px;
+  padding-bottom: 5px;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent {
+  padding-bottom: 4px;
+  padding-top: 6px;
+}
+/* Not used by One UI */
+/* normal status */
+.lotusui30dojo .dijitTabContainerTop-tabs .dijitTabInnerDiv {
+  background-image: url("images/tabTop.png");
+  background-position: 0 -248px;
+  background-position: bottom;
+  background-repeat: repeat-x;
+  -webkit-box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.04);
+  -moz-box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.04);
+}
+/* Not used by One UI */
+/* checked status */
+.lotusui30dojo .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabInnerDiv {
+  background-image: none;
+}
+.lotusui30dojo .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent {
+  background-position: 0 p -102px;
+  background-repeat: repeat-x;
+}
+/** end top tab **/
+/*************** bottom tab ***************/
+.lotusui30dojo .dijitTabContainerBottom-tabs {
+  /*lotusTabs*/
+
+  padding: 0;
+  top: 0;
+  margin: 0;
+  overflow: hidden !important;
+  position: absolute;
+  border: 0;
+}
+.lotusui30dojo .dijitTabContainerBottom-tabs .dijitTab {
+  /*li*/
+
+  padding: 0;
+  margin-right: 2px;
+  -moz-border-radius: 0 0 0 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  top: auto;
+}
+.lotusui30dojo .dijitTabContainerBottom-tabs .dijitTabContent {
+  /*a*/
+
+  padding: 5px 8px 7px 4px;
+  display: block;
+  line-height: 1em;
+}
+.dj_ie .lotusui30dojo .dijitTabContainerBottom-tabs .dijitTabContent {
+  /*a*/
+
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.dj_ie6 .lotusui30dojo .dijitTabContainerBottom-tabs .dijitTabContent, .dj_ie7 .lotusui30dojo .dijitTabContainerBottom-tabs .dijitTabContent {
+  /*a*/
+
+  padding-top: 4px;
+  padding-bottom: 5px;
+}
+.lotusui30dojo .dijitTabContainerBottom-tabs .dijitTabChecked {
+  /*li lotusSelected*/
+
+  border-color: #fff #aaa #aaa;
+}
+/** end bottom tab **/
+/*************** left tab ***************/
+.lotusui30dojo .dijitTabContainerLeft {
+  /*container*/
+
+  overflow: visible;
+  white-space: nowrap;
+}
+.lotusui30dojo .dijitTabContainerLeft-tabs {
+  /*tabs*/
+
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  z-index: 1000;
+  float: left;
+  border: 0;
+}
+.lotusui30dojo .dijitTabContainerLeft-tabs .dijitTab {
+  /*tab*/
+
+  margin-bottom: 2px;
+  border: solid 1px #ccc;
+  white-space: nowrap;
+  background-color: white;
+  left: auto;
+}
+.dj_ie7 .lotusui30dojo .dijitTabContainerLeft-tabs .dijitTabInnerDiv {
+  zoom: 1;
+}
+.lotusui30dojo .dijitTabContainerLeft-tabs .dijitTabContent {
+  padding: 4px;
+}
+.lotusui30dojo .dijitTabContainerLeft-tabs .dijitTabChecked {
+  border-color: #aaa #fff #aaa #aaa;
+}
+.lotusui30dojo .dijitTabContainerLeft-container {
+  /*content*/
+
+  border-left: solid 1px #ccc;
+  display: inline-block;
+  z-index: -1;
+  position: relative;
+  white-space: normal;
+  left: -1px !important;
+  width: auto !important;
+  overflow: visible;
+}
+.dj_ie6 .lotusui30dojo .dijitTabContainerLeft-container {
+  /*content*/
+
+  left: -4px !important;
+}
+.dj_ie6 .lotusui30dojo .dijitTabContainerLeft-child, .dj_ie7 .lotusui30dojo .dijitTabContainerLeft-child {
+  width: auto !important;
+}
+/** end left tab **/
+/*************** right tab ***************/
+.lotusui30dojo .dijitTabContainerRight {
+  /*container*/
+
+  overflow: visible;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitTabContainerRight-tabs {
+  /*tabs*/
+
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  z-index: 1000;
+  float: left;
+  margin-left: -1px;
+  border: 0;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitTabContainerRight-tabs .dijitTab {
+  /*tab*/
+
+  margin-bottom: 2px;
+  border: solid 1px #ccc;
+  white-space: nowrap;
+  background-color: white;
+  left: auto;
+}
+/* normal status */
+/*.lotusui30dojo .dijitTabContainerRight-tabs .dijitTabInnerDiv {
+	background-image: url("images/tabRight.png");
+	background-repeat: repeat-y;
+	background-position: -1px -347px;
+}*//* Not used by One UI */
+.dj_ie7 .lotusui30dojo .dijitTabContainerRight-tabs .dijitTabInnerDiv {
+  zoom: 1;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitTabContainerRight-tabs .dijitTabContent {
+  padding: 4px;
+}
+/* checked status */
+.lotusui30dojo .dijitTabContainerRight-tabs .dijitTabChecked {
+  border-color: #aaa #aaa #aaa #fff;
+}
+/* Unique to One UI */
+/*.lotusui30dojo .dijitTabContainerRight-tabs .dijitTabChecked .dijitTabContent {
+	padding-left: 5px;
+	border-left: none;
+	background-image: none;
+}*//* Not used by One UI */
+/*.lotusui30dojo .dijitTabContainerRight-tabs .dijitTabChecked .dijitTabInnerDiv {
+	background-position:-348px -179px;
+	.box-shadow(1px 0 2px rgba(0, 0, 0, 0.07));
+}*//* Not used by One UI */
+.lotusui30dojo .dijitTabContainerRight-container {
+  /*content*/
+
+  border-right: solid 1px #ccc;
+}
+/* Unique to One UI */
+.dj_ie6 .lotusui30dojo .dijitTabContainerRight-child, .dj_ie7 .lotusui30dojo .dijitTabContainerRight-child {
+  width: auto !important;
+}
+/* Unique to One UI */
+/** end right tab **/
+/** round corner **/
+/*.lotusui30dojo .dijitTabContainerTop-tabs .dijitTabInnerDiv,
+.lotusui30dojo .dijitTabContainerTop-tabs .dijitTabContent {
+	.border-radius(2px 2px 0 0);
+}*//* Not used by One UI */
+/*.lotusui30dojo .dijitTabContainerBottom-tabs .dijitTabInnerDiv,
+.lotusui30dojo .dijitTabContainerBottom-tabs .dijitTabContent{
+	.border-radius(0 0 2px 2px);
+}*//* Not used by One UI */
+/*(.lotusui30dojo .dijitTabContainerLeft-tabs .dijitTabInnerDiv,
+.lotusui30dojo .dijitTabContainerLeft-tabs .dijitTabContent{
+	.border-radius(2px 0 0 2px);
+}*//* Not used by One UI */
+/*.lotusui30dojo .dijitTabContainerRight-tabs .dijitTabInnerDiv,
+.lotusui30dojo .dijitTabContainerRight-tabs .dijitTabContent{
+	.border-radius(0 2px 2px 0);
+}*//* Not used by One UI */
+/************ left/right scroll buttons + menu button ************/
+.lotusui30dojo .tabStripButton {
+  background-color: #f4f4f4;
+  background: -moz-linear-gradient(top, #f4f4f4 0%, #eaeaea 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4f4f4), color-stop(100%, #eaeaea));
+  border: 1px solid #cccccc;
+  padding: 4px 3px;
+}
+/*.lotusui30dojo .dijitTabListContainer-top .tabStripButton {
+	padding: 4px 3px;
+	margin-top:7px;
+	background-image: url("images/tabTop.png");
+	background-position:0 0;
+}*//* Not used by One UI */
+/*.lotusui30dojo .dijitTabListContainer-bottom .tabStripButton {
+	padding:5px 3px;
+	margin-bottom:4px;
+	background-image: url("images/tabTop.png");
+	background-position:0 -248px;
+	background-position:bottom;
+}*//* Not used by One UI */
+/*.lotusui30dojo .tabStripButtonHover {
+	background-color:@hovered-background-color;
+}/* /* Not used by One UI */
+/*.lotusui30dojo .tabStripButtonActive {
+	background-color:@pressed-background-color;
+}*//* Not used by One UI */
+.lotusui30dojo .dijitTabStripIcon {
+  margin: 0 auto;
+  height: 15px;
+  width: 15px;
+  background: url("../form/images/buttonArrows.png") no-repeat -75px 50%;
+  background-color: transparent;
+}
+.lotusui30dojo .dijitTabStripSlideRightIcon {
+  background-position: -24px 50%;
+}
+.lotusui30dojo .dijitTabStripMenuIcon {
+  background-position: -51px 50%;
+}
+/*disabled styles for tab strip buttons*/
+/* Disabled so not included from Dojo 1.6.1 */
+/*.lotusui30dojo .dijitTabListContainer-top .tabStripButtonDisabled,
+.lotusui30dojo .dijitTabListContainer-bottom .tabStripButtonDisabled {
+	background-color:@tab-disabled-background-color;
+	border:1px solid @border-color;	// to match border of TabContainer itself
+}
+.lotusui30dojo .tabStripButtonDisabled .dijitTabStripSlideLeftIcon {
+	background-position:-175px 50%;
+}
+.lotusui30dojo .tabStripButtonDisabled .dijitTabStripSlideRightIcon {
+	background-position: -124px 50%;
+}
+.lotusui30dojo .tabStripButtonDisabled .dijitTabStripMenuIcon {
+	background-position: -151px 50%;
+}*//* Not used by One UI *//* Nested Tabs */
+.lotusui30dojo .dijitTabContainerNested .dijitTabListWrapper {
+  height: auto;
+}
+.lotusui30dojo .dijitTabContainerNested .dijitTabContainerTop-container {
+  background: transparent !important;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitTabContainerNested .dijitTabContainerTop-tabs {
+  /*lotusTabContainer*/
+
+  border-bottom: solid 1px #cccccc;
+  padding: 10px 10px 5px;
+}
+.lotusui30dojo .dijitTabContainerTabListNested .dijitTab {
+  /*lotusTabs and li*/
+
+  margin-right: 2px;
+  border: 0;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitTabContainerTabListNested .dijitTabContent {
+  /*a*/
+
+  padding: 6px 8px 6px 4px;
+}
+.lotusui30dojo .dijitTabContainerTabListNested .dijitTab .dijitTabInnerDiv {
+  /* 4 element selector to override box-shadow setting from above rule:
+	 *		.lotusui30dojo .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabInnerDiv { ... }
+	 */
+
+  background: none;
+  border: none;
+  top: 0;
+  /* to override top: 1px/-1px for normal tabs */
+
+}
+/*.lotusui30dojo .dijitTabContainerTabListNested .dijitTabHover .dijitTabContent {
+	background-color: @nestedtab-hovered-background-color;
+	border:solid 1px @nestedtab-hovered-border-color;
+	padding: 3px;
+	.transition-duration(.2s);
+}*//* Not used by One UI */
+.lotusui30dojo .dijitTabContainerTabListNested .dijitTabHover .tabLabel {
+  text-decoration: none;
+}
+/*.lotusui30dojo .dijitTabContainerTabListNested .dijitTabActive .dijitTabContent {
+	border:solid 1px @nestedtab-selected-border-color;
+	padding: 3px;
+	background: @nestedtab-selected-background-color url("images/tabNested.png") repeat-x;
+	.transition-duration(.1s);
+}*//* Not used by One UI */
+.lotusui30dojo .dijitTabContainerTabListNested .dijitTabChecked .dijitTabContent {
+  padding: 6px 8px 6px 4px;
+  border: solid 1px #aaaaaa;
+}
+.lotusui30dojo .dijitTabContainerTabListNested .dijitTabChecked .tabLabel {
+  text-decoration: none;
+  background-image: none;
+}
+.lotusui30dojo .dijitTabPaneWrapperNested {
+  border: none;
+  /* prevent double border */
+
+}
+/*.dj_ie6 .lotusui30dojo .dijitTabContent,
+.dj_ie6 .lotusui30dojo .dijitTabInnerDiv,
+.dj_ie6 .dijitTabListContainer-top .tabStripButton,
+.dj_ie6 .dijitTabListContainer-bottom .tabStripButton{
+	background-image: none;
+}*//* Not used by One UI */
+/* Lotus One UI tab dialog overrides */
+.lotusui30dojo .lotusTabDialog .dijitTabListContainer-top {
+  border-bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: #3c3c3c;
+  background: -moz-linear-gradient(top, #252525 0%, #141414 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #252525), color-stop(100%, #141414));
+}
+.dj_ie6 .lotusui30dojo .lotusTabDialog .dijitTabListContainer-top {
+  padding-left: 20px;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabContainerTop-tabs .dijitTab {
+  border: 0;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabPaneWrapper {
+  border: 0;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabContainerTop-container,
+.lotusui30dojo .lotusTabDialog .dijitTabContainerBottom-container,
+.lotusui30dojo .lotusTabDialog .dijitTabContainerLeft-container,
+.lotusui30dojo .lotusTabDialog .dijitTabContainerRight-container {
+  border: 0;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabContainerTop-dijitContentPane,
+.lotusui30dojo .lotusTabDialog .dijitTabContainerBottom-dijitContentPane,
+.lotusui30dojo .lotusTabDialog .dijitTabContainerLeft-dijitContentPane,
+.lotusui30dojo .lotusTabDialog .dijitTabContainerRight-dijitContentPane {
+  padding: 15px 20px;
+}
+/*tab strip*/
+.lotusui30dojo .lotusTabDialog .dijitTabListWrapper {
+  bottom: 0 !important;
+}
+.dj_ie6 .lotusui30dojo .lotusTabDialog .dijitTabListWrapper {
+  bottom: -3px !important;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabStripButton {
+  bottom: 0 !important;
+}
+/*tabs*/
+.lotusui30dojo .lotusTabDialog .dijitTabContainerTop-tabs .dijitTab {
+  background: none;
+  margin: 0;
+}
+.dj_ie7 .lotusui30dojo .lotusTabDialog .dijitTabContainerTop-tabs .dijitTab {
+  top: auto;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabContainerTop-tabs .dijitTabInnerDiv {
+  background: none;
+  padding-bottom: 15px;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabContainerTop-tabs .dijitTabContent {
+  padding: 0 10px;
+  color: #ccc;
+  border-left: 1px solid #666;
+}
+.lotusui30dojo .lotusTabDialog .dijitTab:first-child .dijitTabContent {
+  border-left: 0;
+}
+/*for the inlinelist separator*/
+.lotusui30dojo .lotusTabDialog .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabContent {
+  padding-top: 0;
+  padding-bottom: 0;
+  color: #fff;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabContainerTop-tabs .dijitTabChecked .dijitTabInnerDiv {
+  background-image: url("images/TabSharkfinLightUp.png");
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabButtonIcon {
+  display: none;
+}
+/*remove this if you want to have an icon before the tab text*/
+.lotusui30dojo .lotusTabDialog .dijitTabCloseButton {
+  background-image: url("images/DeleteLight12.png");
+  height: 12px;
+  width: 12px;
+  margin: 0 -3px -1px 3px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.lotusui30dojo .lotusTabDialog .dijitTabCloseButtonHover, .lotusui30dojo .lotusTabDialog .dijitTabCloseButtonActive {
+  opacity: 0.75;
+  filter: alpha(opacity=75);
+}
+/*tab overflow*/
+.lotusui30dojo .lotusTabDialog .tabStripButton {
+  bottom: 0 !important;
+  padding: 12px 3px;
+  background: none;
+  border: 0;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabStripIcon {
+  height: 12px;
+  width: 12px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.lotusui30dojo .lotusTabDialog .dijitTabStripSlideLeftIcon {
+  background: url("images/TriangleMediumLightLeft12.png") no-repeat;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabStripSlideRightIcon {
+  background: url("images/TriangleMediumLightRight12.png") no-repeat;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabStripMenuIcon {
+  background: url("images/OverflowChevronLight12.png") no-repeat;
+}
+.lotusui30dojo .lotusTabDialog .tabStripButtonHover .dijitTabStripSlideLeftIcon, .lotusui30dojo .lotusTabDialog .tabStripButtonHover .dijitTabStripSlideRightIcon, .lotusui30dojo .lotusTabDialog .tabStripButtonHover .dijitTabStripMenuIcon {
+  opacity: 0.75;
+  filter: alpha(opacity=75);
+}

@@ -1,0 +1,354 @@
+
+ /****************************************************************
+ * IBM Confidential
+ *
+ * SFA050-Collaboration Source Materials
+ *
+ * (C) Copyright IBM Corp. 2012
+ *
+ * The source code for this program is not published or otherwise
+ * divested of its trade secrets, irrespective of what has been
+ * deposited with the U.S. Copyright Office
+ *
+ ***************************************************************/
+@CHARSET "UTF-8";
+
+html,body { 
+	overflow: auto; 
+}
+
+label {
+	font-family: Arial, Sans-Serif; 
+	font-size: 12px; 
+	color: #000000;
+}
+div {
+	font-family:Arial, Sans-Serif;
+	font-size: 12px;  
+	color: #000000;
+}
+span {
+	font-family:Arial, Sans-Serif;
+	font-size: 12px;  
+	color: #000000;
+}
+
+#callLogForm {
+	margin-left: 5px;
+        margin-bottom:5px;
+}
+
+#messageDiv {
+	top: 0;
+	left: 0px;
+    position: relative;
+	display:none;
+	/*padding: 2px;
+	margin-bottom:5px;*/
+	font-family:Arial, Sans-Serif;
+	font-size: 12px;
+	width: 100%;
+}
+
+#nameDiv {
+	top: 4px;
+	margin-bottom:16px;
+	position: relative;
+}
+
+#summaryDiv {
+	top: 5px;
+	margin-bottom:14px;
+	position: relative;
+}
+
+#statusDiv {
+	top: 1px;
+	margin-bottom:7px;
+	position: relative;
+}
+#subjectDiv {
+	top: 0;
+	left: 0;
+	position: relative;
+}
+
+#dateDiv {
+	top: 1px;
+	margin-bottom:7px;
+	position: relative;
+}
+#dateHourDiv {
+	left: -1px;
+	position: relative;
+}
+#dateMinDiv {
+	left: -6px;
+	position: relative;
+}
+
+#durationDiv {
+	top: 1px;
+	margin-bottom:7px;
+	position: relative;
+}
+
+#dateSubLabel {
+    font-family: Arial, Sans-Serif;
+    font-size: 12px;
+    font-style: italic;
+}
+
+#typeDiv {
+	top: 0px;
+	margin-bottom:6px;
+	position: relative;
+}
+
+#assignedDiv {
+	top:4px;
+	margin-bottom:5px;
+	position: relative;
+}
+#relatedDiv {
+	left: 0px;
+	top: 1px;
+	position: relative;
+}
+
+#relatedTo {                
+        padding-top: 17px;
+	padding-bottom: 6px;
+}
+
+#relatedToTitle {
+	font-family: Arial, Sans-Serif; 
+	font-size: 12px; 
+	color: #365167;
+	font-weight:bold;
+	/*padding-top: 17px;
+	padding-bottom: 6px;*/
+}
+
+#relatedCityDiv {
+	top: 9px;
+	padding-bottom: 17px;
+	position: relative;
+	clear: both;
+}
+#relatedCityFieldDiv {
+	top: 5px;
+	/*padding-bottom: 18px;*/
+	position: relative;
+	clear: both;
+}
+#relatedItemLabelDiv {
+	padding-top: 9px;
+	clear: both;
+}
+#relatedItemDiv {
+	padding-top: 5px;
+	clear: both;
+}
+#subjectLabelDiv {
+	left: 10px;
+	width: 100%;
+	margin-bottom: 2px;
+}
+
+#subjectFieldDiv {
+	left: 10px;
+	width:100%;
+	clear:both;
+}
+#statusLabelDiv {
+	width: 100%;
+    
+}
+#statusFieldDiv {
+	width: 100%;
+	
+}
+#dateLabelDiv {
+	width: 100%;
+    float:left;
+}
+#dateFieldDiv {
+	float:left;
+	width: 100%;
+}
+
+#durationLabelDiv {
+	width: 100%;
+    float:left;
+}
+#durationFieldDiv {
+	float:left;
+	width: 100%;
+}
+
+#typeLabelDiv {
+	width: 100%;
+    float:left;
+}
+#typeFieldDiv {
+	float:left;
+	width: 60%;
+	
+}
+#call_type {
+	width: 100%;
+}
+#assignedLabelDiv {
+	width: 100%;
+    float:left;
+    margin-bottom: 5px;
+}
+#assignedFieldDiv {
+	top: 10px;;
+	float:left;
+	width: 100%;
+}
+#relatedLabelDiv {
+	width: 100%;
+	left: 10px;
+    
+}
+#relatedFieldDiv {
+	width: 100%;
+	top: 0px;
+	left: -1px;
+	
+}
+#relatedTextBoxDiv {
+	width: 50%;
+}
+
+
+#summaryLabelDiv {
+	width: 100%;
+    float:left;
+}
+#summaryFieldDiv {
+	float:left;
+	width: 100%;
+}
+#dynamicFieldsTitle {
+	left: 0;
+	width: 100%;
+	/*padding-top:28px;*/
+    position: relative;
+	clear: both;
+	/*padding-bottom:30px;*/
+	display:none;
+	font-size: 14px; 
+	font-family: Arial, Sans-Serif; 
+	color: #365167;
+	font-weight:bold;
+
+}
+#dynamicFieldsDiv {
+	left: 0;
+	position: relative;
+	clear: both;
+	/*padding-top:15px;
+	padding-bottom:5px;*/
+	display:none;
+}
+
+#forceScrollbar {
+	display:none;
+}
+#participantsLoading {
+	display:none;
+}
+
+#relatedItemLoading {
+	display:none;
+}
+
+div.dynamic {
+	left: 0;
+	top: 5px;
+	width: 100%;
+    position: relative;
+	clear: both;
+	/*padding-bottom:5px;
+	padding-left:0px;*/
+	
+}
+div.dynamicLabel{
+	width: 100%;
+	left: 2px;
+    float:left;
+    /*padding-bottom:2px;*/
+    margin-top:2px;
+    margin-bottom:2px;
+}
+div.dynamicField {
+	/*left: -1px;*/
+	width: 100%;
+}
+#calllogFormDiv {
+	background:rgba(255,255,255,0.5);
+	display:none;
+}
+
+#needToReloadDiv {
+	width: 100%;
+        height: 100%;
+        z-index: 100;
+        display: none;
+        background:rgba(255,255,255,0.5);
+        position: absolute; top: 15px; left: 8px;
+}
+#loadingDiv {
+	width: 100%;
+        height: 100%;
+        z-index: 100;
+        background:rgba(255,255,255,0.5);
+        position: absolute; top: 15px; left: 8px;
+}
+
+#formButtonDiv {
+        top: 5px;
+	left: 0;
+	padding-left: 0px;
+	position: relative;
+	clear: both;
+	font-family:Arial, Sans-Serif;
+	font-size: 12px;  
+	color: #444444;
+	font-weight:bold;
+}
+
+d.dijitDownArrowButton {
+	width: 17px !important;  /*the fix for some down arrows being super wide*/
+	height: 19px !important;
+}
+div.dijitDownArrowButton {
+	width: 17px !important;  /*the fix for some down arrows being super wide*/
+	height: 19px !important;
+}
+div.dijitTextBox {
+	height: 20px !important; /*the fix for some boxes rendering too short*/
+}
+input.dijitInputInner {
+	padding-top: 3px; !important; /*the fix for the text showing at the top vs centered in some boxes after the other fixes*/
+}
+.dijitMenuItemLabel, .dijitTooltipContainer {
+	font-family:Arial, Sans-Serif;  /*setting the font size in the dijits*/
+	font-size: 12px;
+}
+.dijitTextBox {
+	font-family:Arial, Sans-Serif;
+	font-size: 12px;
+}
+
+.lotusFilter {
+	margin-top: 5px !important; /*Add the spacing to the top of the filter instead of the container so when they flow over multiple lines, they aren't too close together*/
+}
+/*.dijitValidationIcon { 
+	display:none !important; /*get rid of the validation icon.  unable to type in short fields with it there
+} */
+

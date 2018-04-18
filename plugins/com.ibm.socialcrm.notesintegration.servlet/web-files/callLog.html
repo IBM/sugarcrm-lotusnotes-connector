@@ -1,0 +1,1165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd" >
+<html>
+<head>
+<!--  
+ /****************************************************************
+ * IBM Confidential
+ *
+ * SFA050-Collaboration Source Materials
+ *
+ * (C) Copyright IBM Corp. 2012
+ *
+ * The source code for this program is not published or otherwise
+ * divested of its trade secrets, irrespective of what has been
+ * deposited with the U.S. Copyright Office
+ *
+ ***************************************************************/
+-->
+	<!-- load Dojo -->
+	<link rel="stylesheet" href="./css/base/core.css">
+	<link rel="stylesheet" href="./dojo/dijit/themes/lotusui30dojo/lotusui30dojo.css">
+	<!--<link rel="stylesheet" href="./dojo/dijit/themes/tundra/tundra.css">-->
+	<link rel="stylesheet" href="./callLogv2.css">
+	
+    <script src="./dojo/dojo/dojo.js" type="text/javascript" djConfig="parseOnLoad: true"></script>
+</head>
+<body class="lotusui30dojo lotusui30_body lotusui30_fonts lotusui30">
+	<script>
+		dojo.require("dojo.parser");
+        dojo.require("dojo.i18n");
+		dojo.require("dijit.form.Form");
+		dojo.require("dijit.form.DateTextBox");
+		dojo.require("dijit.form.SimpleTextarea");
+		dojo.require("dijit.form.TextBox");
+		dojo.require("dijit.form.ValidationTextBox");
+		dojo.require("dijit.form.NumberTextBox");
+		dojo.require("dijit.form.Select");
+		dojo.require("dijit.form.MultiSelect");
+		dojo.require("dijit.form.Button");
+		dojo.require("dijit.form.FilteringSelect");
+		dojo.require("dojo.data.ItemFileReadStore");
+		dojo.require("dijit.Tooltip");
+		require(["dojo/ready", "dojo/parser", "dijit/registry", "dijit/Tooltip", "dijit/Dialog", "dojo/dom-construct"], function(ready, parser, registry){
+		     ready(function(){
+		           // This won't run until the DOM has loaded, the parser has run, and other modules like dijit/hccss
+		           // have also run.
+                   initGlobals();
+		           loadPageData();
+		     });
+		});
+
+
+    securityCode = ''; //keep this out of initGlobals b/c we don't want it reset during a page flush
+    function initGlobals() {
+        //globals
+        loadStore = null;
+        messages = new Array();  //Place to store NLS messages that are used programmatically
+        styleMemory = new Array(); //place to store the original style before I force a red border
+        dynamicFields = new Array();  //place to store references to dynamic fields since you need to explicitly destroy them in IE
+        loadCompleted = false;
+		gotNotReady = false;
+        loadTimer = null;
+        relatedTimer = false;
+        fieldCounter = 0;
+        serverDataPushEnabled = false;
+		panelRaisedTimer = null;
+		postLoadItemsTimer = null;
+        stompRelatedField = true; //normally when you change the related type, you clear the value.  This flag will allow us to disable that when card data is being loaded so it doesn't stomp the typeahead getting loaded.
+        flushThePageTimer = null;
+		pushingFieldsInProgress = false;
+        typeaheadLoadedAndBeforeBlur = false;
+        typeaheadWidthToRemember = 0;
+        
+        // 56713
+        numberOfTimesLoadHasBeenAttempted = 0;
+        
+        blurTimer = null;
+        filterStorageMap = {};  //so we don't have to pass around both ids all over.  just pass the data id and lookup the div id
+        filterStorageMap['relatedIDFilterData'] = 'relatedMulti'; 
+        filterStorageMap['participantsFilterData'] = 'relatedParticipants';
+    }
+
+	function logCallFromCard() {
+		//the user asked to log a call from a popup card
+		//TODO: check for values about to be lost
+		
+		//initiate a refresh
+		resetForm();
+	}
+		
+	function isNumber(n) {
+		  return !isNaN(parseFloat(n)) && isFinite(n);
+	}
+	
+	function submitForm() {
+		//alert("checking fields");
+		if (dijit.byId("callLogForm").validate()/*requiredFieldsOk()*/) {
+			dojo.xhrPost({
+	             // The target URL on your webserver:
+	             url: "./CallLogService?securityCode=" + securityCode,
+	             form: "callLogForm",
+	             handleAs: "text",
+	             timeout: 20000,
+	             // Event handler on successful call:
+	             load: function(response, ioArgs){
+					 if (response != "") {
+                         //received an error message from the request, so display it
+                         displayErrorMessage(messages["failMsg"] + " : " + response); //append the error code to the failed message
+                     } else {
+                         displaySuccessMessage(messages["successMsg"]);
+                         setTimeout("resetForm()",2000);
+                     }
+	            	 
+	                 return response;
+	             },
+	             // Event handler on errors:
+	             error: function(response, ioArgs){
+	                 displayErrorMessage(messages["failMsg"]);
+	                 return response;
+	             }
+	         });
+		}
+	}
+		
+	function clearMsg() {
+        dijit.hideTooltip(document.getElementById("messageDiv"));
+        return;
+		/*var messageDiv = document.getElementById("messageDiv");
+		messageDiv.innerHTML = "";
+		messageDiv.style.display = "none";
+		messageDiv = null;
+		//removeRedXFromField("name");
+        */
+	}
+	function displayErrorMessage(msg) {
+        window.scrollTo(0, 0);
+        dijit.showTooltip(msg, document.getElementById("messageDiv"));
+		/*//alert("starting error pop");
+		var messageDiv = document.getElementById("messageDiv");
+		//messageDiv.innerHTML = "<b>" + msg + "</b>";
+		messageDiv.innerHTML = msg+ "<br/>";
+		messageDiv.style.backgroundColor = "#FFEBEB";
+		messageDiv.style.border = "1px solid red";
+		messageDiv.style.display = "inline";
+        window.scrollTo(0, 0);
+		messageDiv = null;*/
+	}
+	function displaySuccessMessage(msg) {
+        window.scrollTo(0, 0);
+        dijit.showTooltip(msg, document.getElementById("messageDiv"));
+        /*
+		//alert("starting error pop");
+		var messageDiv = document.getElementById("messageDiv");
+		//messageDiv.innerHTML = "<b>" + msg + "</msg>";
+		messageDiv.innerHTML = msg + "<br/>";
+		messageDiv.style.backgroundColor = "#BDFFBD";
+		messageDiv.style.border = "1px solid green";
+		messageDiv.style.display = "inline";
+        window.scrollTo(0, 0);
+		messageDiv = null;
+		//alert("error popped");
+        */
+	}
+
+    function loadPageData() {
+        loadCompleted = false;
+        gotNotReady = false;
+		//load the NLS strings for the static form elements, previous values for fields and dynamic form elements
+		//destroy the previous store first
+		if (loadStore) {
+			loadStore.close();
+            //dojo.destroy(loadStore);
+        }/* else {
+            var urlWithCode = "./CallLogDataLoad?securityCode=" + securityCode;
+            loadStore = new dojo.data.ItemFileReadStore({url:urlWithCode,clearOnClose: true,urlPreventCache: true});
+        }  */
+
+        var urlWithCode = "./CallLogDataLoad?securityCode=" + securityCode;
+        loadStore = new dojo.data.ItemFileReadStore({url:urlWithCode,clearOnClose: true,urlPreventCache: true});
+		 //loadStore = new dojo.data.ItemFileReadStore({url:'./CallLogDataLoad',clearOnClose: true,urlPreventCache: true});
+         function gotError() {
+			 loadCompleted = false;
+         }
+         function gotDone() {
+			 if (gotNotReady) {
+                 //if we received a not ready, the page hasn't really finished loading yet even though a gotDone would get called
+             } else {
+                 loadCompleted = true;
+                 //defect:23940 decrease the timer to 500ms from 2s to avoid user changing related item before everything is finished loading
+                 //disabling the widget was visually unappealing.  Also track the timer so it can be cancelled if we get a panel raised.
+				 if (postLoadItemsTimer) {
+				   clearTimeout(postLoadItemsTimer);
+                 }
+                 postLoadItemsTimer = setTimeout("postLoadItems()",500);
+             }
+         }
+		 function gotItem(item, request) {
+		 
+		 	 // 56713
+		 	 showLoadingPage();
+		 
+             if (loadCompleted) {
+                 //bail as this must be a duplicate triggered by a previous error waiting
+				 return;
+             }
+			 var key = loadStore.getValue(item,"key");
+			 var value = loadStore.getValue(item,"value");
+			 var dataItemType = loadStore.getValue(item,"dataItemType");
+			 if (dataItemType == "notLoadedYet") {
+				 //data hasn't been loaded from Sugar yet, schedule a re-load, but clear any existing timer
+                 gotNotReady = true;
+				 clearTimeout(loadTimer);
+                 // 56713
+				 if (numberOfTimesLoadHasBeenAttempted <= 20) {
+                 	loadTimer = setTimeout('loadPageData()',2000);
+                 	numberOfTimesLoadHasBeenAttempted += 1;
+                 } else {
+                     showReloadPage(); //instead of polling, just put up a reload page with a button that tries again
+                 }
+                 	
+                 return;	
+             } 
+             
+             // 56713
+             showCalllogForm();
+             
+			 if (dataItemType == "sugarDatePreference") {
+                 //set the date format for the main date box, and remember it for when custom date fields are created
+				 datePreference = value;
+                 dijit.byId("date_start").constraints = {selector:'date', datePattern: datePreference };
+                 //set the value to today's date, now that the format is set
+                 dijit.byId("date_start").set("value", new Date());
+             } else if (dataItemType == "customField") {
+				 //add a dynamic field to the page
+				 processCustomField(item,loadStore);
+			 } else if (dataItemType == "label") {
+				 if (key == "dynamicFieldsTitle") { 
+					//since we have custom fields, go ahead and display the title div
+					dojo.byId("dynamicFieldsTitle").style.display = "block";
+                    dojo.byId("dynamicFieldsDiv").style.display = "block";
+				 }
+				 document.getElementById(key).innerHTML = value;
+			 } else if (dataItemType == "message") {
+				 messages[key] = value;
+				 //the related_to widget needs one of these messages, but was created declaratively.  fix it
+                 if (key == "relatedTypeClientMsg") {
+                     dijit.byId("parent_id").setAttribute("placeHolder",value);
+                 } 
+                 if (key == "relatedTypeCityMsg") {
+                     dijit.byId("city").setAttribute("placeHolder",value);
+                 }
+                 if (key == "saveButtonLabel") {
+                     dijit.byId("saveBtn").set("label", value);
+                 }
+                 if (key == "resetButtonLabel") {
+                     dijit.byId("resetBtn").set("label", value);
+                 }
+                 if (key == "requiredMsg") {
+                     //set the msg on any dijits that show basic required
+                     var w = dijit.byId("name");
+                     w.set("invalidMessage", value);
+                     w.set("missingMessage", value);
+                     w.set("tooltipPosition", ["above","below"]);
+					 w = null;
+                 }
+                 
+                 
+			 } else if (dataItemType == "fieldValue") {
+				//load the previous setting for this field
+                var realKey = key.substring(9);
+				var widget = dijit.byId(realKey);
+				if (widget) {
+					widget.set("value", value);
+				}
+                if (realKey == "myItemsValue") {
+                    if (value == "true") {
+                        document.getElementById("myItems").checked = true;
+                    } else {
+                        document.getElementById("myItems").checked = false;
+                    }
+                }
+				realKey = null;
+				widget = null;
+			 } else if (dataItemType == "cardRelatedTo" || dataItemType == "repopulateRelatedTo") {
+				 //set the related to fields
+				 var relatedModule = loadStore.getValue(item,"relatedModule");
+				 var widget = dijit.byId("parent_type");
+				 if (widget) {
+					 //don't clear the related value this time as it will stomp the typeahead load
+					 stompRelatedField = false;
+					widget.set("value", relatedModule);
+				 }
+				 //deal with the type-ahead
+				 var typeaheadValue = "";
+				 if (value.length >= 3) {
+					 typeaheadValue = value.substr(0,3);
+				 } else {
+					 typeaheadValue = value;
+				 }
+                 updateData(typeaheadValue,"parent_id",key,true); //have it set the value to key when done loading and shortcircuit lookup
+				 relatedModule = null;
+				 widget = null;
+				 typeaheadValue = null;
+			 } else if (dataItemType == "userInfo") {
+                 //typeahead is not required anymore, go straight to the filter
+                 addAFilter('participantsFilterData',key,value);
+				 
+			 }
+			 else if (dataItemType == "hovertext") {
+				 document.getElementById(key).innerHTML = value;
+		     } else if (dataItemType == "options") {
+                 if (key == "status") {
+                     //load options into the status dropdown
+					 var splitOptions = value.split("|");
+					 if (splitOptions.length == 3) {
+                         var widget = dijit.byId(key);
+                         widget.removeOption(widget.getOptions());
+                         widget.addOption({disabled:false,label:splitOptions[0],selected:false,value:'Planned'});
+                         widget.addOption({disabled:false,label:splitOptions[1],selected:true,value:'Held'});
+                         widget.addOption({disabled:false,label:splitOptions[2],selected:false,value:'Not Held'});
+                         
+                     } 
+                 }
+                 if (key == "parent_type") {
+                     //load options into the parent_type dropdown
+					 var splitOptions = value.split("|");
+					 if (splitOptions.length == 4) {
+                         var widget = dijit.byId(key);
+                         widget.removeOption(widget.getOptions());
+                         widget.addOption({disabled:false,label:splitOptions[0],selected:false,value:'Accounts'});
+                         widget.addOption({disabled:false,label:splitOptions[1],selected:false,value:'Opportunities'});
+                         widget.addOption({disabled:false,label:splitOptions[2],selected:false,value:'Contacts'});
+                         widget.addOption({disabled:false,label:splitOptions[3],selected:false,value:'Leads'});
+                     } 
+                 }
+                 if (key == "call_type") {
+                     //load options into the call_type dropdown
+                     var splitOptions = value.split("|");
+                     if (splitOptions.length == 3) {
+                         var widget = dijit.byId(key);
+                         widget.removeOption(widget.getOptions());
+                         widget.addOption({disabled:false,label:splitOptions[0],selected:false,value:'face_to_face'});
+                         widget.addOption({disabled:false,label:splitOptions[1],selected:false,value:'inbound_call'});
+                         widget.addOption({disabled:false,label:splitOptions[2],selected:false,value:'outbound_call'});
+                     } 
+                 }
+
+             }
+		 
+			 key = null;
+			 value = null;
+			 dataItemType = null;
+		 }
+		 loadCompleted = false;
+		 loadStore.fetch({onComplete: gotDone, onItem: gotItem, onError: gotError});
+
+	}
+
+	function processCustomField(item, aStore) {
+		var type = aStore.getValue(item,"type");
+		var key = aStore.getValue(item,"key");
+		var label = aStore.getValue(item,"value");
+		var widget;
+		if (type == "enum") {
+			widget =  new dijit.form.Select({
+			    name: key,
+			    style: "width: 221px;"
+			  });
+			//load options
+			for (i=0;i<500;i++) {
+				var optionid = aStore.getValue(item,"optionid"+i);
+				if (optionid) {
+					var optionlabel = aStore.getValue(item,"optionlabel"+i);
+					widget.addOption({label: optionlabel, value: optionid});
+				} else {
+					break;
+				}
+                optionid = null;
+			}
+			placeWidget(label,widget);
+		} else if (type == "multienum") {
+			var baseSelectName = "dynamicMulti" + fieldCounter;
+			//dojo.place("<select id='" + baseSelectName + "'></select>)",dynamicFieldsDiv, "last");
+			dojo.place("<div class='dynamic' id='dynamicFieldDiv"+fieldCounter+"'><div class='dynamicLabel' id='dynamicFieldLabel"+fieldCounter+"'>"+label+"</div><div class='dynamicField' id='dynamicField"+fieldCounter+"'><select id='" + baseSelectName + "'></select></div></div>", dynamicFieldsDiv, "last");
+			var baseSelect = dojo.byId(baseSelectName);
+			//load options
+			for (i=0;i<500;i++) {
+				var optionid = aStore.getValue(item,"optionid"+i);
+				if (optionid) {
+					 var optionlabel = aStore.getValue(item,"optionlabel"+i);
+					 var c = dojo.doc.createElement('option');
+		             c.innerHTML = optionlabel;
+		             c.value = optionid;
+		             baseSelect.appendChild(c);
+				} else {
+					break;
+				}
+                optionid = null;
+			}
+			widget =  new dijit.form.MultiSelect({
+				   name: key,
+				   style: "width: 221px;"
+				  }, baseSelect);
+			widget.invertSelection(); //for some reason they all start out selected.  unselect them
+			dynamicFields.push(widget);
+
+            baseSelectName = null;
+            baseSelect = null;
+		} else if (type == "varchar") {
+			var len = aStore.getValue(item,"len");
+			widget = new dijit.form.TextBox({
+				    name: key,
+				    value: "",
+				    style: "width: 221px;",
+				    maxLength: len
+				   });
+			placeWidget(label,widget);
+			len = null;
+		} else if (type == "date") {
+			var baseDateName = "dynamicDate" + fieldCounter;
+			//dojo.place("<input id='" + baseDateName + "'></select>)",dynamicFieldsDiv, "last");
+			dojo.place("<div class='dynamic' id='dynamicFieldDiv"+fieldCounter+"'><div class='dynamicLabel' id='dynamicFieldLabel"+fieldCounter+"'>"+label+"</div><div class='dynamicField' id='dynamicField"+fieldCounter+"'><input id='" + baseDateName + "'/></div></div>", dynamicFieldsDiv, "last");
+			var baseDate = dojo.byId(baseDateName);
+			widget =new dijit.form.DateTextBox(
+		            {
+		                id: key,
+		                name: key,
+		                style: "width: 106px;",
+						constraints: { selector:'date', datePattern : datePreference } 
+		            }, baseDate );
+			dynamicFields.push(widget);
+            //add this widget to the dateFields so they get converted to UTC on submit
+            //var currentDateFields = document.getElementById('dateFields').value;
+            var currentDateFields = dijit.byId("dateFields").get("value");
+            currentDateFields += key + ",";  //add the comma after so when the servlet checks it won't find a prefix match
+            dijit.byId("dateFields").set("value",currentDateFields);
+            baseDateName = null;
+            baseDate = null;
+            currentDateFields = null;
+		}
+		dojo.connect(widget, 'onChange', pushFieldsToServer);
+		fieldCounter += 1;
+
+        type = null;
+		key = null;
+		label = null;
+		widget = null;
+	}
+
+	function placeWidget(label, widget) {
+		dynamicFields.push(widget);
+		dojo.place("<div class='dynamic' id='dynamicFieldDiv"+fieldCounter+"'><div class='dynamicLabel' id='dynamicFieldLabel"+fieldCounter+"'>"+label+"</div><div class='dynamicField' id='dynamicField"+fieldCounter+"'></div></div>", dynamicFieldsDiv, "last");
+		widget.placeAt("dynamicField" + fieldCounter,"last");
+		//fieldCounter += 1;
+	}
+	
+	
+	function disableFieldPush() {
+		serverDataPushEnabled = false;
+	}
+	function enableFieldPush() {
+		serverDataPushEnabled = true;
+		//pushFieldsToServer();
+	}
+    function postLoadItems() {
+        //do these things after a successful load
+        stompRelatedField = true; //re-enable the related type stomping
+        enableFieldPush();
+        rebuildFilterDiv('relatedIDFilterData');
+        rebuildFilterDiv('participantsFilterData');
+    }
+	function pushFieldsToServer() {
+		if (serverDataPushEnabled) {
+            pushingFieldsInProgress = true;
+			//whenever one of the form fields changes, push the set to the server in case they undock
+			//and force the page to reload
+			 //var formJson = dojo.formToJson("callLogForm");
+
+            //ensure the form is altered so it really pushes something.  If nothing changed it skips it, which can cause parent_id to get blanked
+            var d = new Date();
+			dijit.byId("forcePush").set("value",d.getMilliseconds());
+            //copy the display value of parent_id so we can rebuild the typeahead list later
+            var parentItemDisplayValue = dijit.byId("parent_id").get('displayedValue');
+			dijit.byId("parentIdDisplayValue").set("value",parentItemDisplayValue);
+			 dojo.xhrGet({
+	             // The target URL on your webserver:
+	             url: "./CallLogService",
+	             form: "callLogForm",
+	             handleAs: "text",
+	             timeout: 5000,
+	             // Event handler on successful call:
+	             load: function(response, ioArgs){
+	            	 //displaySuccessMessage("pushed the data to the server");
+                     pushingFieldsInProgress = false;
+	                 return response;
+	             },
+	             // Event handler on errors:
+	             error: function(response, ioArgs){
+	                 //displayErrorMessage("Failed to send fields to server");
+	                 pushingFieldsInProgress = false;
+	                 return response;
+	             }
+	         });
+		}
+		
+		 
+	}
+	function getServerPort() {
+        return window.location.port;
+    }
+
+	function setSecurityCode(code) {
+		securityCode = code;
+	}
+	
+    function panelRaised(secCode) {
+        //This method is called by the plugin when it is notified that the call log panel has been made visible
+        //Perform a reset of the form (without flushing the value service) to fix the IE paint bug in 19099
+		setSecurityCode(secCode);
+		if (loadCompleted) {
+			if (panelRaisedTimer) {
+                clearTimeout(panelRaisedTimer);
+				panelRaisedTimer = null;
+            }
+            if (postLoadItemsTimer) {
+              clearTimeout(postLoadItemsTimer);
+			  postLoadItemsTimer = null;
+            }
+            panelRaisedTimer = setTimeout("performPanelRaised()",1000);
+        } //else it is probably the intial load and ignore
+    }
+    function performPanelRaised() {
+		if (pushingFieldsInProgress) {
+           if (panelRaisedTimer) {
+             clearTimeout(panelRaisedTimer);
+           }
+           panelRaisedTimer = setTimeout("performPanelRaised()",200); //let the field push finish
+        } else {
+            enableFieldPush();
+            pushFieldsToServer();  //make sure to save the current values, so they aren't lost when it reloads
+            if (flushThePageTimer) {
+              clearTimeout(flushThePageTimer);
+            }
+            flushThePageTimer = setTimeout("flushThePage()",200); //let the field push finish
+        }
+    }
+    function resetForm() {
+        //clear out any of the timers that may be in flight
+        if (panelRaisedTimer) {
+           clearTimeout(panelRaisedTimer);
+           panelRaisedTimer = null;
+        }
+        if (postLoadItemsTimer) {
+           clearTimeout(postLoadItemsTimer);
+           postLoadItemsTimer = null;
+        }
+        if (flushThePageTimer) {
+           clearTimeout(flushThePageTimer);
+           flushThePageTimer = null;
+        }
+		//hit the CallLogService with no parms to clear the previous values, then refresh the page
+		dojo.xhrGet({
+	             url: "./CallLogService",
+	             handleAs: "text",
+	             preventCache: true,
+	             timeout: 5000,
+	             // Event handler on successful call:
+	             load: function(response, ioArgs){
+	                 return response;
+	             },
+	             // Event handler on errors:
+	             error: function(response, ioArgs){
+	                 //displayErrorMessage("Failed to send fields to server");
+	                 return response;
+	             }
+	         });
+    	flushThePageTimer = setTimeout('flushThePage()',1000);
+	}
+
+    function destroyIt(anItem) {
+		if (anItem) {
+            if(anItem.destroyRecursive){
+                anItem.destroyRecursive();
+            }else if(anItem.destroy){
+                anItem.destroy();
+            }
+        }
+    }
+
+    function resetCallLogForm() {
+		//destroy all widgets that were added dynamically
+        var anItem; 
+        while (anItem = dynamicFields.pop()) {
+			//dojo.destroy(anItem);
+           destroyIt(anItem);
+        }
+        //make sure they are gone
+        anItem = dojo.byId('dynamicFieldsDiv');
+		if (anItem) {
+            dojo.forEach(dijit.findWidgets(anItem), function(widget) {
+				destroyIt(widget);
+            });
+			anItem.innerHTML = "";
+            dojo.byId("dynamicFieldsTitle").style.display = "none";
+            dojo.byId("dynamicFieldsDiv").style.display = "none";
+        }
+		//destroyIt(dojo.byId('relatedItemStore'));
+		//destroyIt(dojo.byId('assignedToItemStore'));
+		//destroyIt(loadStore);
+
+        //reset the widets that are always on the page
+        anItem = dojo.byId('callLogForm');
+		anItem.reset();
+
+        anItem = null;
+}
+
+    function flushThePage() {
+        //IE needs a scorched earth reset.  xulrunner was fine with a page refresh
+        disableFieldPush(); //unless we do this when we destroy things it will trigger changes which cause a circular condition on IE
+	    clearMsg();
+        resetCallLogForm();
+
+        initGlobals();
+		if (dojo.isIE) {
+            CollectGarbage();
+        }
+        //setTimeout("loadPageData()",20000);
+		loadPageData();
+        //window.location.reload();
+        //window.location.href="./callLog.html";
+        //dojo.parser.parse(dojo.byId("callLogForm")); 
+    }
+	
+	function updateData(searchString, id, setToValueAfterward, shortCircuit) {
+		//get the module
+		var module = "";
+        var city = "";
+        var filterData = "";
+		if (id == "assigned_user_name") {
+			module = "Users";
+            //send along the filter data so the typeahead service can filter out those results if they are already selected
+            filterData = dijit.byId("participantsFilterData").get('value');
+		} else {
+			module = dijit.byId("parent_type").get('value');
+            filterData = dijit.byId("relatedIDFilterData").get('value');
+		}
+		if (module == "Accounts") {
+            city = dijit.byId("city").get('value');
+        }
+		var aStore = dijit.byId(id).store;
+		var url = "";
+        var myItemsOnly;
+        
+        // 75177
+        if (id == "assigned_user_name") {
+        	myItemsOnly = "false";
+        } else
+        
+        if (document.getElementById("myItems").checked) {
+            myItemsOnly = "true";
+        } else {
+            myItemsOnly = "false";
+        }
+		if (shortCircuit) {
+			//we are either looking for the user or a card item, so short-circuit the round trip to sugar and just get that 1 piece of data
+			url = "http://localhost:" + getServerPort() + "/socialcrm/TypeaheadService?id=" + setToValueAfterward + "&securityCode=" + securityCode;
+		} else if (searchString == "" || searchString == null || module == "" || module == null) {
+			url = "http://localhost:" + getServerPort() + "/socialcrm/TypeaheadService?securityCode=" + securityCode;
+		} else {
+			url = "http://localhost:" + getServerPort() + "/socialcrm/TypeaheadService?searchString=" + encodeURIComponent(searchString) + "&module=" + module + "&city=" + encodeURIComponent(city) + "&filterData=" + encodeURIComponent(filterData) + "&securityCode=" + securityCode + "&myItemsOnly=" + myItemsOnly;
+		}
+		//finished = false;
+		aStore.url = url;
+		aStore.close();
+		if (setToValueAfterward != null) {
+			aStore.fetch({ onComplete: function (items, request) { 
+                               dijit.byId(id).set("value",setToValueAfterward);
+                               hideTypeaheadSpinner(id);},
+                           onError: function (items, request) {
+                               hideTypeaheadSpinner(id);
+                               }});
+		} else {
+			aStore.fetch({ onComplete: function (items, request) { 
+                               if (items.length > 0) {
+                                   dijit.byId(id).set("invalidMessage",messages["relatedTypePleasePickMsg"]);
+                                   typeaheadLoadedAndBeforeBlur = true;
+                                   if (blurTimer) {
+                                       clearTimeout(blurTimer);
+                                   }
+                                   blurTimer = setTimeout(function(){blurSelect(id)},500);  //so the scrollbar appears before they click away (so they know they can)
+                               } else {
+                                   dijit.byId(id).set("invalidMessage",messages["relatedTypeNoMatchMsg"]);
+                                   typeaheadWidthToRemember = 0; //so we don't try to set it at all
+                               }
+                               hideTypeaheadSpinner(id);
+                               },
+                           onError: function (items, request) {
+                               hideTypeaheadSpinner(id);
+                               }});
+		}
+		
+		module = null;
+        city = null;
+		aStore = null;
+		url = null;
+
+	}
+
+    function cityChanged() {
+		processTypeAhead("parent_id");
+        pushFieldsToServer();
+    }
+    function showTypeaheadSpinner(id) {
+        if (id == "assigned_user_name") {
+            document.getElementById("participantsLoading").style.display = "inline";
+        }  else {
+            document.getElementById("relatedItemLoading").style.display = "inline";
+        }
+    }
+    function hideTypeaheadSpinner(id) {
+        if (id == "assigned_user_name") {
+            document.getElementById("participantsLoading").style.display = "none";
+        }  else {
+            document.getElementById("relatedItemLoading").style.display = "none";
+        }
+    }
+    
+    // 56713
+    function showLoadingPage() {
+    	document.getElementById("loadingDiv").style.display = "block";
+    	document.getElementById("needToReloadDiv").style.display = "none";
+    	document.getElementById("calllogFormDiv").style.display = "none";
+    }
+    
+    
+    function showReloadPage() {
+        document.getElementById("needToReloadDiv").style.display = "block";
+        document.getElementById("loadingDiv").style.display = "none";
+    	document.getElementById("calllogFormDiv").style.display = "none";
+    }
+    
+    function showCalllogForm() {
+        document.getElementById("needToReloadDiv").style.display = "none";
+        document.getElementById("loadingDiv").style.display = "none";
+    	document.getElementById("calllogFormDiv").style.display = "block";
+    
+    }
+    
+    function saveMyItemsValue() {
+        var widget = dijit.byId("myItemsValue");
+        if (widget) {
+            widget.set("value", document.getElementById("myItems").checked);
+        }
+        pushFieldsToServer();
+    }
+    function selectChanged(action, id) {
+        if (action.keyCode == dojo.keys.ESCAPE) {
+          var filterDigit = dijit.byId(id);
+          filterDigit.set('displayedValue','');
+        }
+		if (relatedTimer) {
+			clearTimeout(relatedTimer);
+		}
+		relatedTimer = setTimeout(function(){processTypeAhead(id)},500); //wait half a second to make sure typing stopped
+		
+	}
+	function processTypeAhead(id) {
+		var relatedFS = dijit.byId(id);
+		var currentValue = relatedFS.get('displayedValue');
+		if (currentValue.length >= 2) { //two character minimum to search
+			updateData(currentValue, id, null, false);
+            showTypeaheadSpinner(id);
+			relatedFS.loadDropDown();
+		}
+		relatedFS = null;
+		currentValue = null;
+		
+	}
+
+    /*
+	Filters allow multiple items to be selected.  The data required is a sugarid and a label (so they can be rebuilt on page refresh).
+	The filters are stored in a single textbox with the format module,sugarid=label^^module2,sugarid2=label2
+	or for an employee sugarid=label
+	*/
+    function addAFilter(filterStorageID, sugarID, filterLabel) {
+        //add a filter to the storage, then rebuild the filter div
+		if (sugarID == null || sugarID == "") {
+			return; //nothing to do
+        }
+        var currentFilters = dijit.byId(filterStorageID).get('value');
+		if (currentFilters != null && currentFilters.indexOf(sugarID) >=0) {
+			return;  //toss out a duplicate.  This is easier than reworking the assigned user load logic since it will always start filled in and add duplicates
+        }
+        var updatedFilters;
+        var module = "";
+        var moduleString;
+		if (filterStorageID == "relatedIDFilterData") {
+            module = dijit.byId("parent_type").get('value');
+            moduleString = module + ",";
+        } else {
+			moduleString = ""; //unnecessary for an employee, only related
+        }
+		if (currentFilters != null && currentFilters !="") {
+			updatedFilters = currentFilters + "^^" + moduleString + sugarID + "=" + trimFilterLabel(filterLabel,module);
+        } else {
+			updatedFilters = moduleString + sugarID + "=" + trimFilterLabel(filterLabel,module);
+        }
+        dijit.byId(filterStorageID).set("value",updatedFilters);
+		rebuildFilterDiv(filterStorageID,filterStorageMap[filterStorageID]);
+    }
+    function trimString(aString) {
+        return aString.replace(/^\s+|\s+$/g, '');
+    }
+
+    function truncateString(trimTo, aString) {
+		if (aString == null) {
+            return aString;
+        } else if (aString.length <= trimTo) {
+			//just return the string
+			return trimString(aString);
+		} else {
+			return trimString(aString.substring(0, trimTo - 4) + "...");
+		} 
+	}
+
+    function trimFilterLabel(filterLabel,module) {
+        //trim the label if it is a related item, but not a employee, so we get the name but not the extra info
+        var trimmedString;
+		if (filterLabel == null || filterLabel == "") {
+			return "";
+        }
+		if (module == "") {
+            //must be an employee
+            return truncateString(33,filterLabel);        
+        } else {
+			if (module == "Accounts" || module == "Contacts" || module == "Leads") {
+                trimmedString = filterLabel.split("(")[0];
+				return trimString(trimmedString);
+            } else if (module == "Opportunities") {
+                trimmedString = filterLabel.split("(")[0];
+				return trimmedString;
+            }
+        }
+    }
+
+    function removeAFilter(filterStorageID, sugarID) {
+        //find the filter in the filterStorage by sugarID and remove it
+        var currentFilters = dijit.byId(filterStorageID).get('value');
+        var filterArray;
+        var filtersToKeep = "";
+        filterArray = currentFilters.split("^^");
+        for (i=0;i < filterArray.length;i++) {
+            var aFilter = filterArray[i];
+			if (aFilter.indexOf(sugarID) < 0) {
+                //id doesn't match, so keep it
+				if (filtersToKeep != "") {
+					filtersToKeep += "^^"; //add the delim
+                }
+				filtersToKeep += aFilter;
+            }
+        }
+        dijit.byId(filterStorageID).set('value',filtersToKeep);
+		rebuildFilterDiv(filterStorageID);
+        pushFieldsToServer();
+    }
+    function clearFilter(filterStorageID) {
+        //clear out the filter storage and clean up the div
+    }
+    function rebuildFilterDiv(filterStorageID) {
+        //clear and rebuild the display of filters based on the latest storage info
+        var filterData = dijit.byId(filterStorageID).get('value');
+        var filterDisplayDiv = dojo.byId(filterStorageMap[filterStorageID]);
+        //clear the filter display
+		filterDisplayDiv.innerHTML = "";
+        //build the updated filter display
+        var filterArray = filterData.split("^^");
+		for (i=0;i < filterArray.length;i++) {
+			if (filterArray[i] != "") {  //filter out the empty string we get after the list was cleared
+                var eqIdx = filterArray[i].indexOf("=");
+                var label = filterArray[i].substring(eqIdx + 1);
+                var commaIdx = filterArray[i].indexOf(",");
+                var module;
+                var sugarid;
+                if (commaIdx < 0 || commaIdx >= eqIdx) {
+                    //no comma, just get the sugarid
+                    sugarid = filterArray[i].substring(0,eqIdx);
+                } else {
+                    //comma, so parse off module and sugarid
+                    sugarid = filterArray[i].substring(commaIdx + 1,eqIdx);
+                    module = filterArray[i].substring(0,commaIdx);
+                }
+                filterDisplayDiv.innerHTML += "<a href='javascript:;'role='listitem' class='lotusFilter' title='Remove'>" + label + "<img alt='Remove' class='lotusDelete' src='./css/images/blank.gif' onClick='removeAFilter(\"" + filterStorageID + "\",\"" + sugarid + "\");' /><span class='lotusAltText'>X</span></a>";
+            }
+        }
+    }
+
+    function blurSelect(idOfFilteringSelect) {
+        /*if there is something typed in the filter, leave the result list visible if they click away
+        This is so they can use the scroll bar to see the entire list since we are in a confined space
+        Spacing was much better using strict mode, but the popup got truncated at the edge after the blur,
+        so remember the original width and force it back during the blur.
+        */
+        var selectDijit = dijit.byId(idOfFilteringSelect);
+        var displayValue = selectDijit.get('displayedValue');
+        var popupDiv = null;
+        if (displayValue != null && displayValue.length > 0 ) {
+            if (idOfFilteringSelect == 'assigned_user_name') {
+                popupDiv = dojo.byId('assigned_user_name_popup');
+            }  else {
+                popupDiv = dojo.byId('parent_id_popup');
+            }
+
+            if (typeaheadLoadedAndBeforeBlur) {
+                    typeaheadLoadedAndBeforeBlur = false;
+                    typeaheadWidthToRemember = popupDiv.scrollWidth;
+
+            }
+            if (typeaheadWidthToRemember > 0) {
+                selectDijit._showResultList();
+                popupDiv.style.width = typeaheadWidthToRemember + "px";
+            }
+        }
+    }
+    function filterChanged(idOfFilteringSelect, idOfFilterData) {
+        //add the filter for this item and clear out the filteringSelect
+        var relatedItemDijit = dijit.byId(idOfFilteringSelect);
+        var sugarID = relatedItemDijit.get('value');
+        var displayValue = relatedItemDijit.get('displayedValue');
+		addAFilter(idOfFilterData,sugarID,displayValue);
+        //flush the filteringSelect
+        var relatedFS = dijit.byId(idOfFilteringSelect);
+        relatedFS.reset();
+        relatedFS = null;
+        //push latest values to server
+        pushFieldsToServer(); //update the server with the new fields
+    }
+
+	function relatedTypeChanged() {
+		//clear the related to text box as the type changed
+		if (stompRelatedField) {
+			var relatedFS = dijit.byId("parent_id");
+			relatedFS.reset();
+			pushFieldsToServer();
+			relatedFS = null;
+		}
+        var module = dijit.byId("parent_type").get('value');
+        var city = dijit.byId("city");
+        //clear the city
+        city.set("value","");
+        if (module == "Accounts") {
+            dijit.byId("parent_id").setAttribute("placeHolder",messages["relatedTypeClientMsg"]);
+            //show the city
+			document.getElementById("relatedCityDiv").style.display = "block";
+        } else {
+            //hide the city
+            document.getElementById("relatedCityDiv").style.display = "none";
+        }
+		if (module == "Opportunities") {
+            dijit.byId("parent_id").setAttribute("placeHolder",messages["relatedTypeOpptyMsg"]);
+        } else if (module == "Contacts") {
+            dijit.byId("parent_id").setAttribute("placeHolder",messages["relatedTypeContactMsg"]);
+        } else if (module == "Leads") {
+            dijit.byId("parent_id").setAttribute("placeHolder",messages["relatedTypeLeadMsg"]);
+        }
+        
+
+        module = null;
+        city = null;
+	}
+
+	</script>
+	
+	<div id="calllogFormDiv">
+	
+		<form data-dojo-type="dijit.form.Form" id="callLogForm" data-dojo-id="callLogForm" encType="multipart/form-data" action="" method="">
+			<div id="messageDiv"></div><div style="float: right"><img id="helpimage" src="icons/help.png" /></div>
+			<div id="helphover" data-dojo-type="dijit.Tooltip" data-dojo-props="connectId:'helpimage',position:['below']">Loading help text...</div>
+			<label id="subjectLabel">Subject:</label>
+			<div id="nameDiv">
+				<input type="text" title="" value="" maxlength="50" id="name" name="name"  style="width: 221px;height: 20px;" data-dojo-type="dijit.form.ValidationTextBox" data-dojo-props="regExp:'[\\w\\W]+', required:true, invalidMessage:'Required field',trim:true" onchange="pushFieldsToServer()">
+			</div>
+			<label id="summaryLabel">Summary:</label>
+			<div id="summaryDiv">
+				<textarea tabindex="0" title="" cols="80" rows="2" name="description" id="description" style="width: 221px;" data-dojo-type="dijit.form.SimpleTextarea" onchange="pushFieldsToServer()"></textarea>
+			</div>
+			<label id="statusLabel">Status:</label>
+			<div id="statusDiv">
+					<!--<select data-dojo-type="dijit.form.Select" title="" id="direction" name="direction" onchange="pushFieldsToServer()" style="width: 30%;margin-left: 1px;">
+						<option value="Inbound" label="Inbound">Inbound</option>
+						<option value="Outbound" label="Outbound">Outbound</option>
+					</select>&nbsp;-->
+					<select data-dojo-type="dijit.form.Select" title="" id="status" name="status" onchange="pushFieldsToServer()" style="width: 106px;height: 20px;">
+						<!--<option value="Planned" label="Planned">Planned</option>
+						<option selected="selected" value="Held" label="Held">Held</option>
+						<option value="Not Held" label="Not Held">Not Held</option>-->
+					</select>
+			</div>                     
+			<label id="dateLabel">Date and duration:</label>
+			<div id="dateDiv">
+					<input type="text" name="date_start" id="date_start" style="left: -1px;width: 106px;height: 20px;" value="now" data-dojo-type="dijit.form.DateTextBox" required="true" onchange="pushFieldsToServer()" />
+					<span id="dateHourDiv">
+						<select  data-dojo-type="dijit.form.Select" title="" id="hours" name="hours" maxHeight="200" style="width: 54px;height: 20px;" onchange="pushFieldsToServer()">
+						<option></option>
+						<option value="00">00</option>
+						<option value="01">01</option>
+						<option value="02">02</option>
+						<option value="03">03</option>
+						<option value="04">04</option>
+						<option value="05">05</option>
+						<option value="06">06</option>
+						<option value="07">07</option>
+						<option value="08">08</option>
+						<option value="09">09</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option selected="true" value="12">12</option>
+						<option value="13">13</option>
+						<option value="14">14</option>
+						<option value="15">15</option>
+						<option value="16">16</option>
+						<option value="17">17</option>
+						<option value="18">18</option>
+						<option value="19">19</option>
+						<option value="20">20</option>
+						<option value="21">21</option>
+						<option value="22">22</option>
+						<option value="23">23</option>
+					</select>
+					</span>
+					<span id="dateMinDiv">
+					<select  data-dojo-type="dijit.form.Select" title="" id="minutes" name="minutes" style="left: -1px;width: 53px;height: 20px;" onchange="pushFieldsToServer()">
+						<option></option>
+						<option selected="true" value="00">00</option>
+						<option value="15">15</option>
+						<option value="30">30</option>
+						<option value="45">45</option>
+					</select>
+					</span>
+			</div>		
+			<label id="durationLabel">Duration:</label>
+			<div id="durationDiv">
+					<!-- <input type="text"  data-dojo-type="dijit.form.NumberTextBox" style="width: 2em;" title="" value="0" maxlength="2" size="3" id="hours" name="hours" constraints="{min:0,max:99,places:0}" tooltipPosition="above" onchange="pushFieldsToServer()">-->
+					<select  data-dojo-type="dijit.form.Select" title="" id="duration" name="duration" style="width: 106px;height: 20px;" onchange="pushFieldsToServer()">
+						<option></option>
+						<option value="00">00</option>
+						<option selected="true" value="15">15</option>
+						<option value="30">30</option>
+						<option value="45">45</option>
+						<option value="60">60</option>
+						<option value="61">>60</option>
+					</select>
+			        <span id="dateSubLabel">minutes</span>
+			</div>	
+			<label id="typeLabel">Type:</label>
+			<div id="typeDiv">
+					<select data-dojo-type="dijit.form.Select" title="" id="call_type" name="call_type" style="width: 106px; height: 20px;" onchange="pushFieldsToServer()">
+						<option value="face_to_face" label="Face to Face">Face to Face</option>
+						<option value="inbound_call" label="Inbound Call">Inbound Call</option>
+						<option value="outbound_call" label="Outbound Call">Outbound Call</option>
+					</select>
+			</div>
+			<label id="assignedLabel">Participants:</label>
+            <span id="participantsLoading"><img src="./css/images/loading.gif"></img></span>
+			<div id="assignedDiv">
+					<!-- <input type="text" title="" value="" id="assigned_to" name="assigned_to" style="width: 100%;" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"> -->
+					<div data-dojo-type="dojo.data.ItemFileReadStore"
+						data-dojo-id="assignedToItemStore"
+						data-dojo-props="url:'./TypeaheadService',clearOnClose: true,urlPreventCache: true">
+					</div>
+
+					<input data-dojo-type="dijit.form.FilteringSelect"
+						value=""
+						data-dojo-props="hasDownArrow: false, required:false, autoComplete:false, store:assignedToItemStore, searchAttr:'name', onKeyUp: function(action) {selectChanged(action,'assigned_user_name'); }"
+						name="assigned_user_name"
+						id="assigned_user_name"
+						style="width: 221px;height:20px;"
+						required="false"
+						tooltipPosition="above"
+						searchDelay=1000
+                        maxWidth=700
+						onchange="filterChanged('assigned_user_name','participantsFilterData')"
+                        onblur="blurSelect('assigned_user_name')"
+						>
+			</div>
+			<div id="relatedParticipants" class="lotusFilters2" role="list"></div>
+			<div id="relatedTo"><label id="relatedToTitle">Related To</label>&nbsp;&nbsp;&nbsp;<input type="checkbox" id="myItems" name="myItems" value="true" checked onClick="saveMyItemsValue();">&nbsp;<label id="myItemsLabel">FixFind my items only</label></div>
+			<label id="relatedLabel">Category</label>
+			<div id="relatedDiv">
+				<div data-dojo-type="dojo.data.ItemFileReadStore"
+						data-dojo-id="relatedItemStore"
+						data-dojo-props="url:'./TypeaheadService',clearOnClose: true,urlPreventCache: true">
+				</div>
+				<div id="relatedFieldDiv">
+					<select data-dojo-type="dijit.form.Select" title="" id="parent_type" name="parent_type" onchange="relatedTypeChanged()" style="position:relative;width:106px;height:20px;">
+						<!--<option value="Accounts">Client</option>
+						<option value="Opportunities">Opportunity</option>
+						<option value="Contacts">Contact</option>-->
+					</select><br/>
+					<div id="relatedCityDiv">
+						<label id="relatedCityLabel">City</label><br/>
+						<div id="relatedCityFieldDiv">
+							<input type="text" title="" value="" maxlength="50" id="city" name="city"  style="width: 221px;height:20px;" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true" onchange="cityChanged()">
+						</div>
+					</div>
+					<div id="relatedItemLabelDiv">
+						<label id="relatedItemLabel">Item</label>
+                        <span id="relatedItemLoading"><img src="./css/images/loading.gif"></img></span>
+					</div>
+					<div id="relatedItemDiv">
+						<input data-dojo-type="dijit.form.FilteringSelect"
+							value=""
+							data-dojo-props="hasDownArrow: false, required:false, autoComplete:false, store:relatedItemStore, searchAttr:'name', onKeyUp: function(action) {selectChanged(action,'parent_id'); }"
+							name="parent_id"
+							id="parent_id"
+							style="position:relative; width: 221px;height:20px;"
+							required="false"
+							tooltipPosition="above"
+							searchDelay=1000
+							onchange="filterChanged('parent_id','relatedIDFilterData')"
+                            onblur="blurSelect('parent_id')"
+							/>
+					</div>
+				</div>
+				<div id="relatedMulti" class="lotusFilters2" role="list"></div>
+			</div>
+			<div id="dynamicFieldsTitle"></div>
+			<div id="dynamicFieldsDiv">	
+			</div> 
+			<input type="hidden"  data-dojo-type="dijit.form.TextBox" id="dateFields" name="dateFields" value="date_start,">
+			<input type="hidden"  data-dojo-type="dijit.form.TextBox" id="parentIdDisplayValue" name="parentIdDisplayValue" value="">
+			<input type="hidden"  data-dojo-type="dijit.form.TextBox" id="forcePush" name="forcePush" value="">
+			<input type="hidden"  data-dojo-type="dijit.form.TextBox" id="relatedIDFilterData" name="relatedIDFilterData" value="">
+			<input type="hidden"  data-dojo-type="dijit.form.TextBox" id="participantsFilterData" name="participantsFilterData" value="">
+            <input type="hidden"  data-dojo-type="dijit.form.TextBox" id="myItemsValue" name="myItemsValue" value="">
+    		<div id="formButtonDiv">
+    			<button data-dojo-type="dijit.form.Button" type="button" id="saveBtn">Save
+    				<script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">
+    				submitForm();
+    				</script>
+    			</button>
+    			<button data-dojo-type="dijit.form.Button" type="button" id="resetBtn">Reset
+    				<script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">
+    				resetForm();
+    				</script>
+    			</button>
+    		</div>
+		</form>
+		
+	</div>
+
+<div id="loadingDiv">   
+ Loading... please wait
+</div>   
+
+<div id="needToReloadDiv">
+	<button data-dojo-type="dijit.form.Button" type="button" id="reloadBtn">Reload
+   	 	<script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">
+    		resetForm();
+    	</script>
+    </button>
+</div>
+		
+</body>
+</html>

@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Activitystream Plug-in
+Bundle-SymbolicName: com.ibm.socialcrm.notesintegration.activitystream;singleton:=true
+Bundle-Version: 1.3.0.qualifier
+Bundle-Activator: com.ibm.socialcrm.notesintegration.activitystream.Activator
+Bundle-Vendor: IBM
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.ibm.rcp.opensocial.container,
+ com.ibm.rcp.toolbox,
+ com.ibm.socialcrm.notesintegration.core,
+ com.ibm.rcp.fiesta.service,
+ com.ibm.json4j,
+ com.ibm.socialcrm.notesintegration.ui,
+ com.ibm.socialcrm.notesintegration.utils,
+ org.eclipse.ui.forms,
+ com.ibm.socialcrm.notesintegration.libraries
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

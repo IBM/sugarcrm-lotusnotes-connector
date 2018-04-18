@@ -1,0 +1,142 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+
+/* Time Picker
+ *
+ * Styling the Time Picker consists of the following:
+ *
+ * 1. minor time values
+ * 		.dijitTimePickerTick - set text color, size, background color of minor values
+ * 		.dijitTimePickerTickHover - set hover style of minor time values
+ * 		dijitTimePickerTickSelected - set selected style of minor time values
+ *
+ * 2. major time values - 1:00, 2:00, times on the hour
+ * 		set text color, size, background color, left/right margins for "zoom" affect
+ * 		.dijitTimePickerMarkerHover - to set hover style of major time values
+ * 		.dijitTimePickerMarkerSelected - set selected style of major time values
+ * 
+ * 3. up and down arrow buttons
+ * 		.dijitTimePicker .dijitButtonNode - background-color, border
+ * 		.dijitTimePicker .dijitUpArrowHover, .dijitTimePicker .dijitDownArrowHover - set background-color for hover state
+ *
+ *	Other classes provide the fundamental structure of the TimePicker and should not be modified.
+ */
+
+@import "variables";
+
+/* override Button.css */
+.lotusui30dojo .dijitTimePicker .dijitButtonNode {
+	padding: 0 0;
+	.border-radius(0);
+}
+
+.lotusui30dojo .dijitTimePicker {
+	border:1px @border-color solid;
+	background-color: @calendar-background-color;
+}
+
+.dj_ie6 .lotusui30dojo .dijitTimePicker {
+	border-top-width: 2px;
+}
+
+.lotusui30dojo .dijitTimePickerItem {
+	/* dijitTimePickerItem refers to both Tick's (minor values like 2:15, 2:30, 2:45) and Marker's (major values like 2PM, 3PM) */
+	background: @calendar-background-color;
+	border-top:solid 1px @minor-border-color;
+	border-bottom:solid 1px @minor-border-color;
+}
+
+/* to make up for lack of alpha transparency in IE6 */
+.dj_ie6 .lotusui30dojo .dijitTimePickerItem {
+	background-image: none;
+}
+
+.lotusui30dojo .dijitTimePickerTick {
+	/* minor value */
+	color:@timepicker-minorvalue-text-color;
+	background-color:@timepicker-minorvalue-background-color;
+	font-size: 0.9em;
+}
+
+.lotusui30dojo .dijitTimePickerMarker {
+	/* major value - 1:00, 2:00, times on the hour */
+	color: @timepicker-marker-text-color;
+	background-color: @timepicker-majorvalue-background-color;
+	font-weight: bold;
+	font-size: 0.9em;
+	white-space: nowrap;
+}
+.lotusui30dojo .dijitTimePickerTickHover,
+.lotusui30dojo .dijitTimePickerMarkerHover {
+	background-color: @timepicker-arrow-hovered-background-color;
+	border-top: solid 1px @timepicker-hover-border-color;
+	border-bottom: solid 1px @timepicker-hover-border-color;
+	color: @timepicker-value-hovered-text-color;
+}
+
+.lotusui30dojo .dijitTimePickerMarkerSelected,
+.lotusui30dojo .dijitTimePickerTickSelected {
+	background-color: @calendar-date-selected-background-color;
+	color: @text-color;
+	border-top: solid 1px @selected-border-color !important;
+	border-bottom: solid 1px @selected-border-color !important;
+}
+/*.dj_ie .lotusui30dojo .dijitTimePickerTickHover,
+.dj_ie .lotusui30dojo .dijitTimePickerMarkerHover,
+.dj_ie .lotusui30dojo .dijitTimePickerMarkerSelected,
+.dj_ie .lotusui30dojo .dijitTimePickerTickSelected  {
+	width: 114%;
+}*/ /* Not used in One UI */
+.dj_ie6 .lotusui30dojo .dijitTimePickerTickHover,
+.dj_ie6 .lotusui30dojo .dijitTimePickerMarkerHover,
+.dj_ie6 .lotusui30dojo .dijitTimePickerMarkerSelected,
+.dj_ie6 .lotusui30dojo .dijitTimePickerTickSelected {
+	position: relative; /* creates widening of element */	
+	zoom: 1; /* creates widening of element */
+}
+
+.lotusui30dojo .dijitTimePickerTick .dijitTimePickerItemInner {
+	padding:1px;
+	margin:0;
+}
+
+.dj_ie6 .lotusui30dojo .dijitTimePickerTick .dijitTimePickerItemInner,
+.dj_ie7 .lotusui30dojo .dijitTimePickerTick .dijitTimePickerItemInner,
+.dj_ie6 .lotusui30dojo .dijitTimePickerMarker .dijitTimePickerItemInner,
+.dj_ie7 .lotusui30dojo .dijitTimePickerMarker .dijitTimePickerItemInner {
+    padding: 3px 1px;
+} /* Unique to One UI */
+
+.lotusui30dojo .dijitTimePicker .dijitButtonNode {
+	border-left:none;
+	border-right:none;
+	border-color: @minor-border-color;
+	background-color: @calendar-background-color;
+}
+/*.dj_ie6 .lotusui30dojo .dijitTimePicker .dijitButtonNode {
+	background-image: none;
+}*/ /* Not used by One UI */
+.lotusui30dojo .dijitTimePicker .dijitArrowButtonInner {
+	height: 100%; /* hack claro.button.css */
+	background-image: url("form/images/commonFormArrows.png");
+	background-repeat: no-repeat;
+	background-position:-140px 45%;
+}
+
+.lotusui30dojo .dijitTimePicker .dijitDownArrowButton .dijitArrowButtonInner {
+	background-position:-35px 45%;
+}
+
+/* hover */
+.lotusui30dojo .dijitTimePicker .dijitUpArrowHover,
+.lotusui30dojo .dijitTimePicker .dijitDownArrowHover {
+	background-color: @timepicker-arrow-hovered-background-color;
+}
+.lotusui30dojo .dijitTimePicker .dijitUpArrowHover .dijitArrowButtonInner {
+	background-position:-175px 45%;
+}
+.lotusui30dojo .dijitTimePicker .dijitDownArrowHover .dijitArrowButtonInner {
+	background-position:-70px 45%;
+}

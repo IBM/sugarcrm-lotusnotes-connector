@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.ibm.socialcrm.notesintegration" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="com.ibm.socialcrm.notesintegration" id="sugarDashboardContribution" name="sugarDashboardContribution"/>
+      </appinfo>
+      <documentation>
+         This extension point allows a contributor to contribute a view to the pulldown area of the sugar crm object dashboard.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="dashboardContribution"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="dashboardContribution">
+      <complexType>
+         <sequence>
+            <element ref="types"/>
+         </sequence>
+         <attribute name="weight" type="string">
+            <annotation>
+               <documentation>
+                  Determines where in the expandable section of the sugar dashboard this view will appear.  Lighter weights (i.e. lower numbers) will float to the beginning.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="viewClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="com.ibm.socialcrm.notesintegration.ui.dashboardcomposites.AbstractDashboardComposite:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="dockedDisplayName" type="string">
+            <annotation>
+               <documentation>
+                  This is the name that will appear in the title bar when a card is docked.  This is an optional field that will override the default name provided by the AbstractDashboardComposite.
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="displayName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The primary display name for this contribution
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="types">
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="type"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="type">
+      <complexType>
+         <attribute name="sugarType" use="required">
+            <annotation>
+               <documentation>
+                  This represents the actual sugar construct that this dashboard extension is valid for (account, contact, or opportunity)
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="ACCOUNTS">
+                  </enumeration>
+                  <enumeration value="CONTACTS">
+                  </enumeration>
+                  <enumeration value="OPPORTUNITIES">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

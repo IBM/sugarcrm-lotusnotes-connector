@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="com.ibm.rcp.ui.shelfViews">
+      <shelfView
+            id="com.ibm.socialcrm.notesintegration.sidebar.consolidatedShelfView"
+            region="TOP"
+            showTitle="true"
+            view="com.ibm.socialcrm.notesintegration.sidebar.consolidatedView">
+      </shelfView>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="false"
+            class="com.ibm.socialcrm.notesintegration.sidebar.views.ConsolidatedSidebarView"
+            icon="icons/SalesConnect_16.png"
+            id="com.ibm.socialcrm.notesintegration.sidebar.consolidatedView"
+            name="IBM SalesConnect"
+            restorable="true">
+      </view>
+   </extension>
+
+</plugin>

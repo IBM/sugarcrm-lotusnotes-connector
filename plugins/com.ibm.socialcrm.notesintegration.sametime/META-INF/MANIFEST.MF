@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SFA Notes Integration Sametime plugin
+Bundle-SymbolicName: com.ibm.socialcrm.notesintegration.sametime;singleton:=true
+Bundle-Version: 2.0.0.qualifier
+Bundle-Vendor: IBM
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.ui,
+ com.ibm.socialcrm.notesintegration.libraries,
+ org.eclipse.core.runtime,
+ com.ibm.socialcrm.notesintegration.utils,
+ com.ibm.collaboration.realtime.core,
+ com.ibm.collaboration.realtime.imhub,
+ com.ibm.collaboration.realtime.people,
+ com.ibm.rcp.realtime.livenames,
+ com.ibm.collaboration.realtime.community,
+ com.ibm.collaboration.realtime.notifications,
+ com.ibm.collaboration.realtime.telephony.core;resolution:=optional,
+ com.ibm.collaboration.realtime.telephony.ui;resolution:=optional,
+ com.ibm.socialcrm.notesintegration.core,
+ com.ibm.socialcrm.notesintegration.ui,
+ org.eclipse.ui.forms,
+ com.ibm.rcp.ui.widgets
+Export-Package: com.ibm.socialcrm.notesintegration.sametime.utils

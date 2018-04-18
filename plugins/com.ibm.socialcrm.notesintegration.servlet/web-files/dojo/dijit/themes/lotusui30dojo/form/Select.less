@@ -1,0 +1,132 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+
+/* Select
+ * 
+ * Styling Select mainly includes:
+ * 
+ * 1. Containers
+ * 		.dijitSelect - for border, background-color
+ * 		.dijitButtonContents - for border
+ *
+ * 2. Arrow
+ * 		.dijitArrowButton - for border, padding and background-color|image
+ * 		.dijitArrowButtonInner - for border, background-color|image, display and width|height
+ * 
+ * 3. Menu
+ * 		.dijitSelectMenu .* - for border, padding
+ * 
+ * 4. Various states
+ * 		.dijitSelectHover|.dijitSelectFocused|.dijitSelectDisabled .* - for border, padding and background-color|image 
+ */
+
+@import "../variables";
+
+
+.lotusui30dojo .dijitSelect .dijitButtonText {
+	padding: 0px 5px 2px;
+}
+
+/* normal status */
+.lotusui30dojo .dijitSelect {
+	margin: 0;
+	border: 1px solid @border-color;
+	background-color: @textbox-background-color;
+	border-collapse: separate;
+}
+/*.dj_ie6 .lotusui30dojo .dijitSelect,
+.dj_ie6 .lotusui30dojo .dijitSelect .dijitButtonNode {
+	background-image:none;
+}*/ /* Not used by One UI */
+
+.lotusui30dojo .dijitSelect .dijitButtonContents {
+	border: 0px solid @border-color !important;
+}
+
+.lotusui30dojo .dijitSelect .dijitArrowButton {
+	padding: 0;
+	border: 0px solid @arrowbutton-inner-border-color; /* inner white border on button node */
+	border-top: none;
+}
+
+.lotusui30dojo .dijitSelect .dijitArrowButton .dijitArrowButtonInner {
+	background-image: url("images/smallcommonFormArrows.png");
+	background-position: -35px 50%;
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	display: block;
+}
+
+/* hover status */
+/*.lotusui30dojo .dijitSelectHover {
+	border: 1px solid @hovered-border-color;
+	background-color: @textbox-hovered-background-color;
+	background-image: url('images/textBox_back.png');
+	background-repeat: repeat-x;
+}*/ /* Not used by One UI */
+
+/*.lotusui30dojo .dijitSelectHover .dijitButtonContents {
+	border-color:@hovered-border-color;
+}*/ /* Not used by One UI */
+
+/*.lotusui30dojo .dijitSelectHover .dijitArrowButton {
+	background-color:@arrowbutton-hovered-background-color;
+}*/ /* Not used by One UI */
+.lotusui30dojo .dijitSelectHover .dijitArrowButton .dijitArrowButtonInner {
+	background-position: -70px 50%;
+}
+
+/* focused status */
+.lotusui30dojo .dijitSelectFocused {
+	border: 1px solid @focused-border-color;
+}
+
+.lotusui30dojo .dijitSelectFocused .dijitButtonContents {
+	border-color:@focused-border-color;
+}
+
+.lotusui30dojo .dijitSelectFocused .dijitArrowButton {
+	background-position: 0px -177px;   
+	border: none;
+	padding: 0;
+}
+
+.lotusui30dojo .dijitSelectFocused .dijitArrowButton .dijitArrowButtonInner {
+	background-position: -70px 50%;
+	margin-bottom: 1px;
+}
+
+/* disable status */
+.lotusui30dojo .dijitSelectDisabled {
+	border: 1px solid @disabled-border-color;
+	background-color: @disabled-background-color;
+	background-image: none;
+	color: @disabled-text-color;
+}
+/*.lotusui30dojo .dijitSelectDisabled .dijitArrowButton { 
+	background-color: @disabled-background-color;
+}*/ /* Not used by One UI */
+.lotusui30dojo .dijitSelectDisabled .dijitArrowButton {
+	background-color: @disabled-background-color;
+}
+
+/* Dropdown menu style for select */
+
+.lotusui30dojo .dijitSelectMenu td.dijitMenuItemIconCell,
+.lotusui30dojo .dijitSelectMenu td.dijitMenuArrowCell { 
+	/* so that arrow and icon cells from MenuItem are not displayed */
+	display: none;
+}
+
+.lotusui30dojo .dijitSelectMenu td.dijitMenuItemLabel { 
+	/* line up menu text with text in select box (in LTR and RTL modes) */
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.lotusui30dojo .dijitSelectMenu .dijitMenuSeparatorTop {
+	border-bottom:1px solid @focused-border-color;
+}

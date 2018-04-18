@@ -1,0 +1,109 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+.lotusui30dojo .dijitTabContainerTop-tabs .dijitTabRtl, .lotusui30dojo .dijitTabContainerBottom-tabs .dijitTabRtl {
+  margin-right: 0;
+  margin-left: 2px;
+}
+.lotusui30dojo .dijitTabRtl {
+  -moz-box-orient: horizontal;
+  text-align: right;
+}
+/*.dj_ie7 .lotusui30dojo .dijitTabRtl .dijitTabContent {
+	display: block;
+	left: 0;
+}*//* Not used by One UI */
+/*.dj_ie7 .lotusui30dojo .dijitTabContainerTop-tabs .dijitTabRtl,
+.dj_ie7 .lotusui30dojo .dijitTabContainerTop-tabs .dijitTabCheckedRtl {
+	top: 1px;
+}*//* Not used by One UI */
+.dj_ie7 .lotusui30dojo .tabStripButtonRtl .dijitButtonContents,
+.dj_ie8 .lotusui30dojo .tabStripButtonRtl .dijitButtonContents,
+.dj_ie6 .lotusui30dojo .dijitTabContainerTop-tabs .dijitTabRtl .dijitTabInnerDiv,
+.dj_ie6 .lotusui30dojo .dijitTabContainerBottom-tabs .dijitTabRtl .dijitTabInnerDiv,
+.dj_ie7 .lotusui30dojo .dijitTabContainerTop-tabs .dijitTabRtl .dijitTabInnerDiv,
+.dj_ie7 .lotusui30dojo .dijitTabContainerBottom-tabs .dijitTabRtl .dijitTabInnerDiv,
+.dj_iequirks .lotusui30dojo .dijitTabContainerTop-tabs .dijitTabRtl .dijitTabInnerDiv,
+.dj_iequirks .lotusui30dojo .dijitTabContainerBottom-tabs .dijitTabRtl .dijitTabInnerDiv {
+  float: left;
+}
+/*.dj_ie6 .lotusui30dojo .dijitTabRtl .tabLabel,
+.dj_ie6 .lotusui30dojo .dijitTabContainerRight-tabs .dijitTabRtl,
+.dj_ie6 .lotusui30dojo .dijitTabContainerLeft-tabs .dijitTabRtl,
+.dj_ie7 .lotusui30dojo .dijitTabContainerRight-tabs .dijitTabRtl .dijitTabInnerDiv,
+.dj_ie7 .lotusui30dojo .dijitTabContainerLeft-tabs .dijitTabRtl .dijitTabInnerDiv {
+	//Make the .tablabel have width in ie6 with haslayout property, fix Close icon position bug
+	zoom:1;
+}*//* Not used by One UI */
+.dj_ie6 .lotusui30dojo .dijitTabRtl .tabLabel,
+.dj_ie6 .lotusui30dojo .dijitTabContainerRight-tabs .dijitTabRtl,
+.dj_ie6 .lotusui30dojo .dijitTabContainerLeft-tabs .dijitTabRtl,
+.dj_ie7 .lotusui30dojo .dijitTabContainerRight-tabs .dijitTabRtl .dijitTabInnerDiv,
+.dj_ie7 .lotusui30dojo .dijitTabContainerLeft-tabs .dijitTabRtl .dijitTabInnerDiv {
+  /*Make the .tablabel have width in ie6 with haslayout property, fix Close icon position bug*/
+
+  zoom: 1;
+}
+/* Unique to One UI */
+/*.dj_ie6 .lotusui30dojo .dijitTabRtl .dijitTabCloseButton,
+.dj_ie7 .lotusui30dojo .dijitTabRtl .dijitTabCloseButton,
+.dj_iequirks .lotusui30dojo .dijitTabRtl .dijitTabCloseButton {
+	margin-right:5px;
+}*//* Not used by One UI */
+.dj_ie6 .lotusui30dojo .dijitTabContainerRightRtl .dijitTabContainerRight-tabs, .dj_ie6 .lotusui30dojo .dijitTabContainerLeftRtl .dijitTabContainerLeft-tabs {
+  width: 1%;
+}
+.dj_ie6 .dijitTabContainerTopStrip, .dj_ie6 .dijitTabContainerBottomStrip {
+  position: absolute;
+}
+.dj_iequirks .lotusui30dojo .dijitTabContainerTopRtl .dijitTabContainerTopStrip {
+  padding-top: 10px;
+}
+/*.dj_ie7 .lotusui30dojo .dijitTabContainerRight-tabs .dijitTabRtlChecked .dijitTabInnerDiv {
+	background-position:-341px -179px;
+}*//* Not used by One UI */
+.dj_ie6 .dijitTabContainerTopRtl .dijitTabStripIcon, .dj_ie6 .dijitTabContainerBottomRtl .dijitTabStripIcon {
+  position: relative;
+}
+.dj_ie6-rtl .lotusui30dojo .dijitTabContainerTop-tabs {
+  /* this strange rule prevents IE6 bug in themeTester.html?dir=rtl upon closing
+	 * "Closable" tab, where the other tabs disappear
+	 */
+
+  padding-left: 3px;
+}
+.dj_iequirks-rtl .lotusui30dojo .dijitTabListWrapper {
+  /* this strange rule prevents IE6 bug in themeTesterQuirk.html?dir=rtl upon closing
+	 * "Closable" tab, where the other tabs disappear
+	 */
+
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+}
+.lotusui30dojo .dijitTabContainerTop-tabs .dijitTabRtl .dijitTabContent, .lotusui30dojo .dijitTabContainerBottom-tabs .dijitTabRtl .dijitTabContent, .lotusui30dojo .dijitTabContainerTabListNested .dijitTabRtl .dijitTabContent {
+  padding-right: 4px;
+  padding-left: 8px;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitTabRtl .dijitTabCloseButton {
+  margin-right: -1px;
+  margin-left: -3px;
+}
+/* Unique to One UI */
+/* Lotus One UI tab dialog overrides */
+.dj_ie6 .lotusui30dojo .lotusTabDialog .dijitTabContainerTopRtl .dijitTabListContainer-top {
+  padding-left: 0;
+  padding-right: 20px;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabContainerTop-tabs .dijitTabRtl .dijitTabContent {
+  border-left: 0;
+  border-right: 1px solid #666;
+  padding: 0 10px;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabRtl:first-child .dijitTabContent {
+  border-right: 0;
+}
+.lotusui30dojo .lotusTabDialog .dijitTabRtl .dijitTabCloseButton {
+  margin: 0 3px -1px -3px;
+}

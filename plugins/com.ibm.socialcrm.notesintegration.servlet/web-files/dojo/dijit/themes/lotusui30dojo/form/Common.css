@@ -1,0 +1,212 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+/* oneui/form/Common.css */
+/*========================= common css =========================*/
+/* 'dijitTextBox' refers to 'dijit(TextBox|DateTextBox|CurrencyTextBox|...)' */
+/* Begin One UI Additions */
+.lotusui30dojo a, .lotusui30dojo a:visited {
+  color: #00649d;
+  text-decoration: none;
+}
+.lotusui30dojo a:hover, .lotusui30dojo a:focus, .lotusui30dojo a:active {
+  color: #05386b;
+  text-decoration: underline;
+}
+.lotusui30dojo .dijitSpinner .dijitSpinnerButtonContainer {
+  border-width: 0 !important;
+}
+.lotusui30dojo .dijitSpinner .dijitSpinnerButtonContainer .dijitDownArrowButton {
+  border-top-width: 0 !important;
+}
+.lotusui30dojo .dijitComboBox .dijitArrowButtonContainer {
+  padding: 2px 2px 2px 0;
+  border-width: 0 !important;
+}
+.lotusui30dojo textarea {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+}
+/* End One UI Additions */
+.lotusui30dojo .dijitTextBoxError .dijitValidationContainer {
+  background-color: #e3352e;
+  background-image: url('images/error.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: solid #d46464 0;
+  border-left-width: 1px;
+  width: 9px;
+}
+.lotusui30dojo .dijitTextBoxError .dijitValidationIcon {
+  width: 0;
+  background-color: transparent !important;
+  /* so the INPUT doesn't obscure the border in rtl+a11y */
+
+}
+/* Padding for the input area of TextBox based widgets, and corresponding padding for the
+ * down arrow button and the placeholder.   placeholder is explicitly listed  because
+ * dijitPlaceHolder is absolutely positioned, so padding set on dijitInputField
+ * won't affect it
+ */
+.lotusui30dojo .dijitTextArea, .lotusui30dojo .dijitInputField .dijitPlaceHolder {
+  padding: 1px;
+}
+/*.lotusui30dojo .dijitTextBox .dijitInputField {
+	// Subtract 1px from top/bottom because we add 1px to other nodes, see rules below.
+	// Although we are theoretically only adding 1px to top/bottom browsers seem to pad inputs by 1px on left/right,
+	// although that varies by so compensate for that too.
+	padding: @textbox-padding - 1px  @textbox-padding;
+}*//* Not used by One UI */
+/*.dj_gecko .lotusui30dojo .dijitTextBox .dijitInputInner,
+.dj_webkit .lotusui30dojo .dijitTextBox .dijitInputInner {
+	// Although we are theoretically only adding 1px to top/bottom, some browsers seem to pad inputs by 1px on left/right,
+	// so compensate for that too.
+	padding: @textbox-padding - 1px;
+}*//* Not used by One UI */
+.lotusui30dojo .dijitTextBox, .lotusui30dojo .dijitTextBox .dijitButtonNode {
+  /* color for (outer) border on *TextBox widgets, and border between input and buttons on ComboBox and Spinner */
+
+  border-color: #aaaaaa;
+}
+.lotusui30dojo .dijitTextBox {
+  background-color: #ffffff;
+  padding: 0;
+}
+/* hover */
+/*.lotusui30dojo .dijitTextBoxHover,
+.lotusui30dojo .dijitTextBoxHover .dijitButtonNode {
+	border-color: @hovered-border-color;
+ 	.transition-duration(.25s);
+}*//* Not used by One UI */
+/*.lotusui30dojo .dijitTextBoxHover {
+	background-color: @textbox-hovered-background-color;
+	background-image: url('images/textBox_back.png');
+	background-repeat: repeat-x;
+}*//* Not used by One UI */
+/* error state */
+.lotusui30dojo .dijitTextBoxError, .lotusui30dojo .dijitTextBoxError .dijitButtonNode {
+  border-color: #d46464;
+}
+.lotusui30dojo .dijitTextBoxError, .lotusui30dojo .dijitTextBoxError .dijitInputContainer {
+  background-color: #ffffff;
+}
+/* focused state */
+.lotusui30dojo .dijitTextBoxFocused {
+  background-color: #ffffff;
+}
+/*.lotusui30dojo .dijitTextBoxFocused {
+	background-color: @textbox-focused-background-color;
+	background-image: url('images/textBox_back.png');
+	background-repeat: repeat-x;
+}*//* Not used by One UI */
+.lotusui30dojo .dijitTextBoxFocused .dijitInputContainer {
+  background: #ffffff;
+}
+.lotusui30dojo .dijitTextBoxErrorFocused, .lotusui30dojo .dijitTextBoxErrorFocused .dijitButtonNode {
+  border-color: #d46464;
+}
+/* disabled state */
+.lotusui30dojo .dijitTextBoxDisabled, .lotusui30dojo .dijitTextBoxDisabled .dijitButtonNode {
+  border-color: #cccccc;
+}
+.lotusui30dojo .dijitTextBoxDisabled {
+  /*.lotusui30dojo .dijitTextBoxDisabled .dijitInputContainer {*/
+  /* Not used by One UI */
+
+  background-color: #eeeeee;
+  color: #666666;
+}
+/*========================= for special widgets =========================*/
+/* ComboBox */
+/* Input boxes with an arrow (for a drop down) */
+.lotusui30dojo .dijitComboBox .dijitArrowButtonInner {
+  background-image: url("images/smallcommonFormArrows.png");
+  background-position: -35px 53%;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 1px;
+  width: 16px;
+  border: 0 solid #ffffff;
+  height: 100%;
+}
+/*.lotusui30dojo .dijitToolbar .dijitComboBox .dijitArrowButtonInner {
+	border: none;
+8}*//* Not used by One UI */
+/*.lotusui30dojo .dijitToolbar .dijitComboBox .dijitArrowButtonInner {
+	border: none;
+}*//* Not used by One UI */
+/*.lotusui30dojo .dijitTextBox .dijitInputField {
+	padding: 1px 0;
+	border: 0;
+}*//* Deprecated by Dojo 1.6.1 */
+/* Add 1px vertical padding to the <input> where user types and the validation icon,
+   to match the 1px border on arrow button */
+.lotusui30dojo .dijitTextBox .dijitInputInner, .lotusui30dojo .dijitTextBox .dijitValidationContainer {
+  padding: 3px 0;
+}
+/*.lotusui30dojo .dijitComboBox .dijitButtonNode {
+	background-color: @arrowbutton-background-color;
+	background-image: url("images/formHighlight.png");
+	background-repeat:repeat-x;
+}*//* Not used by One UI */
+/* Arrow "hover" effect:
+ * The arrow button should change color whenever the mouse is in a position such that clicking it
+ * will toggle the drop down.   That's either (1) anywhere over the ComboBox or (2) over the arrow
+ * button, depending on the openOnClick setting for the widget.
+ */
+/* hover state */
+/*.lotusui30dojo .dijitComboBoxOpenOnClickHover .dijitButtonNode,
+.lotusui30dojo .dijitComboBox .dijitDownArrowButtonHover {
+	background-color:@arrowbutton-hovered-background-color;
+}*//* Not used by One UI */
+.lotusui30dojo .dijitComboBoxHover .dijitArrowButtonInner {
+  background-position: -70px 53%;
+}
+/* Unique to One UI */
+/*.lotusui30dojo .dijitComboBoxOpenOnClickHover .dijitArrowButtonInner,
+.lotusui30dojo .dijitComboBox .dijitDownArrowButtonHover .dijitArrowButtonInner {
+	background-position:-70px 53%;
+}*//* Not used by One UI */
+/* focused state */
+.lotusui30dojo .dijitComboBoxFocused .dijitButtonNode {
+  padding: 2px 2px 2px 0;
+  background-position: 0 -177px;
+}
+/* Unique to One UI */
+/* Arrow Button change when drop down is open */
+/*.lotusui30dojo .dijitComboBox .dijitHasDropDownOpen {	// .dijitHasDropDown is on dijitArrowButton node
+	background-color: @pressed-background-color;
+	background-position:0 -177px;
+	padding: 1px;		// Since no border on arrow button (see rule below)
+} /* Not used by One UI */
+.lotusui30dojo .dijitComboBoxFocused .dijitArrowButtonInner {
+  /* Dojo uses this instead: .lotusui30dojo .dijitComboBox .dijitHasDropDownOpen .dijitArrowButtonInner */
+
+  background-position: -70px 53%;
+  border: 0;
+}
+/* disabled state */
+/*.lotusui30dojo div.dijitComboBoxDisabled .dijitArrowButtonInner {
+	// specific selector set to override background-position setting from Button.js
+	// (.lotusui30dojo .dijitComboBoxDisabled .dijitArrowButtonInner)
+	background-position:0 50%;
+	background-color:@disabled-background-color;
+}*//* Not used by One UI */
+/*========================= hacks for browsers =========================*/
+/* it seems the input[type="hidden"] has a height (16px) too... this may cause the widget's height calculate error */
+.dj_ff3 .lotusui30dojo .dijitInputField input[type="hidden"] {
+  display: none;
+  height: 0;
+  width: 0;
+}
+/* ie6 doesn't support transparent background img */
+.dj_ie6 .lotusui30dojo .dijitTextBox, .dj_ie6 .lotusui30dojo .dijitComboBox .dijitButtonNode {
+  background-image: none;
+}
+.dj_borderbox .lotusui30dojo .dijitComboBox .dijitHasDropDownOpen .dijitArrowButtonInner {
+  width: 18px;
+}
+.dj_borderbox .lotusui30dojo .dijitComboBoxFocused .dijitHasDropDownOpen .dijitArrowButtonInner {
+  width: 16px;
+}

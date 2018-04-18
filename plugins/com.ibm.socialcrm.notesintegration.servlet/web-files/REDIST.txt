@@ -1,0 +1,14 @@
+IBM Lotus User Interface Redistributables:
+
+The following list includes files that are provided to Licensee pursuant
+to the Redistributables section of the IBM International Program License Agreements
+License Information that applies to this Program:
+
+All files in the following list of directories may be redistributed except as noted below:
+	- <unzip dir>\css
+	- <unzip dir>\imageLibrary (except for <unzip dir>\imageLibrary\branding and below)
+	- <unzip dir>\dojoTheme
+
+The images in the <unzip dir>\imageLibrary\branding folder and below constitute trademarks
+of IBM or other companies. Use of these images requires a separate license from the
+respective trademark owner.

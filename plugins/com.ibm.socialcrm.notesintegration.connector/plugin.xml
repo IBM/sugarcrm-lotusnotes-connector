@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension
+         point="com.ibm.rcp.ui.controlSets">
+      <controlSet
+            visible="true"
+            id="com.ibm.socialcrm.notesintegration.connector.associate.ControlSet">
+         <toolBar
+               path="END_GROUP"
+               id="com.ibm.socialcrm.notesintegration.connector.associate.toolbar">
+         </toolBar>
+         <control
+               toolbarPath="com.ibm.socialcrm.notesintegration.connector.associate.toolbar/associate/group1"
+               class="com.ibm.socialcrm.notesintegration.connector.AssociateToolBarControl"
+               id="com.ibm.socialcrm.notesintegration.connector.associate"/>
+      </controlSet>
+   </extension>
+
+</plugin>

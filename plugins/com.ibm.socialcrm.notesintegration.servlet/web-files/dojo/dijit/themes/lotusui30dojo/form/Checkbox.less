@@ -1,0 +1,93 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+
+/* CheckBox
+ * 
+ * Styling CheckBox mainly includes:
+ * 
+ * 1. Containers
+ * 		.dijitCheckBox|.dijitCheckBoxIcon - for border, padding, width|height and background image
+ * 
+ * 2. CheckBox within ToggleButton
+ * 		.dijitToggleButton|.dijitToggleButtonChecked .* - for background image
+ * 
+ * 3. Checked state
+ * 		.dijitCheckBoxChecked - for checked background-color|image
+ * 		.dijitToggleButtonChecked - for border, background-color|image, display and width|height
+ * 
+ * 4. Hover state
+ * 		.dijitCheckBoxHover|.dijitCheckBoxCheckedHover - for background image
+ * 
+ * 5. Disabled state
+ * 		.dijitCheckBoxDisabled|.dijitCheckBoxCheckedDisabled - for background image
+ */
+
+@import "../variables";
+
+.lotusui30dojo .dijitCheckBoxInput {
+    opacity: 1;
+} /* Unique to One UI */
+
+/* toggle button */
+/*.lotusui30dojo .dijitToggleButton .dijitCheckBoxIcon {
+	background-image: url('../images/checkmarkNoBorder.png');
+}*/ /* Not use by One UI */
+
+/*.dj_ie6 .lotusui30dojo .dijitToggleButton .dijitCheckBoxIcon {
+	background-image: url('../images/checkmarkNoBorder.gif');
+}*/ /* Not used by One UI */
+.lotusui30dojo .dijitCheckBoxIcon {
+	width: 15px;
+	height: 16px;
+	margin: 0 2px 0 0;
+	padding: 0;
+}
+
+/*.dj_ie6 .lotusui30dojo .dijitCheckBox,
+.dj_ie6 .lotusui30dojo .dijitCheckBoxIcon		// inside a toggle button	{
+	background-image: url('images/checkboxAndRadioButtons_IE6.png'); // checkbox sprite image
+}*/ /* Not used by One UI */
+
+.lotusui30dojo .dijitToggleButton .dijitCheckBoxIcon {
+	background-image: url('../images/checkmarkNoBorder.png');
+} /* Unique to One UI */
+
+.dj_ie6 .lotusui30dojo .dijitToggleButton .dijitCheckBoxIcon {
+	background-image: url('../images/checkmarkNoBorder.gif');
+} /* Unique to One UI */
+
+.lotusui30dojo .dijitToggleButton .dijitCheckBoxIcon {
+	/* unchecked */
+	background-position: -15px;
+}
+
+.lotusui30dojo .dijitToggleButtonChecked .dijitCheckBoxIcon {
+	/* checked */
+	background-position: 0;
+}
+
+/*.lotusui30dojo .dijitCheckBoxDisabled {
+	// disabled
+	background-position: -75px;
+}*/ /* Not used by One UI */
+
+/*.lotusui30dojo .dijitCheckBoxCheckedDisabled {
+	// disabled but checked
+	background-position: -60px;
+}*/ /* Not used by One UI */
+
+.lotusui30dojo .dijitToggleButtonCheckedDisabled .dijitCheckBoxIcon {
+	background-position: -33px;
+} /* Unique to One UI */
+
+/*.lotusui30dojo .dijitCheckBoxHover {
+	// hovering over an unchecked enabled checkbox
+	background-position: -45px;
+}*/ /* Not used by One UI */
+
+/*.lotusui30dojo .dijitCheckBoxCheckedHover {
+	// hovering over an checked enabled checkbox
+	background-position: -30px;
+}*/ /* Not used by One UI */

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+		xmlns="http://java.sun.com/xml/ns/j2ee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>sfawebapi</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<servlet>
+        <display-name>Services</display-name>
+        <servlet-name>Services</servlet-name>        
+        <servlet-class>com.ibm.socialcrm.notesintegration.sfawebapi.Services</servlet-class> 
+    </servlet>
+	<servlet-mapping>
+		<servlet-name>Services</servlet-name>
+		<url-pattern>/services</url-pattern>
+	</servlet-mapping>
+	<servlet>
+        <display-name>CreateMeeting</display-name>
+        <servlet-name>CreateMeeting</servlet-name>        
+        <servlet-class>com.ibm.socialcrm.notesintegration.sfawebapi.CreateMeeting</servlet-class> 
+    </servlet>
+	<servlet-mapping>
+		<servlet-name>CreateMeeting</servlet-name>
+		<url-pattern>/createMeeting</url-pattern>
+	</servlet-mapping>
+	<servlet>
+        <display-name>CreateEmail</display-name>
+        <servlet-name>CreateEmail</servlet-name>        
+        <servlet-class>com.ibm.socialcrm.notesintegration.sfawebapi.CreateEmail</servlet-class> 
+    </servlet>
+	<servlet-mapping>
+		<servlet-name>CreateEmail</servlet-name>
+		<url-pattern>/createEmail</url-pattern>
+	</servlet-mapping>
+</web-app>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+    <extension
+        id="com.ibm.socialcrm.notesintegration.documentsViewDashboardContribution"
+        name="Document View Dashboard Contribution"
+        point="com.ibm.socialcrm.notesintegration.core.sugarDashboardContribution">
+     <dashboardContribution
+           displayName="%filesTab"
+           viewClass="com.ibm.socialcrm.notesintegration.files.dashboardcomposites.DocumentsComposite"
+           weight="40">
+        <types>
+           <type
+                 sugarType="ACCOUNTS">
+           </type>
+           
+           <type
+                 sugarType="OPPORTUNITIES">
+           </type>
+        </types>
+     </dashboardContribution>
+  </extension>
+</plugin>

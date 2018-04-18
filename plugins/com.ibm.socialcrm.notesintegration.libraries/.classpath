@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="com.ibm.json4j_6.2.3.20110915-1350.jar"/>
+	<classpathentry exported="true" kind="lib" path="bcpg-jdk15on-149.jar"/>
+	<classpathentry exported="true" kind="lib" path="bcpkix-jdk15on-149.jar"/>
+	<classpathentry exported="true" kind="lib" path="bcprov-jdk15on-149.jar"/>
+	<classpathentry exported="true" kind="lib" path="abdera-1.1.2.jar"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="commons-codec-1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="commons-collections-3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="commons-configuration-1.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="commons-httpclient-3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="commons-lang-2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="commons-logging-1.0.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="jsonic-1.2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="langdetect.jar"/>
+	<classpathentry exported="true" kind="lib" path="axiom-api-1.2.10.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Revenue Plug-in
+Bundle-SymbolicName: com.ibm.socialcrm.notesintegration.revenue;singleton:=true
+Bundle-Version: 2.0.0.qualifier
+Bundle-Activator: com.ibm.socialcrm.notesintegration.revenue.Activator
+Bundle-Vendor: IBM
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.ibm.socialcrm.notesintegration.core,
+ com.ibm.socialcrm.notesintegration.ui,
+ com.ibm.socialcrm.notesintegration.libraries,
+ com.ibm.socialcrm.notesintegration.utils
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

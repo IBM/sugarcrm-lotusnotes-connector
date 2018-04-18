@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="com.ibm.socialcrm.notesintegration.sugarwidgetupdate.SugarWidgetUpdater"></startup>
+   </extension>
+   <extension
+         point="com.ibm.rcp.content.contentTypes">
+      <contentSet>
+         <type
+               category="Recognized Content"
+               id="SugarContactType"
+               name="%contactType">
+            <property
+                  description="Entire Contents"
+                  id="contents">
+            </property>
+         </type>
+         <type
+               category="Recognized Content"
+               id="SugarOpportunityType"
+               name="%opportunityType">
+            <property
+                  description="Entire Contents"
+                  id="contents">
+            </property>
+         </type>
+         <type
+               category="Recognized Content"
+               id="SugarAccountType"
+               name="%clientType">
+            <property
+                  description="Entire Contents"
+                  id="contents">
+            </property>
+         </type>
+      </contentSet>
+   </extension>
+
+</plugin>

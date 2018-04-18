@@ -1,0 +1,235 @@
+/*! Licensed Materials - Property of IBM.
+    (c) Copyright IBM Corporation 2001, 2012.  All Rights Reserved.
+    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+This CSS was built on August 16 2012. (version: OneUI-3.0.3_20120816-1522)*/
+/* Menu 
+
+There are three areas of styling for the Menu: 
+ 
+ 1. The menu 
+ 	There are three types of menus:
+ 	i)Context Menu
+ 	ii)Drop down Menu
+ 	iii) Navigation Menu
+ 	All three types of menus are affected by the .dijitMenu class in which you can set the background-color, padding and border
+ 	.dijitMenu affects the drop down menu in TimeTextBox, Calendar, ComboBox and FilteringSelect
+  .dijitMenuTable - for padding - also affects Select widget 	
+  	
+ 2. The menu bar
+ 	.dijitMenuBar - for border, margins, padding, background-color of the menu bar
+ 	.dijitMenuBar .dijitMenuItem - for padding, text color of menu items in the menu bar (overrides .dijitMenuItem) 
+ 	
+ 3. Menu items - items in the menu.  
+ 	.dijitMenuItem - for color
+ 	.dijitMenuItemHover, .dijitMenuItemSelected - for background-color, border, text color, padding of a menu item or menubar item that has been hovered over or selected	
+ 	.dijitMenuItemActive - for bacgkround-color of an active (mousedown) menu item
+	td.dijitMenuItemIconCell - for padding around a  menu item's icon
+	td.dijitMenuItemLabel - for padding around a menu item's label	
+	.dijitMenuSeparatorTop - for border, top border, of the separator
+	.dijitMenuSeparatorBottom - for bottom margin of the separator
+	
+	Styles specific to ComboBox and FilteringSelect widgets:
+	.dijitComboBoxMenu .dijitMenuItem - for padding and border of a menu item in a ComboBox or FilteringSelect widget's menu
+	.dijitComboBoxMenu .dijitMenuItemSelected- for text color, background-color and border of a menu item in a ComboBox or FilteringSelect widget's menu
+
+*/
+.lotusui30dojo .dijitMenuBar {
+  border: 1px solid #cccccc;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  background: -moz-linear-gradient(top, #f4f4f4 0%, #eaeaea 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4f4f4), color-stop(100%, #eaeaea));
+}
+/*.dj_ie6 .lotusui30dojo .dijitMenuBar {
+	background-image:none;
+}*//* Not used by One UI */
+.lotusui30dojo .dijitMenu {
+  background-repeat: repeat-y;
+  background-color: #ffffff;
+  border: 1px solid #aaaaaa;
+  margin-top: -1px;
+}
+/*.dj_ie6 .lotusui30dojo .dijitMenu {
+	margin: 0;	// above -1px makes top/bottom borders disappear on IE6
+}*//* Not used by One UI */
+.lotusui30dojo .dijitMenuBar .dijitMenuItem {
+  padding: 5px 10px 7px;
+  background-position: 0 100px;
+  color: #222222;
+  margin: -1px -2px;
+}
+/*.lotusui30dojo .dijitMenuItem {
+	background-image: url("images/menuHighlight.png");
+	background-position:0 -40px;
+}*//* Not used by One UI */
+.dj_ie .lotusui30dojo .dijitMenuBar .dijitMenuItem {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-left: -1px;
+  margin-right: 0;
+}
+/* Unique to One UI */
+.dj_ie6 .lotusui30dojo .dijitMenuBar .dijitMenuItem, .dj_ie7 .lotusui30dojo .dijitMenuBar .dijitMenuItem {
+  padding-top: 7px;
+  padding-bottom: 8px;
+}
+/* Unique to One UI */
+/* this prevents jiggling upon hover of a menu item */
+.lotusui30dojo .dijitMenuTable {
+  border-collapse: separate;
+  border-spacing: 0 0;
+  padding: 0;
+}
+.lotusui30dojo .dijitMenuPassive, .lotusui30dojo .dijitMenuActive {
+  position: relative;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitCalendar .dijitMenuPassive {
+  position: absolute;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitMenuItem td {
+  padding: 1px;
+}
+/* hover over a MenuBarItem */
+.lotusui30dojo .dijitMenuPassive .dijitMenuItemHover, .lotusui30dojo .dijitMenuPassive .dijitMenuItemSelected {
+  background-color: #ffffff;
+  border: solid 1px #aaaaaa;
+  margin-left: -1px;
+  color: #000000;
+  padding: 4px 9px 6px 8px;
+}
+/*.lotusui30dojo .dijitMenuPassive .dijitMenuItemActive{
+	background-position:0 -177px;
+}*//* Not used in One UI */
+.lotusui30dojo .dijitCalendar .dijitMenuPassive .dijitMenuItemHover {
+  margin-left: 0;
+}
+/* Unique to One UI */
+/*.dj_ie6 .lotusui30dojo .dijitMenuItem,
+.dj_ie6 .lotusui30dojo .dijitMenuPassive .dijitMenuItem {
+	background-image: none;
+}*//* Not used by One UI */
+.dj_ie .lotusui30dojo .dijitMenuPassive .dijitMenuItemHover, .dj_ie .lotusui30dojo .dijitMenuPassive .dijitMenuItemSelected {
+  padding-left: 9px;
+}
+/* Unique to One UI */
+/* MenuBarItem that has been selected and menu drops down from it */
+.lotusui30dojo .dijitMenuActive .dijitMenuItemHover, .lotusui30dojo .dijitMenuActive .dijitMenuItemSelected {
+  border: solid 1px #aaaaaa;
+  padding: 4px 9px 6px;
+  background-color: #ffffff;
+  color: #000000;
+  outline: none;
+}
+.dj_ie .lotusui30dojo .dijitMenuActive .dijitMenuItemHover,
+.dj_ie .lotusui30dojo .dijitMenuActive .dijitMenuItemSelected,
+.dj_ie .lotusui30dojo .dijitMenuPassive .dijitMenuItemHover,
+.dj_ie .lotusui30dojo .dijitMenuPassive .dijitMenuItemSelected {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: -1px;
+}
+.dj_ie7 .lotusui30dojo .dijitMenuPassive .dijitMenuItemHover,
+.dj_ie7 .lotusui30dojo .dijitMenuPassive .dijitMenuItemSelected,
+.dj_ie7 .lotusui30dojo .dijitMenuActive .dijitMenuItemHover,
+.dj_ie7 .lotusui30dojo .dijitMenuActive .dijitMenuItemSelected {
+  padding-top: 6px;
+  padding-bottom: 7px;
+}
+/* Unique to One UI */
+.dj_ie6 .lotusui30dojo .dijitMenuPassive .dijitMenuItemHover,
+.dj_ie6 .lotusui30dojo .dijitMenuPassive .dijitMenuItemSelected,
+.dj_ie6 .lotusui30dojo .dijitMenuActive .dijitMenuItemHover,
+.dj_ie6 .lotusui30dojo .dijitMenuActive .dijitMenuItemSelected {
+  padding-top: 7px;
+  padding-bottom: 6px;
+  top: -1px;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitMenuPopup .dijitMenuActive .dijitMenuItemHover, .lotusui30dojo .dijitMenuPopup .dijitMenuActive .dijitMenuItemSelected {
+  background-color: #eee;
+  border: 0px solid white;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitMenuActive .dijitMenuItemActive {
+  background-color: #ffffff;
+}
+/*.lotusui30dojo .dijitMenuItemActive {
+	background-position:0 -177px;
+}*//* Not used by One UI */
+.lotusui30dojo td.dijitMenuItemIconCell {
+  padding: 0 4px;
+  margin: 0 4px;
+}
+.lotusui30dojo td.dijitMenuItemLabel {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.dj_ie6 .lotusui30dojo td.dijitMenuItemLabel, .dj_ie7 .lotusui30dojo td.dijitMenuItemLabel {
+  padding-top: 5px;
+  padding-bottom: 6px;
+}
+/* Unique to One UI */
+.lotusui30dojo .dijitMenuExpand {
+  width: 7px;
+  height: 7px;
+  background-image: url('images/spriteArrows.png');
+  background-position: -14px 0;
+  margin-right: 3px;
+}
+.lotusui30dojo .dijitMenuItemDisabled .dijitMenuItemIconCell {
+  opacity: 1;
+}
+.lotusui30dojo .dijitMenuSeparatorTop {
+  height: auto;
+  margin-top: 0;
+  /* prevents spacing above separator */
+
+  margin-bottom: -1px;
+  border-bottom: 1px solid #cccccc;
+}
+.lotusui30dojo .dijitMenuSeparatorBottom {
+  height: auto;
+  margin-bottom: 1px;
+}
+/* the checked menu item */
+.lotusui30dojo .dijitCheckedMenuItemIconChar {
+  display: none;
+}
+.lotusui30dojo .dijitCheckedMenuItemIcon {
+  width: 15px;
+  height: 15px;
+}
+/*.dj_ie6 .lotusui30dojo .dijitCheckedMenuItemIcon {
+	background-image: url('form/images/checkboxAndRadioButtons_IE6.png');
+}*//* Not used in One UI */
+.lotusui30dojo .dijitCheckedMenuItemChecked .dijitCheckedMenuItemIcon {
+  background-image: url('form/images/checkboxRadioButtonStates.png');
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+}
+/*ComboBox Menu*/
+.lotusui30dojo .dijitComboBoxMenu {
+  margin-left: 0;
+  background-image: none;
+}
+.lotusui30dojo .dijitComboBoxMenu .dijitMenuItem {
+  padding: 2px 0;
+  text-indent: 6px;
+  border-color: #ffffff;
+}
+.lotusui30dojo .dijitComboBoxMenu .dijitMenuItemSelected {
+  color: #000000;
+  background-color: #eeeeee;
+}
+.lotusui30dojo .dijitComboBoxMenuActive .dijitMenuItemSelected {
+  background-position: 0 -177px;
+  background-color: #eeeeee;
+  /* TODO: why is this a different color than normal .dijitMenuItemSelected? */
+
+}
+.lotusui30dojo .dijitMenuPreviousButton, .lotusui30dojo .dijitMenuNextButton {
+  font-style: italic;
+}

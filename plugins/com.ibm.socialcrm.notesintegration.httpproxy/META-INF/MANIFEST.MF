@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Httpproxy Plug-in
+Bundle-SymbolicName: com.ibm.socialcrm.notesintegration.httpproxy;singleton:=true
+Bundle-Version: 2.0.0.qualifier
+Bundle-Activator: com.ibm.socialcrm.notesintegration.httpproxy.HttpProxyActivator
+Bundle-Vendor: IBM
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ com.ibm.socialcrm.notesintegration.utils,
+ com.ibm.socialcrm.notesintegration.ui,
+ com.ibm.socialcrm.notesintegration.core,
+ com.ibm.socialcrm.notesintegration.libraries
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: com.ibm.socialcrm.notesintegration.httpproxy

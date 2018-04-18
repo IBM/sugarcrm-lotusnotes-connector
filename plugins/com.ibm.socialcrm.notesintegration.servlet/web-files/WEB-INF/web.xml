@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+		xmlns="http://java.sun.com/xml/ns/j2ee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>socialcrm</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<servlet>
+        <display-name>SocialCRMServlet</display-name>
+        <servlet-name>SocialCRMServlet</servlet-name>        
+        <servlet-class>com.ibm.socialcrm.notesintegration.servlet.servlets.SocialCRMServlet</servlet-class> 
+    </servlet>
+	<servlet-mapping>
+		<servlet-name>SocialCRMServlet</servlet-name>
+		<url-pattern>/requesthandler/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+        <display-name>TypeaheadService</display-name>
+        <servlet-name>TypeaheadService</servlet-name>        
+        <servlet-class>com.ibm.socialcrm.notesintegration.servlet.servlets.TypeaheadService</servlet-class> 
+    </servlet>
+	<servlet-mapping>
+		<servlet-name>TypeaheadService</servlet-name>
+		<url-pattern>/TypeaheadService</url-pattern>
+	</servlet-mapping>
+	<servlet>
+        <display-name>CallLogDataLoad</display-name>
+        <servlet-name>CallLogDataLoad</servlet-name>        
+        <servlet-class>com.ibm.socialcrm.notesintegration.servlet.servlets.CallLogDataLoad</servlet-class> 
+    </servlet>
+	<servlet-mapping>
+		<servlet-name>CallLogDataLoad</servlet-name>
+		<url-pattern>/CallLogDataLoad</url-pattern>
+	</servlet-mapping>
+	<servlet>
+        <display-name>CallLogService</display-name>
+        <servlet-name>CallLogService</servlet-name>        
+        <servlet-class>com.ibm.socialcrm.notesintegration.servlet.servlets.CallLogService</servlet-class> 
+    </servlet>
+	<servlet-mapping>
+		<servlet-name>CallLogService</servlet-name>
+		<url-pattern>/CallLogService</url-pattern>
+	</servlet-mapping>
+</web-app>

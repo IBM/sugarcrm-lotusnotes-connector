@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+    
+  <!-- <extension
+        id="com.ibm.sfa.feedViewDashboardContribution"
+        name="Feed View Dashboard Contribution"
+        point="com.ibm.socialcrm.notesintegration.core.sugarDashboardContribution">
+     <dashboardContribution
+           displayName="%title"
+           viewClass="com.ibm.socialcrm.notesintegration.feeds.dashboardcomposites.FeedComposite"
+           weight="80">
+        <types>                 
+           <type
+                 sugarType="OPPORTUNITIES">
+           </type>
+           <type
+                 sugarType="ACCOUNTS">
+           </type>
+        </types>
+     </dashboardContribution>
+  </extension>
+  -->
+</plugin>

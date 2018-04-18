@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Utils Plug-in
+Bundle-SymbolicName: com.ibm.socialcrm.notesintegration.utils;singleton:=true
+Bundle-Version: 2.0.0.qualifier
+Bundle-Vendor: IBM
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Localization: plugin
+Require-Bundle: com.ibm.socialcrm.notesintegration.libraries,
+ org.eclipse.ui,
+ org.eclipse.ui.forms,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ com.ibm.rcp.accounts,
+ com.ibm.rcp.ui.browser,
+ com.ibm.rcp.ui.browser.launcher,
+ com.ibm.rcp.ui
+Export-Package: com.ibm.socialcrm.notesintegration.utils,
+ com.ibm.socialcrm.notesintegration.utils.datahub,
+ com.ibm.socialcrm.notesintegration.utils.datahub.calllog,
+ com.ibm.socialcrm.notesintegration.utils.ui,
+ com.ibm.socialcrm.notesintegration.utils.widgets
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: com.ibm.socialcrm.notesintegration.utils.UtilsPlugin
