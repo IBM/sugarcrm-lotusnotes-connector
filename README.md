@@ -3,4 +3,5 @@ SugarCRM Lotus Notes Connector is is a Notes client plugin, the main purpose of 
 
 # License
 The license under Apache v2 and a DCO for any simple bug fix/minor enhancement that may be contributed.
+
 [Apache 2.0](LICENSE)
